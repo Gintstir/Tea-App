@@ -1,5 +1,5 @@
 {
-  "name": "Tea-App",
+  "name": "tea-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/Gintstir/Tea-App/issues"
   },
-  "homepage": "https://github.com/Gintstir/Tea-App#readme"
+  "homepage": "https://github.com/Gintstir/Tea-App#readme",
+  "dependencies": {
+    "concurrently": "^6.0.0",
+    "graphql": "^15.5.0",
+    "if-env": "^1.0.4"
+  }
 }
