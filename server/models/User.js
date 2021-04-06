@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const bcrypt = require('bcrypt');
-const Tea = require('./Tea');
-const Recipe = require('./Recipe');
+// const Tea = require('./Tea');
+// const Recipe = require('./Recipe');
 
 const userSchema = new Schema(
     {
@@ -24,12 +24,12 @@ const userSchema = new Schema(
             required: true,
             minLength: 8
         },
-        teas: [
-            Tea.Schema
-        ],
-        recipes: [
-            Recipe.Schema
-        ]
+        // teas: [
+        //     Tea.Schema
+        // ],
+        // recipes: [
+        //     Recipe.Schema
+        // ]
     }
 );
 

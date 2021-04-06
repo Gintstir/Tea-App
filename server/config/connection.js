@@ -7,4 +7,6 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/tea-app', {
   useFindAndModify: false
 });
 
+// mongoose.set('debug', true)
+
 module.exports = mongoose.connection;
