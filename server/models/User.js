@@ -5,6 +5,7 @@ const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
 const Tea = require('./Tea');
 const Recipe = require('./Recipe');
+const Extra = require('./Extra');
 
 const userSchema = new Schema(
     {
@@ -29,6 +30,9 @@ const userSchema = new Schema(
         ],
         recipes: [
             Recipe.Schema
+        ],
+        extras: [
+            Extra.Schema
         ]
     }
 );
