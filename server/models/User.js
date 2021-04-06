@@ -3,8 +3,18 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const bcrypt = require('bcrypt');
-// const Tea = require('./Tea');
-// const Recipe = require('./Recipe');
+
+const Tea = require('./Tea');
+const Recipe = require('./Recipe');
+const Extra = require('./Extra');
+
+
+
+//This is the user model, here we can see that every user needs a username, email, and password.
+//Each User also has associated arrays of :
+//      - Teas(kinds of tea that have at home)
+//      - Extra(stuff they would add to tea like milk, honey, sugar, lemon, etc)
+//      - Recipes(Recipes they have created)
 
 const userSchema = new Schema(
     {
@@ -24,12 +34,15 @@ const userSchema = new Schema(
             required: true,
             minLength: 8
         },
-        // teas: [
-        //     Tea.Schema
-        // ],
-        // recipes: [
-        //     Recipe.Schema
-        // ]
+        teas: [
+            Tea.Schema
+        ],
+        recipes: [
+            Recipe.Schema
+        ],
+        extras: [
+            Extra.Schema
+        ]
     }
 );
 
