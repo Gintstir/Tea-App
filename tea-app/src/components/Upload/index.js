@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/react-hooks";
 
 import { Box, Grommet, FileInput, Text, Form, Button } from 'grommet'
 import { Trash } from 'grommet-icons'
 
-import { UPLOAD_IMAGE, QUERY_SOMETHING } from '../../utils/API'
+import { UPLOAD_IMAGE } from '../../utils/API'
 
 const customTheme = {
     fileInput: {
@@ -33,7 +33,6 @@ const Upload = () => {
     const [image, setImage] = useState()
 
     const [uploadImage, { error }] = useMutation(UPLOAD_IMAGE)
-    const { loading, data } = useQuery(QUERY_SOMETHING)
 
     const imageSubmit = async (event) => {
         event.preventDefault()
@@ -44,9 +43,9 @@ const Upload = () => {
         console.log(data.loadImage)
     }
 
-    if (error || loading) {
+    if (error) {
         return (
-            <h1>error or loading!</h1>
+            <h1>error!</h1>
         )
     }
 
@@ -76,7 +75,6 @@ const Upload = () => {
                                 type="submit"
                                 label="Submit"
                             />
-                            <h1>{data.findImage}</h1>
                         </Box>
                     </Form>
                 </Box>

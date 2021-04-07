@@ -7,17 +7,19 @@ const { Image } = require('../../models')
 const imageController = {
     async loadImage (__, { image } ) {
         
-        const { createReadStream, filename } = await image
+        const { createReadStream, filename, mimetype, encoding } = await image
         console.log('here', image)
-        // return { respond: 'hello there from response' }
-        return true
+        console.log('here2', {
+            createReadStream, filename, mimetype, encoding
+        })
+
         // await new Promise( res => 
         //     createReadStream()
         //         .pipe(createWriteStream(path.join(__dirname, '../images', filename)))
         //         .on('close', res)    
         // )
 
-        // return true
+        return true
         // const imgData = fs.readFileSync(path.join(__dirname, '../mountains-river.png'))
         // const newImg = await Image.create(
         //     { 
