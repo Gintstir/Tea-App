@@ -5,9 +5,7 @@ const typeDefs = gql`
         files: [String]
     }
 
-    type Resp {
-        respond: String!
-    }
+    scalar Upload
 
     type Query {
         findImage: String
