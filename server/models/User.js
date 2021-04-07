@@ -10,23 +10,7 @@ const bcrypt = require('bcrypt');
 //      - Extra(stuff they would add to tea like milk, honey, sugar, lemon, etc)
 //      - Recipes(Recipes they have created)
 
-const teaSchema = new Schema(
-    {
-        type: {
-            type: String,
-            required: true,        
-        },
-        name: {
-            type: String,
-            required: true
-        },
-        brand: {
-            type: String,
-            required: true
-        }
-    }
-)
-
+const teaSchema = require('./Tea')
 
 const userSchema = new Schema(
     {
@@ -55,9 +39,11 @@ const userSchema = new Schema(
                 ref: 'Recipe'
             }
         ],
-        extras: [{
+        extras: [
+            {
                 type: String
-        }],
+            }
+        ],
         avatar: {
             type: String
         }

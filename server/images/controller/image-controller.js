@@ -1,26 +1,35 @@
 const path = require('path')
-const fs = require('fs')
+const { createWriteStream } = require('fs')
 const jimp = require('jimp')
 
 const { Image } = require('../../models')
 
 const imageController = {
-    async loadImage (req, res) {
-        const imgData = fs.readFileSync(path.join(__dirname, '../mountains-river.png'))
-        const newImg = await Image.create(
-            { 
-                name: '12345',
-                img: {
-                    data: imgData,
-                    contentType: 'image/png'
-                }
-            }
+    async loadImage (__, { file } ) {
+        const { createReadStream, filename } = await file
+
+        await new Promise( res => 
+            createReadStream()
+                .pipe(createWriteStream(path.join(__dirname, '../images', filename)))
+                .on('close', res)    
         )
-        if (newImg) {
-            res.json({ message: "success" })
-        } else {
-            res.status(500).json({ error: 'there was an error uploading this image'})
-        }
+
+        return true
+        // const imgData = fs.readFileSync(path.join(__dirname, '../mountains-river.png'))
+        // const newImg = await Image.create(
+        //     { 
+        //         name: '12345',
+        //         img: {
+        //             data: imgData,
+        //             contentType: 'image/png'
+        //         }
+        //     }
+        // )
+        // if (newImg) {
+        //     res.json({ message: "success" })
+        // } else {
+        //     res.status(500).json({ error: 'there was an error uploading this image'})
+        // }
     },
     async resizeImage (imgPath, width = 600, height = jimp.AUTO, quality = 70) {
         const image = await jimp.read(imgPath)
