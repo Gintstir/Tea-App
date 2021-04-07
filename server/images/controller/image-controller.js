@@ -20,14 +20,6 @@ const imageController = {
         } else {
             res.status(500).json({ error: 'there was an error uploading this image'})
         }
-    },
-    async returnImage (req, res) {
-        const name = req.params.name
-        const image = await Image.findOne({name}).lean()
-        const buf = image.img.data.buffer
-        const type = image.img.contentType.split('/')[1]
-        fs.writeFileSync(path.join(__dirname, `../sent-file.${type}`), buf)
-        res.sendFile(path.join(__dirname, `../sent-file.${type}`))
     }
 }
 

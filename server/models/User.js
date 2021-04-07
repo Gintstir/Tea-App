@@ -4,12 +4,6 @@ const { Schema } = mongoose;
 
 const bcrypt = require('bcrypt');
 
-const Tea = require('./Tea');
-const Recipe = require('./Recipe');
-//const Extra = require('./Extra');
-
-
-
 //This is the user model, here we can see that every user needs a username, email, and password.
 //Each User also has associated arrays of :
 //      - Teas(kinds of tea that have at home)
@@ -56,19 +50,17 @@ const userSchema = new Schema(
             teaSchema
         ],
         recipes: [
-            Recipe.Schema
-        ],
-        extras: [
             {
-                type: String
+                type: Schema.Types.ObjectId,
+                ref: 'Recipe'
             }
         ],
-        avatar : {
-            data: Buffer,
-            contentType: String
+        extras: [{
+                type: String
+        }],
+        avatar: {
+            type: String
         }
-            
-        
     }
 );
 
