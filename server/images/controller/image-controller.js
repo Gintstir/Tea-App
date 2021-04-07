@@ -4,12 +4,8 @@ const fs = require('fs')
 const { Image } = require('../../models')
 
 const imageController = {
-    async testing (req, res) {
-        res.sendFile(path.join(__dirname, '../mountains-river.png'));
-    },
     async loadImage (req, res) {
         const imgData = fs.readFileSync(path.join(__dirname, '../mountains-river.png'))
-        console.log(imgData)
         const newImg = await Image.create(
             { 
                 name: '12345',
@@ -26,7 +22,8 @@ const imageController = {
         }
     },
     async returnImage (req, res) {
-        const image = await Image.findOne({}).lean()
+        const name = req.params.name
+        const image = await Image.findOne({name}).lean()
         const buf = image.img.data.buffer
         const type = image.img.contentType.split('/')[1]
         fs.writeFileSync(path.join(__dirname, `../sent-file.${type}`), buf)

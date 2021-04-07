@@ -22,11 +22,12 @@ const recipeSchema = new Schema(
             ref: 'Tea',
             required: true
         },
-        extra: {
-            type: Schema.Types.ObjectId,
-            ref: 'Extra',
+        extra: [
+            {
+                type: String
+            }
             
-        },
+        ],
         temperature: {
             type: String,
             required: true,

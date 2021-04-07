@@ -1,14 +1,10 @@
 const router = require('express').Router()
 
-const { testing, loadImage, returnImage } = require('../controller/image-controller')
+const { loadImage, returnImage } = require('../controller/image-controller')
 
 router
-    .route('/images')
-    .get(testing)
-    .post(loadImage)
-
-router
-    .route('/images/getOne')
+    .route('/images/:name')
     .get(returnImage)
+    .post(loadImage)
 
 module.exports = router
