@@ -15,18 +15,17 @@ const { Schema } = mongoose;
 // - add a tasting note to the recipe 
 // - createdAt: noting when the recipe was made
 
+const teaSchema = require('./Tea')
+
 const recipeSchema = new Schema(
     {
         tea: {
-            type: Schema.Types.ObjectId,
-            ref: 'Tea',
-            required: true
+            teaSchema
         },
         extra: [
             {
                 type: String
             }
-            
         ],
         temperature: {
             type: String,
@@ -38,8 +37,8 @@ const recipeSchema = new Schema(
             default: 5
         },
         picture: {
-            type: Schema.Types.ObjectId,
-            ref: 'Picture',
+            type: String,
+            required: true
         },
         note: {
             type: String,

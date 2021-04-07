@@ -1,41 +1,50 @@
 //import logo from './logo.svg';
 //import './App.css';
 import React from "react";
-//import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-// import { BrowserRouter as Router} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-// import { ApolloProvider } from '@apollo/react-hooks';
-// import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
+import { ApolloClient } from '@apollo/client';
+import { InMemoryCache } from 'apollo-cache-inmemory'
+import { createUploadLink } from 'apollo-upload-client';
+
 
 // import { Provider } from 'react-redux';
 // import store from './utils/store';
 
-// const client = new ApolloClient({
-//   request: (operation) => {
-//     const token = localStorage.getItem('id_token')
-//     operation.setContext({
-//       headers: {
-//         authorization: token ? `Bearer ${token}` : ''
-//       }
-//     })
-//   },
-//   uri: '/graphql',
-// })
+import Upload from './components/Upload'
+
+const client = new ApolloClient({
+  request: (operation) => {
+    const token = localStorage.getItem('id_token')
+    operation.setContext({
+      headers: {
+        authorization: token ? `Bearer ${token}` : ''
+      }
+    })
+  },
+  uri: '/graphql',
+  link: createUploadLink(),
+  cache: new InMemoryCache()
+})
 
 function App() {
   return (
-
-    <div>hello</div>
-    // <ApolloProvider client={client}>
-    //   <Router>
-    //     <div>
-    //       {/* adding StoreProvider in: */}
-    //       <Provider store={store}>
+    <>
+    <ApolloProvider client={client}>
+      <Router>
+        <Switch>
+          <Route exact path="/upload"><Upload /></Route>
+        </Switch>
+        {/* <div>
+          adding StoreProvider in:
+          <Provider store={store}>
             
-    //       </Provider>
-    //     </div>
-    //   </Router>
-    // </ApolloProvider>
+          </Provider>
+        </div> */}
+      </Router>
+    </ApolloProvider>
+    </>
   );
 }
 
