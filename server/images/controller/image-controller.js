@@ -5,16 +5,19 @@ const jimp = require('jimp')
 const { Image } = require('../../models')
 
 const imageController = {
-    async loadImage (__, { file } ) {
-        const { createReadStream, filename } = await file
-
-        await new Promise( res => 
-            createReadStream()
-                .pipe(createWriteStream(path.join(__dirname, '../images', filename)))
-                .on('close', res)    
-        )
-
+    async loadImage (__, { image } ) {
+        
+        const { createReadStream, filename } = await image
+        console.log('here', image)
+        // return { respond: 'hello there from response' }
         return true
+        // await new Promise( res => 
+        //     createReadStream()
+        //         .pipe(createWriteStream(path.join(__dirname, '../images', filename)))
+        //         .on('close', res)    
+        // )
+
+        // return true
         // const imgData = fs.readFileSync(path.join(__dirname, '../mountains-river.png'))
         // const newImg = await Image.create(
         //     { 
@@ -36,6 +39,10 @@ const imageController = {
         await image.resize(width, height)
         await image.quality(quality)
         await image.writeAsync(imgPath)
+    },
+    async findImage() {
+        console.log('hello from the findImage')
+        return 'Hey There'
     }
 }
 

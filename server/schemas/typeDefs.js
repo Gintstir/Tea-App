@@ -5,8 +5,16 @@ const typeDefs = gql`
         files: [String]
     }
 
+    type Resp {
+        respond: String!
+    }
+
+    type Query {
+        findImage: String
+    }
+
     type Mutation {
-        loadImage(file: Upload!): Boolean
+        loadImage(image: Upload!): Boolean!
     }
 `
 

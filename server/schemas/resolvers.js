@@ -1,6 +1,9 @@
-const { loadImage } = require('../images/controller/image-controller')
+const { loadImage, findImage } = require('../images/controller/image-controller')
 
 const resolvers = {
+    Query: {
+        findImage: findImage
+    },
     Mutation: {
         loadImage: loadImage
     }
