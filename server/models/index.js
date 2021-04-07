@@ -2,6 +2,6 @@ const User = require('./User');
 //const Tea = require('./Tea');
 const Recipe = require('./Recipe');
 //const Extra = require('./Extra');
-const Picture = require('./Picture');
+const Image = require('./Image');
 
-module.exports = { User, Recipe, Picture};
+module.exports = { User, Recipe, Image};
