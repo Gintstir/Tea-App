@@ -19,7 +19,7 @@ const teaSchema = require('./Tea')
 
 const recipeSchema = new Schema(
     {
-        tea: {
+        teas: {
             teaSchema
         },
         extras: [
