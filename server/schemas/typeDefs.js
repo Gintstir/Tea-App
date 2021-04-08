@@ -54,6 +54,9 @@ const typeDefs = gql`
         addExtra(type: String): User
         addRecipe(type: String!, name: String!, brand: String!, extra: [String], temperature: String!, steepTime: Int!, picture: String, note: String!): Recipe
 
+        removeExtra(type: String!): User
+        removeTea(id: ID!): User
+        removeRecipe(id: ID!): Recipe
 
         loadImage(image: Upload!): Boolean!
     }

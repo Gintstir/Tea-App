@@ -2,13 +2,13 @@ const { User } = require('../models')
 
 const { AuthenticationError } = require('apollo-server-express')
 
-const teaController = {
-    async createTea(parent, tea, context) {
+const extraController = {
+    async createExtra(parent, { type }, context) {
         if (context.user) {
             try {
                 const updatedUser = await User.findByIdAndUpdate(
                     context.user._id,
-                    { $addToSet: { teas: tea }},
+                    { $addToSet: { extras: type }},
                     { new: true}
                 )
 
@@ -16,19 +16,18 @@ const teaController = {
 
             } catch (e) {
                 console.error(e)
-                throw new AuthenticationError('Tea was unable to be saved')
+                throw new AuthenticationError('Extra was unable to be saved')
             }
         }
 
         throw new AuthenticationError('You must be logged in')
-
     },
-    async removeTea(parent, { id }, context) {
+    async removeExtra(parent, { type }, context) {
         if (context.user) {
             try {
                 const updatedUser = await User.findByIdAndUpdate(
                     context.user._id,
-                    { $pull: { teas: { _id: id } }},
+                    { $pull: { extras: type }},
                     { new: true}
                 )
 
@@ -36,13 +35,12 @@ const teaController = {
 
             } catch (e) {
                 console.error(e)
-                throw new AuthenticationError('Tea was unable to be removed')
+                throw new AuthenticationError('Extra was unable to be removed')
             }
         }
 
         throw new AuthenticationError('You must be logged in')
-
     }
 }
 
-module.exports = teaController
+module.exports = extraController
