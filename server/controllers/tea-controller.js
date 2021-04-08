@@ -23,12 +23,12 @@ const teaController = {
         throw new AuthenticationError('You must be logged in')
 
     },
-    async createExtra(parent, extra, context) {
+    async createExtra(parent, { type }, context) {
         if (context.user) {
             try {
                 const updatedUser = await User.findByIdAndUpdate(
                     context.user._id,
-                    { $addToSet: { extras: extra }},
+                    { $addToSet: { extras: type }},
                     { new: true}
                 )
 
@@ -42,17 +42,23 @@ const teaController = {
 
         throw new AuthenticationError('You must be logged in')
     },
-    async createRecipe(parent, recipe, context) {
+    async createRecipe(parent, { type, name, brand, ...recipe}, context) {
         if (context.user) {
             try {
+                recipe.tea = {
+                    type,
+                    name,
+                    brand
+                }
                 const newRecipe = await Recipe.create(recipe)
 
                 const updatedUser = await User.findByIdAndUpdate(
                     context.user._id,
-                    { $addToSet: { recipe: newRecipe._id }},
+                    { $addToSet: { recipes: newRecipe._id }},
                     { new: true}
                 )
 
+                console.log(updatedUser)
                 return newRecipe
 
             } catch (e) {

@@ -16,7 +16,7 @@ const typeDefs = gql`
     }
     type Recipe {
         _id: ID!
-        tea: [Tea]
+        tea: Tea
         extra: [String]
         temperature: String
         steepTime: Int
@@ -45,9 +45,6 @@ const typeDefs = gql`
         userRecipes(username: String!): [Recipe]
         typeRecipes(type: String): [Recipe]
         recipe(_id: ID!): Recipe
-
-
-        findImage: String
     }
 
     type Mutation {
@@ -55,7 +52,7 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         addTea(type: String!, name: String!, brand: String!): User
         addExtra(type: String): User
-        addRecipe(temperature: String!, steepTime: Int!, picture: String, note: String!): Recipe
+        addRecipe(type: String!, name: String!, brand: String!, extra: [String], temperature: String!, steepTime: Int!, picture: String, note: String!): Recipe
 
 
         loadImage(image: Upload!): Boolean!
