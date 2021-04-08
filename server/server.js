@@ -1,5 +1,8 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
+const {
+  graphqlUploadExpress, // The Express middleware.
+} = require('graphql-upload');
 const path = require('path');
 
 const { typeDefs, resolvers } = require('./schemas');
@@ -11,9 +14,10 @@ const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  uploads: false,
   context: authMiddleware
 });
-
+app.use(graphqlUploadExpress());
 server.applyMiddleware({ app });
 
 app.use(express.urlencoded({ extended: false }));
