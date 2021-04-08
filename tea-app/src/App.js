@@ -16,6 +16,7 @@ import Landing from "./components/Landing";
 import Brew from "./components/Brew";
 import Profile from "./components/Profile";
 import SignIn from "./components/SignIn";
+import Recipe from './components/Recipe'
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -51,6 +52,9 @@ function App() {
             </Route>
             <Route exact path="/signIn">
               <SignIn />
+            </Route>
+            <Route exact path="/recipe">
+              <Recipe />
             </Route>
           </Switch>
           <div>hi gorge</div>

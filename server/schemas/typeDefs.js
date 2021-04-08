@@ -2,20 +2,8 @@
 const { gql } = require('apollo-server-express')
 
 const typeDefs = gql`
-    
-    type File {
-        files: [String]
-    }
+    scalar Upload
 
-    type User {
-        _id: ID!
-        username: String!
-        email: String!
-        teas: [Tea]
-        recipes: [Recipe]
-        extras: [String]
-        avatar: String
-    }
     type Tea {
         _id: ID!
         type: String
@@ -28,7 +16,7 @@ const typeDefs = gql`
     }
     type Recipe {
         _id: ID!
-        tea: [Tea]
+        tea: Tea
         extra: [String]
         temperature: String
         steepTime: Int
@@ -36,9 +24,15 @@ const typeDefs = gql`
         note: String
         createdAt: String
     }
-
-    scalar Upload
-
+    type User {
+        _id: ID!
+        username: String!
+        email: String!
+        teas: [Tea]
+        recipes: [Recipe]
+        extras: [String]
+        avatar: String
+    }
     type Auth {
         token: ID!
         user: User
@@ -48,12 +42,9 @@ const typeDefs = gql`
         me: User
         users: [User]
         user(username: String!): User
-        recipes(username: String!): User
-        recipes(type: String): teaSchema
+        userRecipes(username: String!): [Recipe]
+        typeRecipes(type: String): [Recipe]
         recipe(_id: ID!): Recipe
-
-
-        findImage: String
     }
 
     type Mutation {
@@ -61,8 +52,11 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         addTea(type: String!, name: String!, brand: String!): User
         addExtra(type: String): User
-        addRecipe(temperature: String!, steepTime: Int!, picture: String, note: String!): Recipe
+        addRecipe(type: String!, name: String!, brand: String!, extra: [String], temperature: String!, steepTime: Int!, picture: String, note: String!): Recipe
 
+        removeExtra(type: String!): User
+        removeTea(id: ID!): User
+        removeRecipe(id: ID!): Recipe
 
         loadImage(image: Upload!): Boolean!
     }

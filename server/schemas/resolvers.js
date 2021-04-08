@@ -2,14 +2,32 @@ const {
     GraphQLUpload, // The GraphQL "Upload" Scalar
 } = require('graphql-upload');
 
-const { loadImage, findImage } = require('../images/controller/image-controller')
+const { createTea, removeTea } = require('../controllers/tea-controller');
+const { createExtra, removeExtra } = require('../controllers/extra-controller');
+const { createRecipe, removeRecipe } = require('../controllers/recipe-controller');
+
+const { createUser, loginUser, getUser } = require('../controllers/user-controller')
+
+const { loadImage } = require('../images/controller/image-controller')
 
 const resolvers = {
     Upload: GraphQLUpload,
     Query: {
-        findImage: findImage
+        me: getUser,
+        user: getUser
     },
     Mutation: {
+        addUser: createUser,
+        login: loginUser,
+
+        addTea: createTea,
+        addExtra: createExtra,
+        addRecipe: createRecipe,
+
+        removeExtra: removeExtra,
+        removeTea: removeTea,
+        removeRecipe: removeRecipe,
+        
         loadImage: loadImage
     }
 }
