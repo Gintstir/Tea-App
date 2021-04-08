@@ -13,6 +13,7 @@ import { createUploadLink } from 'apollo-upload-client';
 // import store from './utils/store';
 
 import Upload from './components/Upload'
+import Recipe from './components/Recipe'
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -34,6 +35,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <Switch>
+          <Route exact path="/recipe"><Recipe /></Route>
           <Route exact path="/upload"><Upload /></Route>
         </Switch>
         {/* <div>
