@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useMutation } from "@apollo/react-hooks";
 
-import { Box, Grommet, FileInput, Text, Form, Button } from 'grommet'
+import { Box, Grommet, FileInput, Text, Form, Button, Image } from 'grommet'
 import { Trash } from 'grommet-icons'
 
 import { UPLOAD_IMAGE } from '../../utils/API'
@@ -36,11 +36,12 @@ const Upload = () => {
 
     const imageSubmit = async (event) => {
         event.preventDefault()
-        console.log(image)
         const { data } = await uploadImage({ 
             variables: { image }
         })
-        console.log(data.loadImage)
+        if (data) {
+            console.log('success')
+        }
     }
 
     if (error) {
@@ -77,6 +78,7 @@ const Upload = () => {
                             />
                         </Box>
                     </Form>
+                    <Image fit="cover" src="http://localhost:3001/images/jUReeafZ94qQ0lgZqQ6Bv.jpg" />
                 </Box>
             </Box>
         </Grommet>
