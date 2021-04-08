@@ -23,6 +23,6 @@ const teaSchema = new Schema(
     }
 )
 
-// const Tea = mongoose.model("Tea", teaSchema);
+const Tea = mongoose.model("Tea", teaSchema);
 
-module.exports = teaSchema;
+module.exports = Tea;

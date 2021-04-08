@@ -22,7 +22,7 @@ const recipeSchema = new Schema(
         tea: {
             teaSchema
         },
-        extra: [
+        extras: [
             {
                 type: String
             }
