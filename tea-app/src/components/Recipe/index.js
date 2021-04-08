@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
 
-import { Grommet, Card, CardHeader, CardBody, Spinner, List } from 'grommet'
+import { Grommet, Card, CardHeader, CardBody, Spinner, List, Image, Box } from 'grommet'
 
 import { QUERY_USER } from '../../utils/queries' 
 
@@ -36,6 +36,9 @@ const Recipe = () => {
                             { key: 'Note', value: recipes[0].note }
                         ]}
                     />
+                    <Box width="medium">
+                        <Image fit="cover" src={`http://localhost:3001/images/${recipes[0].picture}`} />
+                    </Box>
                 </CardBody>
             </Card>
         </Grommet>        
