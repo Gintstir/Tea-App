@@ -13,6 +13,9 @@ import { createUploadLink } from "apollo-upload-client";
 
 import Upload from "./components/Upload";
 import Landing from "./components/Landing";
+import Brew from "./components/Brew";
+import Profile from "./components/Profile";
+import SignIn from "./components/SignIn";
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -39,6 +42,15 @@ function App() {
             </Route>
             <Route exact path="/landing">
               <Landing />
+            </Route>
+            <Route exact path="/brew">
+              <Brew />
+            </Route>
+            <Route exact path="/profile">
+              <Profile />
+            </Route>
+            <Route exact path="/signIn">
+              <SignIn />
             </Route>
           </Switch>
           <div>hi gorge</div>

@@ -1,19 +1,17 @@
 import React from "react";
-import TeaButtons from "../TeaButtons/index";
 
 // import { grommet } from "grommet/themes";
 import { Grommet, Header, Main, Text } from "grommet";
 
-const Landing = () => (
+const SignIn = () => (
   <Grommet>
     <Header background="light-4" pad="small">
       <Text size="large">About Me</Text>
     </Header>
-    <Main pad="small">This will become our landing page, how thrilling!</Main>
-    <div>
-      <TeaButtons />
-    </div>
+    <Main pad="small">
+      This is where our users will sign in, how thrilling!
+    </Main>
   </Grommet>
 );
 
-export default Landing;
+export default SignIn;
