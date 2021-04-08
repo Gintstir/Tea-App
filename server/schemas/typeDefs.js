@@ -2,20 +2,8 @@
 const { gql } = require('apollo-server-express')
 
 const typeDefs = gql`
-    
-    type File {
-        files: [String]
-    }
+    scalar Upload
 
-    type User {
-        _id: ID!
-        username: String!
-        email: String!
-        teas: [Tea]
-        recipes: [Recipe]
-        extras: [String]
-        avatar: String
-    }
     type Tea {
         _id: ID!
         type: String
@@ -36,9 +24,15 @@ const typeDefs = gql`
         note: String
         createdAt: String
     }
-
-    scalar Upload
-
+    type User {
+        _id: ID!
+        username: String!
+        email: String!
+        teas: [Tea]
+        recipes: [Recipe]
+        extras: [String]
+        avatar: String
+    }
     type Auth {
         token: ID!
         user: User
@@ -48,8 +42,8 @@ const typeDefs = gql`
         me: User
         users: [User]
         user(username: String!): User
-        recipes(username: String!): User
-        recipes(type: String): teaSchema
+        userRecipes(username: String!): [Recipe]
+        typeRecipes(type: String): [Recipe]
         recipe(_id: ID!): Recipe
 
 
