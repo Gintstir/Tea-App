@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/react-hooks";
 import { Box, Grommet, FileInput, Text, Form, Button, Image } from 'grommet'
 import { Trash } from 'grommet-icons'
 
-import { UPLOAD_IMAGE } from '../../utils/API'
+import { UPLOAD_IMAGE } from '../../utils/mutations'
 
 const customTheme = {
     fileInput: {
