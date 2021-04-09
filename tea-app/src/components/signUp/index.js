@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/react-hooks';
 import Auth from '../../utils/auth';
 import { ADD_USER } from '../../utils/mutations';
 // import { grommet } from "grommet/themes";
-import { Grommet, Box, Form, FormField, TextInput, grommet } from "grommet";
+import { Grommet, Box, Form, FormField, TextInput, grommet, Button } from "grommet";
 import { deepMerge } from 'grommet/utils';
 
 const customTheme = deepMerge(grommet, {
@@ -91,8 +91,16 @@ function Signup(props) {
                 <h1>Sign Up!</h1>
                 <Form>
                     <Box border gap="medium" pad="large" width="medium">
-                        <FormField htmlFor="enabled-id" name="enabled" label="Username">
-                            <TextInput id="enabled-id" name="enabled" placeholder="Username" />
+                        <FormField 
+                          htmlFor="enabled-id"
+                          name="enabled"
+                          label="Username"
+                          onSubmit={handleFormSubmit}>
+                            <TextInput 
+                              id="enabled-id"
+                              name="enabled"
+                              placeholder="Username"
+                              onChange={handleChange} />
                         </FormField>
                         <FormField htmlFor="enabled-id" name="enabled" label="Email">
                             <TextInput id="enabled-id" name="enabled" placeholder="Email" />
@@ -100,6 +108,7 @@ function Signup(props) {
                         <FormField htmlFor="enabled-id" name="enabled" label="Password">
                             <TextInput id="enabled-id" name="enabled" placeholder="Password" />
                         </FormField>
+                        <Button type="submit" label="Let's Go!" primary />
                     </Box>
                 </Form>
             </Box>
