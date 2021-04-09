@@ -124,3 +124,9 @@ export const REMOVE_RECIPE = gql`
     }
   }
 `;
+
+export const UPLOAD_IMAGE = gql`
+  mutation loadImage($image: Upload!) {
+    loadImage(image: $image)
+  }
+`;
