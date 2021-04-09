@@ -1,12 +1,4 @@
-//import React from 'react';
 import './main.css';
-
-const linksData = [
-  {
-    to: '/timer',
-    text: 'Timer'
-  }
-];
 
 const Main = (props: {children: Object}) => {
   return(
