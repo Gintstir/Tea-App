@@ -24,7 +24,6 @@
   },
   "homepage": "https://github.com/Gintstir/Tea-App#readme",
   "dependencies": {
-    "bcrypt": "^5.0.1",
     "concurrently": "^6.0.0",
     "if-env": "^1.0.4"
   }
