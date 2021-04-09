@@ -1,46 +1,8 @@
 import React from "react";
-import {
-  Location,
-  System,
-  ShieldSecurity,
-  Tasks,
-  User,
-  Wifi,
-} from "grommet-icons";
 import { Box, Card, CardBody, CardFooter, Grid, Grommet, Text } from "grommet";
 
-const data = [
-  {
-    color: "black",
-    icon: <Wifi size="large" />,
-    message: "Black Tea",
-  },
-  {
-    color: "green",
-    icon: <System size="large" />,
-    message: "Green Tea",
-  },
-  {
-    color: "white",
-    icon: <User size="large" />,
-    message: "White Tea",
-  },
-  {
-    color: "oolong",
-    icon: <Tasks size="large" />,
-    message: "Oolong Tea",
-  },
-  {
-    color: "herbal",
-    icon: <Location size="large" />,
-    message: "Herbal Infusion",
-  },
-  {
-    color: "rooibos",
-    icon: <ShieldSecurity size="large" />,
-    message: "Rooibos",
-  },
-];
+import data from '../../utils/tea-types'
+import recipeData from '../../utils/default-recipes'
 
 const theme = {
   global: {
@@ -74,6 +36,10 @@ const Identifier = ({ children, size, ...rest }) => (
   </Box>
 );
 
+const populateCard = (clickedColor) => {
+  console.log(clickedColor, recipeData);
+};
+
 export const TeaButtons = (props) => (
   <Grommet theme={theme} full>
     <Box pad="small">
@@ -85,7 +51,7 @@ export const TeaButtons = (props) => (
             width="150px"
             background={value.color}
             key={value.message}
-            // onClick={() => props.generateTeaCard(value.message)}
+            onClick={() => populateCard(value.color)}
           >
             <CardBody pad="small">
               <Identifier pad="small" size="small" align="center">
