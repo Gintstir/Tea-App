@@ -6,6 +6,8 @@ import { ADD_USER } from '../../utils/mutations';
 import { Grommet, Box, Form, FormField, TextInput, grommet, Button } from "grommet";
 import { deepMerge } from 'grommet/utils';
 
+import { Link } from "react-router-dom";
+
 const customTheme = deepMerge(grommet, {
     formField: {
       border: {
@@ -52,13 +54,13 @@ const customTheme = deepMerge(grommet, {
         },
       },
       label: {
-        size: 'xsmall',
+        size: 'small',
         color: 'text-weak',
         margin: {
           horizontal: 'none',
         },
       },
-      round: '4px',
+      round: '8px',
     },
   });
 
@@ -115,9 +117,10 @@ function Signup(props) {
                         <FormField htmlFor="password" name="password" label="Password" >
                             <TextInput id="password" name="password"  type="password" placeholder="Password" onChange={handleChange}/>
                         </FormField>
-                        <Button type="submit" label="Let's Go!" primary />
+                        <Button type="submit" label="Welcome!" primary />
                     </Box>
                 </Form>
+                <Link to='/signin'>Sign-in Instead</Link>
                 {error && <div>Sign up failed</div>}
             </Box>
         </Grommet>

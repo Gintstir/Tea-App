@@ -1,5 +1,5 @@
 import React from "react";
-import TeaButtons from "../TeaButtons/index";
+import TeaButtons from "../../components/TeaButtons";
 
 // import { grommet } from "grommet/themes";
 import { Grommet, Header, Main, Text, Card } from "grommet";

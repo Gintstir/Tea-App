@@ -1,17 +1,25 @@
 import React from "react";
 
 // import { grommet } from "grommet/themes";
-import { Grommet, Header, Main, Text } from "grommet";
+import { Button, Grommet, Nav } from "grommet";
+import { Home, Login, Logout } from "grommet-icons";
+import { Link } from "react-router-dom";
 
-const NavBar = () => (
-  <Grommet>
-    <Header background="light-4" pad="small">
-      <Text size="large">About Me</Text>
-    </Header>
-    <Main pad="small">
-      This is where we'll be building a NavBar...once we figure out what it does{" "}
-    </Main>
-  </Grommet>
-);
+import Auth from '../../utils/auth'
 
+const NavBar = ({ isLoggedin }) => {
+
+  const handleLogout = () => {
+    Auth.logout()
+  }
+  
+  return (
+    <Grommet>
+      <Nav direction="row" pad="medium">
+        <Link to='/'><Home /></ Link>
+        {isLoggedin ? <Button onClick={handleLogout}><Logout /></Button> : <Link to='/signin'><Login /></ Link> }
+      </Nav>
+    </Grommet>
+  );
+}
 export default NavBar;

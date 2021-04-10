@@ -11,15 +11,21 @@ import { createUploadLink } from "apollo-upload-client";
 // import { Provider } from 'react-redux';
 // import store from './utils/store';
 
+import Auth from './utils/auth'
+
+import NavBar from "./components/NavBar";
+
+import Landing from "./pages/Landing";
+import Profile from "./pages/Profile";
+
 import Upload from "./components/Upload";
-import Landing from "./components/Landing";
 import Brew from "./components/Brew";
-import Profile from "./components/Profile";
 import SignIn from "./components/SignIn";
 import Recipe from './components/Recipe';
-import SignUp from './components/signUp';
+import SignUp from './components/SignUp';
 import NewTea from "./components/NewTea";
 import NewExtra from "./components/NewExtra";
+
 
 const uploadLink = createUploadLink()
 
@@ -40,11 +46,18 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const isLoggedin = Auth.loggedIn()
+  const profile = isLoggedin ? Auth.getProfile() : null
+
   return (
     <>
       <ApolloProvider client={client}>
         <Router>
+          <NavBar isLoggedin={isLoggedin} />
           <Switch>
+            <Route exact path="/">
+              {isLoggedin ? <Profile profile={profile} /> : <Landing /> }
+            </Route>
             <Route exact path="/upload">
               <Upload />
             </Route>
@@ -73,13 +86,6 @@ function App() {
               <NewExtra />
             </Route>
           </Switch>
-          <div>hi gorge</div>
-          {/* <div>
-          adding StoreProvider in:
-          <Provider store={store}>
-            
-          </Provider>
-        </div> */}
         </Router>
       </ApolloProvider>
     </>
