@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, Card, CardBody, CardFooter, Grid, Grommet, Text } from "grommet";
 
-import data from '../../utils/tea-types'
-import recipeData from '../../utils/default-recipes'
+import data from "../../utils/tea-types";
+import recipeData from "../../utils/default-recipes";
 
 const theme = {
   global: {
@@ -36,12 +36,17 @@ const Identifier = ({ children, size, ...rest }) => (
   </Box>
 );
 
-// const populateCard = (clickedColor) => {
-//   console.log(clickedColor, recipeData);
-// };
-
 const populateCard = (clickedColor) => {
-  console.log(clickedColor, recipeData);
+  var i = recipeData.length,
+    selectedData;
+
+  while (i--) {
+    if (clickedColor === recipeData[i].name) {
+      selectedData = recipeData[i];
+      console.log(selectedData, "yippee");
+      break;
+    }
+  }
 };
 
 export const TeaButtons = () => (
