@@ -24,6 +24,7 @@ import Brew from "./components/Brew";
 import SignIn from "./components/SignIn";
 import Recipe from './components/Recipe';
 import SignUp from './components/SignUp';
+import Pantry from "./pages/Pantry";
 
 const uploadLink = createUploadLink()
 
@@ -55,6 +56,9 @@ function App() {
           <Switch>
             <Route exact path="/">
               {isLoggedin ? <Profile profile={profile} /> : <Landing /> }
+            </Route>
+            <Route exact path="/pantry">
+              {isLoggedin ? <Pantry /> : <Redirect to="/" />}
             </Route>
             <Route exact path="/upload">
               <Upload />
