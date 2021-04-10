@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 
 import { Box, Card, CardBody, CardFooter, Grid, Grommet, Text } from "grommet";
 
@@ -38,53 +37,47 @@ const Identifier = ({ children, size, ...rest }) => (
   </Box>
 );
 
-const populateCard = (clickedColor) => {
-  var i = recipeData.length,
-    selectedData;
+const TeaButtons = ({ setSelectedTea }) => {
+  const populateCard = (clickedColor) => {
+    const foundRecipe = recipeData.find(
+      (recipe) => recipe.name === clickedColor
+    );
+    setSelectedTea(foundRecipe);
+  };
 
-  while (i--) {
-    if (clickedColor === recipeData[i].name) {
-      selectedData = recipeData[i];
-      console.log(selectedData, "yippee");
-
-      ReactDOM.render(
-        <Card>{selectedData.name}</Card>,
-        document.getElementById("landingCard")
-      );
-
-      break;
-    }
-  }
+  return (
+    <Grommet theme={theme} full>
+      <Box pad="small">
+        {/* Responsive Grid */}
+        <Grid
+          gap="small"
+          rows="small"
+          columns={{ count: "fit", size: "xsmall" }}
+        >
+          {data.map((value) => (
+            <Card
+              height="150px"
+              width="150px"
+              background={value.color}
+              key={value.message}
+              onClick={() => populateCard(value.color)}
+            >
+              <CardBody pad="small">
+                <Identifier pad="small" size="small" align="center">
+                  {value.icon}
+                </Identifier>
+              </CardBody>
+              <CardFooter pad={{ horizontal: "medium", vertical: "small" }}>
+                <Text size="small" weight="bold">
+                  {value.message}
+                </Text>
+              </CardFooter>
+            </Card>
+          ))}
+        </Grid>
+      </Box>
+    </Grommet>
+  );
 };
-
-export const TeaButtons = () => (
-  <Grommet theme={theme} full>
-    <Box pad="small">
-      {/* Responsive Grid */}
-      <Grid gap="small" rows="small" columns={{ count: "fit", size: "xsmall" }}>
-        {data.map((value) => (
-          <Card
-            height="150px"
-            width="150px"
-            background={value.color}
-            key={value.message}
-            onClick={() => populateCard(value.color)}
-          >
-            <CardBody pad="small">
-              <Identifier pad="small" size="small" align="center">
-                {value.icon}
-              </Identifier>
-            </CardBody>
-            <CardFooter pad={{ horizontal: "medium", vertical: "small" }}>
-              <Text size="small" weight="bold">
-                {value.message}
-              </Text>
-            </CardFooter>
-          </Card>
-        ))}
-      </Grid>
-    </Box>
-  </Grommet>
-);
 
 export default TeaButtons;
