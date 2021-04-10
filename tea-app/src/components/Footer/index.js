@@ -1,23 +1,26 @@
 import React from 'react';
 
-import { 
-  FacebookOption,
-  Instagram,
-  Twitter,
+import {   
+  Group,
+//   Linkedin,
+  Github,
+
 } from 'grommet-icons';
 import { deepMerge } from 'grommet/utils';
 
-import { Anchor, Box, Footer, Grommet, grommet} from 'grommet';
+import { Anchor, Box, Footer, Grommet, grommet, Text} from 'grommet';
 
 const customTheme = deepMerge(grommet, {
     global: {
       colors: {      
         // Setting new colors
         blue: "#00C8FF",
+        black: "#6F7269",
         green: "#749A5C",
-        teal: "#82FFF2",
+        roobois: "#FC6161",
         purple: "#A2065A",
-        red: "#FC6161",
+        white: "#FBFBF7",
+        red: "#EE6373",
         orange: "#FFBC44",
         yellow: "#FFEB59",     
         
@@ -30,23 +33,35 @@ function Foot () {
   
     return (
         <Grommet theme={customTheme}>
-            <Footer background="red">
-                <Box direction="row" gap="xxsmall" justify="center">
+            <Footer background="light-6" >
+                <Box align="center" direction="row" gap="xsmall" margin={{left:"10px"}}>
+                    
+                    <Text alignSelf="center" color="black" size="small">
+                    Thanks for visiting!
+                    </Text>
+                </Box>
+                <Box direction="row" gap="small" justify="center" style={{margin: "0 auto"}}>
                     <Anchor
-                        a11yTitle="Share feedback on Github"
-                        href="https://www.instagram.com/"
-                        icon={<Instagram color="brand" />}
+                    a11yTitle="Share feedback on Github"
+                    href="https://github.com/Gintstir/Tea-App"
+                    icon={<Github color="black" size="large"/>}
                     />
                     <Anchor
-                        a11yTitle="Chat with us on Slack"
-                        href="https://www.facebook.com/"
-                        icon={<FacebookOption color="brand" />}
+                    a11yTitle="About us"
+                    href="../../pages/AboutUs"
+                    icon={<Group color="black" size="large"/>}
                     />
-                    <Anchor
-                        a11yTitle="Follow us on Twitter"
-                        href="https://twitter.com/"
-                        icon={<Twitter color="brand" />}
-                    />
+                    {/* <Anchor
+                    a11yTitle="Give us a Job!"
+                    href="https://twitter.com/"
+                    icon={<Linkedin color="brand" />}
+                    /> */}
+                </Box>
+                <Box align="center" direction="row" gap="xsmall" margin={{right:"10px"}}>
+                    
+                    <Text alignSelf="center" color="black" size="small">
+                    ©Copyright, 2021
+                    </Text>
                 </Box>
             </Footer>
         </Grommet>
