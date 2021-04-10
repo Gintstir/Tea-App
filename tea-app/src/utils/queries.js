@@ -7,6 +7,7 @@ export const QUERY_ME = gql`
             username
             email
             teas {
+                _id
                 brand
                 name
                 type
@@ -14,6 +15,7 @@ export const QUERY_ME = gql`
             extras
             recipes {
                 tea {
+                    _id
                     type
                     name
                     brand                    
@@ -35,6 +37,7 @@ export const QUERY_USER = gql`
             username
             email
             teas {
+                _id
                 brand
                 name
                 type
@@ -42,6 +45,7 @@ export const QUERY_USER = gql`
             extras
             recipes {
                 tea {
+                    _id
                     type
                     name
                     brand                    

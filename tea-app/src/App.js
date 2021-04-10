@@ -1,7 +1,7 @@
 //import logo from './logo.svg';
 //import './App.css';
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 
 import { ApolloLink, ApolloProvider, concat } from "@apollo/react-hooks";
 import ApolloClient from 'apollo-client';
@@ -23,9 +23,6 @@ import Brew from "./components/Brew";
 import SignIn from "./components/SignIn";
 import Recipe from './components/Recipe';
 import SignUp from './components/SignUp';
-import NewTea from "./components/NewTea";
-import NewExtra from "./components/NewExtra";
-
 
 const uploadLink = createUploadLink()
 
@@ -67,23 +64,14 @@ function App() {
             <Route exact path="/brew">
               <Brew />
             </Route>
-            <Route exact path="/profile">
-              <Profile />
+            <Route exact path="/signup">
+              {isLoggedin ? <Redirect to="/" /> : <SignUp />}
             </Route>
-            <Route exact path="/signIn">
-              <SignIn />
-            </Route>
-            <Route exact path="/signUp">
-              <SignUp />
+            <Route exact path="/signin">
+              {isLoggedin ? <Redirect to="/" /> : <SignIn />}
             </Route>
             <Route exact path="/recipe">
               <Recipe />
-            </Route>
-            <Route exact path="/newtea">
-              <NewTea />
-            </Route>
-            <Route exact path="/newextra">
-              <NewExtra />
             </Route>
           </Switch>
         </Router>

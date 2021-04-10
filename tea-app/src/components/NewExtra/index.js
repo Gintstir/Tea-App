@@ -25,6 +25,7 @@ const NewExtra = () => {
             await addExtra({
                 variables: values
             })
+            setValue({type: ''})
         } catch (e) {
             console.log(e)
         }
@@ -32,23 +33,25 @@ const NewExtra = () => {
     
     return (
         <Grommet>
-            <Form
-                value={value}
-                onChange={nextValue => setValue(nextValue)}
-                onReset={() => setValue({
-                    type: ''
-                })}
-                onSubmit={ async ({value}) => handleSubmit(value) }
-            >
-                <FormField name="type" htmlFor="tea-type-id" label="Type">
-                    <TextInput id="tea-type-id" name="type" />
-                </FormField>
-                <Box direction="row" gap="medium">
-                    <Button type="submit" primary label="Submit" />
-                    <Button type="reset" label="Reset" />
-                </Box>
-            </Form>
-            { error && <Text>{error.message}</Text>}            
+            <Box justify="center">
+                <Form
+                    value={value}
+                    onChange={nextValue => setValue(nextValue)}
+                    onReset={() => setValue({
+                        type: ''
+                    })}
+                    onSubmit={ async ({value}) => handleSubmit(value) }
+                >
+                    <FormField name="type" htmlFor="tea-type-id" label="Type">
+                        <TextInput id="tea-type-id" name="type" />
+                    </FormField>
+                    <Box direction="row" gap="medium" justify="center">
+                        <Button type="submit" primary label="Submit" />
+                        <Button type="reset" label="Reset" />
+                    </Box>
+                </Form>
+                { error && <Text>{error.message}</Text>}
+            </Box>
         </Grommet>
     )
 }
