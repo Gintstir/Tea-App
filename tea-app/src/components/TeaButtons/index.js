@@ -37,18 +37,23 @@ const Identifier = ({ children, size, ...rest }) => (
   </Box>
 );
 
-const TeaButtons = ({setSelectedTea}) => {
-
+const TeaButtons = ({ setSelectedTea }) => {
   const populateCard = (clickedColor) => {
-    const foundRecipe = recipeData.find(recipe => recipe.name === clickedColor)
-    setSelectedTea(foundRecipe)
-  }
+    const foundRecipe = recipeData.find(
+      (recipe) => recipe.name === clickedColor
+    );
+    setSelectedTea(foundRecipe);
+  };
 
   return (
     <Grommet theme={theme} full>
       <Box pad="small">
         {/* Responsive Grid */}
-        <Grid gap="small" rows="small" columns={{ count: "fit", size: "xsmall" }}>
+        <Grid
+          gap="small"
+          rows="small"
+          columns={{ count: "fit", size: "xsmall" }}
+        >
           {data.map((value) => (
             <Card
               height="150px"
@@ -73,6 +78,6 @@ const TeaButtons = ({setSelectedTea}) => {
       </Box>
     </Grommet>
   );
-}
+};
 
 export default TeaButtons;
