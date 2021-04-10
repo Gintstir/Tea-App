@@ -6,6 +6,8 @@ import { LOGIN } from '../../utils/mutations';
 import { Grommet, Box, Form, FormField, TextInput, grommet, Button } from "grommet";
 import { deepMerge } from 'grommet/utils';
 
+import { Link } from "react-router-dom";
+
 const customTheme = deepMerge(grommet, {
   formField: {
     border: {
@@ -94,13 +96,14 @@ function SignIn (props) {
             <FormField
               htmlFor="username"
               name="username"
-              type="username"
+              type="text"
               label="username"
               >
                 <TextInput
                   id="username"
                   name="username"
                   placeholder="Username"
+                  type="text"
                   onChange={handleChange}
                   />
 
@@ -114,13 +117,15 @@ function SignIn (props) {
                 <TextInput
                   id="password"
                   name="password"
-                  placeholder="password"
+                  placeholder="Password"
+                  type="password"
                   onChange={handleChange}
                   />
             </FormField>
             <Button type="submit" label="Let's Go!" primary />
           </Box>
         </Form>
+        <Link to='/signup'>Sign-up Instead</Link>
         {error && <div>Login Failed</div>}
       </Box>
     </Grommet>
