@@ -46,6 +46,7 @@ const populateCard = (clickedColor) => {
     if (clickedColor === recipeData[i].name) {
       selectedData = recipeData[i];
       console.log(selectedData, "yippee");
+
       ReactDOM.render(
         <Card>{selectedData.name}</Card>,
         document.getElementById("landingCard")

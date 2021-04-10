@@ -1,5 +1,6 @@
 import React from "react";
 import TeaButtons from "../../components/TeaButtons";
+import TeaCard from "../../components/MaterializeTeaCard";
 
 // import { grommet } from "grommet/themes";
 import { Grommet, Header, Main, Text, Card } from "grommet";
@@ -17,6 +18,9 @@ const Landing = () => (
     <Card id="landingCard" style={{ fontFamily: "Nothing You Could Do" }}>
       I will be a dynamically generated teacard! oooooo!
     </Card>
+    <div>
+      <TeaCard />
+    </div>
     <div>
       <TeaButtons />
     </div>
