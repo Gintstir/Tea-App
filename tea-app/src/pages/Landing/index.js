@@ -23,6 +23,9 @@ const Landing = () => {
       <Card id="landingCard" style={{ fontFamily: "Nothing You Could Do" }}>
         {selectedTea.name}
       </Card>
+      <Card>
+        <TeaCard />
+      </Card>
       <div>
         <TeaButtons setSelectedTea={setSelectedTea} />
       </div>
