@@ -48,7 +48,7 @@ function Foot () {
                     />
                     <Anchor
                     a11yTitle="About us"
-                    href="../../pages/AboutUs"
+                    href="/aboutUs"
                     icon={<Group color="black" size="large"/>}
                     />
                     {/* <Anchor
