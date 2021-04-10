@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 
 import { Form, FormField, TextInput, Box, Button, Grommet, Text } from 'grommet'
-import { useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/react-hooks'
 
 import { ADD_EXTRA } from '../../utils/mutations'
+import Auth from '../../utils/auth'
 
 const NewExtra = () => {
     
@@ -14,6 +15,12 @@ const NewExtra = () => {
     const [addExtra, { error }] = useMutation(ADD_EXTRA)
 
     const handleSubmit = async values => {
+        const token = Auth.loggedIn() ? Auth.getToken() : null
+
+        if (!token) {
+            return false
+        }
+
         try {
             await addExtra({
                 variables: values

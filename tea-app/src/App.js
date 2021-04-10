@@ -3,8 +3,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import { ApolloProvider } from "@apollo/react-hooks";
-import { ApolloClient } from "@apollo/client";
+import { ApolloLink, ApolloProvider, concat } from "@apollo/react-hooks";
+import ApolloClient from 'apollo-client';
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { createUploadLink } from "apollo-upload-client";
 
@@ -21,17 +21,21 @@ import SignUp from './components/signUp';
 import NewTea from "./components/NewTea";
 import NewExtra from "./components/NewExtra";
 
+const uploadLink = createUploadLink()
+
+const authMiddleware = new ApolloLink((operation, forward) => {
+  const token = localStorage.getItem("id_token");
+  operation.setContext({
+    headers: {
+      authorization: token ? `Bearer ${token}` : "",
+    }
+  })
+
+  return forward(operation)
+})
+
 const client = new ApolloClient({
-  request: (operation) => {
-    const token = localStorage.getItem("id_token");
-    operation.setContext({
-      headers: {
-        authorization: token ? `Bearer ${token}` : "",
-      },
-    });
-  },
-  uri: "/graphql",
-  link: createUploadLink(),
+  link: concat(authMiddleware, uploadLink),
   cache: new InMemoryCache(),
 });
 

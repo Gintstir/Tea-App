@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import { Form, FormField, TextInput, Box, Button, Grommet, Text } from 'grommet'
-import { useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/react-hooks'
 
 import { ADD_TEA } from '../../utils/mutations'
 
