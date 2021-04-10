@@ -18,6 +18,7 @@ import Foot from "./components/Footer"
 
 import Landing from "./pages/Landing";
 import Profile from "./pages/Profile";
+import AboutUs from './pages/AboutUs';
 
 import Upload from "./components/Upload";
 import Brew from "./components/Brew";
@@ -25,6 +26,7 @@ import SignIn from "./components/SignIn";
 import Recipe from './components/Recipe';
 import SignUp from './components/SignUp';
 import Pantry from "./pages/Pantry";
+
 
 const uploadLink = createUploadLink()
 
@@ -65,6 +67,9 @@ function App() {
             </Route>
             <Route exact path="/landing">
               <Landing />
+            </Route>
+            <Route exact path="/aboutUs">
+              <AboutUs />
             </Route>
             <Route exact path="/brew">
               <Brew />
