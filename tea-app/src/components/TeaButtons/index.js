@@ -118,11 +118,15 @@ const Identifier = ({ children, size, ...rest }) => (
   </Box>
 );
 
+// const populateCard = (clickedColor) => {
+//   console.log(clickedColor, recipeData);
+// };
+
 const populateCard = (clickedColor) => {
   console.log(clickedColor, recipeData);
 };
 
-export const TeaButtons = (props) => (
+export const TeaButtons = () => (
   <Grommet theme={theme} full>
     <Box pad="small">
       {/* Responsive Grid */}
