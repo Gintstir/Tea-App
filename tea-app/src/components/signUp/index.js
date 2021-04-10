@@ -52,13 +52,13 @@ const customTheme = deepMerge(grommet, {
         },
       },
       label: {
-        size: 'xsmall',
+        size: 'small',
         color: 'text-weak',
         margin: {
           horizontal: 'none',
         },
       },
-      round: '4px',
+      round: '8px',
     },
   });
 
@@ -115,7 +115,7 @@ function Signup(props) {
                         <FormField htmlFor="password" name="password" label="Password" >
                             <TextInput id="password" name="password"  type="password" placeholder="Password" onChange={handleChange}/>
                         </FormField>
-                        <Button type="submit" label="Let's Go!" primary />
+                        <Button type="submit" label="Welcome!" primary />
                     </Box>
                 </Form>
                 {error && <div>Sign up failed</div>}
