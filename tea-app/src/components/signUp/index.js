@@ -9,11 +9,33 @@ import { deepMerge } from 'grommet/utils';
 import { Link } from "react-router-dom";
 
 const customTheme = deepMerge(grommet, {
-    box: {
-      background: {
-        color: "#FFBC44"
-      },
-    },
+  global: {
+    colors: {
+      // Overriding existing grommet colors
+      brand: "#4D4CDB",
+      "accent-1": "#6FFFB0",
+      "accent-2": "#7FFFB0",
+      "accent-3": "#8FFFB0",
+      "accent-4": "#9FFFB0",
+      "neutral-1": "#10873D",
+      "neutral-2": "#20873D",
+      "neutral-3": "#30873D",
+      "neutral-4": "#40873D",
+      focus: "#000",
+      // Setting new colors
+      blue: "#00C8FF",
+      green: "#749A5C",
+      teal: "#82FFF2",
+      purple: "#A2065A",
+      red: "#FC6161",
+      orange: "#FFBC44",
+      yellow: "#FFEB59",
+      
+      // you can also point to existing grommet colors
+      brightGreen: "accent-1",
+      deepGreen: "neutral-2"
+    }
+  },
     formField: {
       border: {
         error: {
@@ -43,30 +65,19 @@ const customTheme = deepMerge(grommet, {
           start: 'none',
         },
       },
-      help: {
-        size: 'xsmall',
-        color: 'text-weak',
-        margin: {
-          start: 'none',
-          bottom: 'xsmall',
-        },
-      },
-      info: {
-        size: 'xsmall',
-        color: 'text-weak',
-        margin: {
-          start: 'none',
-        },
-      },
+     
+      
       label: {
-        size: 'small',
-        color: 'text-weak',
+        size: 'medium',
+        color: 'purple',
         margin: {
           horizontal: 'none',
         },
+        textAlign: 'center'
       },
       round: '8px',
     },
+    
   });
 
 function Signup(props) {
@@ -103,7 +114,7 @@ function Signup(props) {
             <Box align="center" pad="large" >
                 <h1>Sign Up!</h1>
                 <Form onSubmit={handleFormSubmit} >
-                    <Box border gap="medium" pad="large" width="medium" background="status-warning">
+                    <Box border gap="medium" pad="large" width="medium" background="orange">
                         <FormField 
                           htmlFor="username"
                           name="username"
@@ -116,22 +127,21 @@ function Signup(props) {
                           >
                             <TextInput 
                               id="username"
-                              name="username"
-                              placeholder="Username"
+                              name="username"                              
                               onChange={handleChange} 
                               />
                         </FormField>
                         <FormField htmlFor="email" name="email" label="Email" contentProps={{
                             background: "lightblue"
                           }}>
-                            <TextInput id="email" name="email" type="email" placeholder="Email" onChange={handleChange}/>
+                            <TextInput id="email" name="email" type="email" onChange={handleChange}/>
                         </FormField>
                         <FormField htmlFor="password" name="password" label="Password" contentProps={{
                             background: "lightblue"
                           }}>
-                            <TextInput id="password" name="password"  type="password" placeholder="Password" onChange={handleChange}/>
+                            <TextInput id="password" name="password"  type="password" onChange={handleChange}/>
                         </FormField>
-                        <Button type="submit" label="Welcome!" primary />
+                        <Button type="submit" label="Welcome!" primary color="purple" />
                     </Box>
                 </Form>
                 <Link to='/signin'>Sign-in Instead</Link>

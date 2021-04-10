@@ -9,6 +9,20 @@ import { deepMerge } from 'grommet/utils';
 import { Link } from "react-router-dom";
 
 const customTheme = deepMerge(grommet, {
+  global: {
+    colors: {      
+      // Setting new colors
+      blue: "#00C8FF",
+      green: "#749A5C",
+      teal: "#82FFF2",
+      purple: "#A2065A",
+      red: "#FC6161",
+      orange: "#FFBC44",
+      yellow: "#FFEB59",     
+      
+      }
+    
+  },
   formField: {
     border: {
       error: {
@@ -16,52 +30,26 @@ const customTheme = deepMerge(grommet, {
       },
       color: 'border',
       side: 'all',
-    },
-    disabled: {
-      background: {
-        color: undefined,
-      },
-      border: {
-        color: 'status-disabled',
-      },
-      label: {
-        color: 'status-disabled',
-      },
-    },
-    error: {
-      background: {
-        color: { light: '#FF404033', dark: '#FF40404D' },
-      },
-      size: 'xsmall',
-      color: 'text-weak',
-      margin: {
-        start: 'none',
-      },
-    },
-    help: {
-      size: 'xsmall',
-      color: 'text-weak',
-      margin: {
-        start: 'none',
-        bottom: 'xsmall',
-      },
-    },
-    info: {
-      size: 'xsmall',
-      color: 'text-weak',
-      margin: {
-        start: 'none',
-      },
-    },
+    }, 
+    round: '8px',
     label: {
-      size: 'small',
-      color: 'text-weak',
+      size: 'medium',
+      color: 'purple',
       margin: {
         horizontal: 'none',
       },
+      textAlign: 'center'
     },
-    round: '8px',
   },
+  
+  textInput:{
+    textAlign: "center"
+  },
+  placeholder: {
+    extend: () => `
+      width: 100%
+    `
+  }
 });
 
 function SignIn (props) {
@@ -92,17 +80,11 @@ function SignIn (props) {
       <Box align="center" pad="large">
         <h1> Login! </h1>
         <Form onSubmit={handleFormSubmit}>
-          <Box border gap="medium" pad="large" width="medium">
-            <FormField
-              htmlFor="username"
-              name="username"
-              type="text"
-              label="username"
-              >
-                <TextInput
+          <Box border gap="medium" pad="large" width="medium" background="orange">
+            <FormField htmlFor="username" name="username" type="text" label="Username" contentProps={{ background: "lightblue" }}>
+                <TextInput                                    
                   id="username"
-                  name="username"
-                  placeholder="Username"
+                  name="username"                  
                   type="text"
                   onChange={handleChange}
                   />
@@ -112,17 +94,21 @@ function SignIn (props) {
               htmlFor="password"
               name="password"
               type="password"
-              label="password"
+              label="Password"
+              contentProps={{
+                background: "lightblue"
+              }}
               >
                 <TextInput
                   id="password"
-                  name="password"
-                  placeholder="Password"
+                  name="password"                  
                   type="password"
                   onChange={handleChange}
+                  contentProps={{
+                    background: "lightblue"}}
                   />
             </FormField>
-            <Button type="submit" label="Let's Go!" primary />
+            <Button type="submit" label="Let's Go!" primary color="purple"/>
           </Box>
         </Form>
         <Link to='/signup'>Sign-up Instead</Link>
