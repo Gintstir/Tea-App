@@ -14,7 +14,7 @@ const Landing = () => (
     <Main pad="small" style={{ fontFamily: "Marck Script" }}>
       All things in due time
     </Main>
-    <Card style={{ fontFamily: "Nothing You Could Do" }}>
+    <Card id="landingCard" style={{ fontFamily: "Nothing You Could Do" }}>
       I will be a dynamically generated teacard! oooooo!
     </Card>
     <div>

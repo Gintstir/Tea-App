@@ -1,4 +1,6 @@
 import React from "react";
+import ReactDOM from "react-dom";
+
 import { Box, Card, CardBody, CardFooter, Grid, Grommet, Text } from "grommet";
 
 import data from "../../utils/tea-types";
@@ -44,6 +46,11 @@ const populateCard = (clickedColor) => {
     if (clickedColor === recipeData[i].name) {
       selectedData = recipeData[i];
       console.log(selectedData, "yippee");
+      ReactDOM.render(
+        <p>{selectedData.name}</p>,
+        document.getElementById("landingCard")
+      );
+
       break;
     }
   }
