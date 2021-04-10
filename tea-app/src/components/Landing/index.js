@@ -7,12 +7,16 @@ import { Grommet, Header, Main, Text, Card } from "grommet";
 const Landing = () => (
   <Grommet>
     <Header background="light-4" pad="small">
-      <Text size="large" style={{ fontFamily: "Homemade Apple" }}>
+      <Text size="xlarge" style={{ fontFamily: "Homemade Apple" }}>
         Steep
       </Text>
     </Header>
-    <Main pad="small">All things in due time</Main>
-    <Card> I will be a dynamically generated teacard! oooooo!</Card>
+    <Main pad="small" style={{ fontFamily: "Marck Script" }}>
+      All things in due time
+    </Main>
+    <Card style={{ fontFamily: "Nothing You Could Do" }}>
+      I will be a dynamically generated teacard! oooooo!
+    </Card>
     <div>
       <TeaButtons />
     </div>
