@@ -1,0 +1,16 @@
+.tea-shelf-container, .tea-shelf {
+    height: 50px;    
+}
+
+.tea-shelf-container {
+    margin-top: -18px;
+}
+
+.tea-shelf {
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    background-size: cover;
+    background-position: bottom;
+}
