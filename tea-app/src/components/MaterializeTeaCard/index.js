@@ -1,5 +1,8 @@
 import React from "react";
-import { Card, Grommet } from "grommet";
+
+import { Card, Grommet, Text } from "grommet";
+import recipeData from "../../utils/default-recipes";
+import { Clock, Java, AddCircle, Edit, Spa } from "grommet-icons";
 
 export const TeaCard = () => (
   <Grommet>
@@ -9,20 +12,38 @@ export const TeaCard = () => (
       </div> */}
       <div className="card-content">
         <span className="card-title activator grey-text text-darken-4">
-          Card Title<i className="material-icons right">more_vert</i>
+          <Java size="medium" /> {recipeData[0].type}{" "}
+          <Text> (click for notes) </Text>
+          <i className="material-icons right">more_vert</i>
         </span>
-        <p>Here's a thing! </p>
+        <Text size="small" margin="small">
+          {" "}
+          <AddCircle size="small" />
+          Additions: {recipeData[0].extra}{" "}
+        </Text>
+        <Text size="small" margin="small">
+          {" "}
+          <Java size="small" /> Steeping temperature:{" "}
+          {recipeData[0].temperature}{" "}
+        </Text>
+        <Text size="small" margin="small">
+          {" "}
+          <Clock size="small" /> Steep Time: {recipeData[0].steepTime}{" "}
+        </Text>
+        <Text margin="medium">
+          {" "}
+          <Edit size="medium" />{" "}
+        </Text>
       </div>
       <div className="card-reveal">
         <span className="card-title grey-text text-darken-4">
-          Card Title<i className="material-icons right">close</i>
+          <i className="material-icons right">close</i>
         </span>
-        <p>
-          Here is some more information about this product that is only revealed
-          once clicked on.
-        </p>
+        <Spa size="medium" />{" "}
+        <Text size="small">Notes: {recipeData[0].note}</Text>
       </div>
     </Card>
   </Grommet>
 );
+
 export default TeaCard;
