@@ -14,6 +14,7 @@ import { createUploadLink } from "apollo-upload-client";
 import Auth from './utils/auth'
 
 import NavBar from "./components/NavBar";
+import Foot from "./components/Footer"
 
 import Landing from "./pages/Landing";
 import Profile from "./pages/Profile";
@@ -74,6 +75,7 @@ function App() {
               <Recipe />
             </Route>
           </Switch>
+          <Foot />
         </Router>
       </ApolloProvider>
     </>
