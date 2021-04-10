@@ -9,6 +9,11 @@ import { deepMerge } from 'grommet/utils';
 import { Link } from "react-router-dom";
 
 const customTheme = deepMerge(grommet, {
+    box: {
+      background: {
+        color: "#FFBC44"
+      },
+    },
     formField: {
       border: {
         error: {
@@ -95,26 +100,35 @@ function Signup(props) {
 
     return (
         <Grommet theme={customTheme}>
-            <Box align="center" pad="large">
+            <Box align="center" pad="large" >
                 <h1>Sign Up!</h1>
-                <Form onSubmit={handleFormSubmit}>
-                    <Box border gap="medium" pad="large" width="medium">
+                <Form onSubmit={handleFormSubmit} >
+                    <Box border gap="medium" pad="large" width="medium" background="status-warning">
                         <FormField 
                           htmlFor="username"
                           name="username"
                           type="username"
                           label="Username"
+                          contentProps={{
+                            background: "lightblue"
+                          }}
+                          
                           >
                             <TextInput 
                               id="username"
                               name="username"
                               placeholder="Username"
-                              onChange={handleChange} />
+                              onChange={handleChange} 
+                              />
                         </FormField>
-                        <FormField htmlFor="email" name="email" label="Email" >
+                        <FormField htmlFor="email" name="email" label="Email" contentProps={{
+                            background: "lightblue"
+                          }}>
                             <TextInput id="email" name="email" type="email" placeholder="Email" onChange={handleChange}/>
                         </FormField>
-                        <FormField htmlFor="password" name="password" label="Password" >
+                        <FormField htmlFor="password" name="password" label="Password" contentProps={{
+                            background: "lightblue"
+                          }}>
                             <TextInput id="password" name="password"  type="password" placeholder="Password" onChange={handleChange}/>
                         </FormField>
                         <Button type="submit" label="Welcome!" primary />
