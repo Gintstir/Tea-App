@@ -2,7 +2,7 @@
   "name": "tea-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -24,9 +24,9 @@
   },
   "homepage": "https://github.com/Gintstir/Tea-App#readme",
   "dependencies": {
-    "concurrently": "^6.0.0",
-    "graphql": "^15.5.0",
-    "if-env": "^1.0.4",
-    "typescript": "^4.2.4"
+    "if-env": "^1.0.4"
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.0"
   }
 }
