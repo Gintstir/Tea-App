@@ -25,6 +25,7 @@ import Upload from "./components/Upload";
 import Brew from "./components/Brew";
 import SignIn from "./components/SignIn";
 import Recipe from './components/Recipe';
+import SignUp from './components/SignUp';
 
 const uploadLink = createUploadLink()
 
