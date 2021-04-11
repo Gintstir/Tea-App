@@ -111,7 +111,7 @@ function SignIn (props) {
             <Button type="submit" label="Let's Go!" primary color="purple"/>
           </Box>
         </Form>
-        {/* <Link to='/signup'>Sign-up Instead</Link> */}
+        <Link to='/signup'>Sign-up Instead</Link>
         {error && <div>Login Failed</div>}
       </Box>
     </Grommet>
