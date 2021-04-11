@@ -5,12 +5,12 @@ import { Grommet, Text, Card, CardBody, CardFooter } from "grommet";
 import { Spa } from "grommet-icons";
 
 const colors = {
-  "black tea": "#6F7269",
-  "green tea": "#749A5C",
-  rooibos: "#FC6161",
-  "oolong tea": "#FFBC44",
-  "white tea": "#FBFBF7",
-  herbal: "#A2065A",
+  "Black Tea": "#6F7269",
+  "Green Tea": "#749A5C",
+  Rooibos: "#FC6161",
+  "Oolong Tea": "#FFBC44",
+  "White Tea": "#FBFBF7",
+  Herbal: "#A2065A",
 };
 
 const PantryShelfTeaCard = ({ cardData }) => {

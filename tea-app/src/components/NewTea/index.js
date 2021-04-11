@@ -60,12 +60,12 @@ const NewTea = () => {
               id="tea-type-id"
               value={value.type}
               options={[
-                "black tea",
-                "green tea",
-                "white tea",
-                "rooibos",
-                "herbal",
-                "oolong tea",
+                "Black Tea",
+                "Green Tea",
+                "White Tea",
+                "Rooibos",
+                "Herbal",
+                "Oolong Tea",
               ]}
             />
             {/* <TextInput id="tea-type-id" name="type" /> */}
