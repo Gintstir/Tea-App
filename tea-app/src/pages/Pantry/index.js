@@ -72,7 +72,7 @@ const Pantry = () => {
                     <Button margin="small" secondary onClick={() => setShow({content: 'NewExtra', show: true})}><Add size="small" /> Add Extra</Button>
                 </Box>
                 <Box overflow={{horizontal: "auto"}}>
-                    <Grid margin={{right: "auto", left: "15px"}} gap="small" justify="start" columns={{ count: data?.me.extras.length, size: "xsmall" }} style={{zIndex: 5}}>
+                    <Grid margin={{right: "auto"}} pad={{right: "15px", left: "15px"}} gap="small" justify="start" columns={{ count: data?.me.extras.length, size: "xsmall" }} style={{zIndex: 5}}>
                     {
                         data?.me.extras.length ?
                         data?.me.extras.map(extra => (
