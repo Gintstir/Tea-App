@@ -50,7 +50,7 @@ function AboutUs() {
                         <CardBody height="small">
                             <Image
                                 fit="cover"
-                                src="tea-app/src/assets/images/T01C034EDAN-U01C2CM0UMC-47c00d2e7cf3-512.jpg"
+                                src="tea-app\src\assets\images\pexels-taryn-elliott-3889850.jpg"
                                 allyTitle="Michele Lee Lynch"
                             />
                         </CardBody>

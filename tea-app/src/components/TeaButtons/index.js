@@ -46,7 +46,7 @@ const TeaButtons = ({ setSelectedTea }) => {
   };
 
   return (
-    <Grommet theme={theme} full>
+    <Grommet theme={theme} >
       <Box pad="small">
         {/* Responsive Grid */}
         <Grid
