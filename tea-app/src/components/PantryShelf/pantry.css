@@ -1,12 +1,12 @@
-.tea-shelf-container, .tea-shelf {
+.pantry-shelf-container, .pantry-shelf {
     height: 50px;    
 }
 
-.tea-shelf-container {
+.pantry-shelf-container {
     margin-top: -23px;
 }
 
-.tea-shelf {
+.pantry-shelf {
     position: absolute;
     left: 0;
     right: 0;
