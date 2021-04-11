@@ -25,7 +25,7 @@ import AboutUs from './pages/AboutUs';
 // import Brew from "./components/Brew";
 import SignIn from "./components/SignIn";
 // import Recipe from './components/Recipe';
-import SignUp from './components/SignUp/index.js';
+// import SignUp from './components/SignUp/index.js';
 
 const uploadLink = createUploadLink()
 
@@ -61,9 +61,9 @@ function App() {
             <Route exact path="/pantry">
               {isLoggedin ? <Pantry /> : <Redirect to="/" />}
             </Route>
-            <Route exact path="/signup">
+            {/* <Route exact path="/signup">
               {isLoggedin ? <Redirect to="/" /> : <SignUp />}
-            </Route>
+            </Route> */}
             <Route exact path="/signin">
               {isLoggedin ? <Redirect to="/" /> : <SignIn />}
             </Route>           
