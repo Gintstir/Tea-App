@@ -1,7 +1,8 @@
 import React from "react";
 
 // import { grommet } from "grommet/themes";
-import { Grommet, Text, Card, CardBody } from "grommet";
+import { Grommet, Text, Card, CardBody, CardFooter } from "grommet";
+import { Spa } from "grommet-icons";
 
 const colors = {
   "black tea": "#6F7269",
@@ -17,16 +18,24 @@ const PantryShelfTeaCard = ({ cardData }) => {
     <Grommet>
       {/* make background equal to user's selection for teatype */}
       <Card
-        height="xsmall"
-        width="xsmall"
+        height="125px"
+        width="125px"
         background={colors[cardData.type] || "light-1"}
       >
         <CardBody fill="vertical" justify="center" align="center">
           {typeof cardData === "string" ? (
-            <Text textAlign="center">{cardData}</Text>
+            <Text textAlign="center"> {cardData}</Text>
           ) : (
-            <Text textAlign="center">{cardData.name}</Text>
+            <>
+              <Spa size="medium" />
+              <Text textAlign="center"> {cardData.name}</Text>
+            </>
           )}
+          <CardFooter pad={{ horizontal: "medium" }}>
+            <Text size="small" weight="bold">
+              {cardData.brand}
+            </Text>
+          </CardFooter>
         </CardBody>
       </Card>
     </Grommet>
