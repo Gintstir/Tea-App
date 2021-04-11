@@ -39,8 +39,8 @@ const Pantry = () => {
         { loading ? 
           <Spinner /> :
           <Box>
-            <PantryShelf shelfName="Extra" setShow={setShow} pantryData={data?.me} />
             <PantryShelf shelfName="Tea" setShow={setShow} pantryData={data?.me} />
+            <PantryShelf shelfName="Extra" setShow={setShow} pantryData={data?.me} />
           </Box>
         }
       </Main>

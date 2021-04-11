@@ -11,10 +11,10 @@ import PantryShelfCard from "../PantryShelfCard";
 
 const PantryShelf = ({ shelfName, setShow, pantryData }) => {
 
-    const specificData = pantryData[`${shelfName.toLowercase()}s`]
+    const specificData = pantryData[`${shelfName.toLowerCase()}s`]
 
     const isVowel = (letter) => {
-        letter = letter.toLowercase()
+        letter = letter.toLowerCase()
         if (letter === 'a' || letter === 'e' || letter === 'i' || letter === 'o' || letter === 'u' ) {
             return true
         } else {
@@ -34,7 +34,7 @@ const PantryShelf = ({ shelfName, setShow, pantryData }) => {
                     {
                         specificData.length ?
                         specificData.map(data => (
-                            <PantryShelfCard cardData={data} />
+                            <PantryShelfCard cardData={data} key={typeof(data) === 'string' ? data : data._id} />
                         )) :
                         `Add a${ isVowel(shelfName[0]) ? 'n' : ''} ${shelfName}`
                     }

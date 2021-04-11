@@ -80,7 +80,7 @@ const customTheme = deepMerge(grommet, {
     
   });
 
-function Signup(props) {
+function SignUp(props) {
     const [ formState, setFormState ] = useState({username: '', email: '', password: '' });
     const [ addUser, { error } ] = useMutation(ADD_USER);
     //const inputRef = useRef();
@@ -152,4 +152,4 @@ function Signup(props) {
     )
 }
 
-export default Signup;
+export default SignUp;
