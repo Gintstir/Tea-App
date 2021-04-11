@@ -36,120 +36,112 @@ const customTheme = deepMerge(grommet, {
       deepGreen: "neutral-2"
     }
   },
-    formField: {
-      border: {
-        error: {
-          color: 'border',
-        },
-        color: 'border',
-        side: 'all',
-      },
-      disabled: {
-        background: {
-          color: undefined,
-        },
-        border: {
-          color: 'status-disabled',
-        },
-        label: {
-          color: 'status-disabled',
-        },
-      },
+  formField: {
+    border: {
       error: {
-        background: {
-          color: { light: '#FF404033', dark: '#FF40404D' },
-        },
-        size: 'xsmall',
-        color: 'text-weak',
-        margin: {
-          start: 'none',
-        },
+        color: 'border',
       },
-     
-      
-      label: {
-        size: 'medium',
-        color: 'purple',
-        margin: {
-          horizontal: 'none',
-        },
-        textAlign: 'center'
-      },
-      round: '8px',
+      color: 'border',
+      side: 'all',
     },
-    
-  });
+    disabled: {
+      background: {
+        color: undefined,
+      },
+      border: {
+        color: 'status-disabled',
+      },
+      label: {
+        color: 'status-disabled',
+      },
+    },
+    error: {
+      background: {
+        color: { light: '#FF404033', dark: '#FF40404D' },
+      },
+      size: 'xsmall',
+      color: 'text-weak',
+      margin: {
+        start: 'none',
+      },
+    },
+      
+    label: {
+      size: 'medium',
+      color: 'purple',
+      margin: {
+        horizontal: 'none',
+      },
+      textAlign: 'center'
+    },
+    round: '8px',
+  }    
+});
 
-function SignUp(props) {
-    const [ formState, setFormState ] = useState({username: '', email: '', password: '' });
-    const [ addUser, { error } ] = useMutation(ADD_USER);
-    //const inputRef = useRef();
+const SignUp = () => {
+  const [ formState, setFormState ] = useState({username: '', email: '', password: '' });
+  const [ addUser, { error } ] = useMutation(ADD_USER);
 
-    // useEffect(() => {
-    //   inputRef.current.focus();
-    // }, []);
+  const handleFormSubmit = async event => {
+      event.preventDefault();
+      const mutationResponse = await addUser({
+          variables: {
+            username: formState.username, email: formState.email, password: formState.password 
+          }
+      });
+      const token = mutationResponse.data.addUser.token;
+      Auth.login(token);
+  };
 
-    const handleFormSubmit = async event => {
-        event.preventDefault();
-        const mutationResponse = await addUser({
-            variables: {
-              username: formState.username, email: formState.email, password: formState.password 
-            }
-        });
-        const token = mutationResponse.data.addUser.token;
-        Auth.login(token);
-    };
+  const handleChange = event => {
+      const { name, value } = event.target;
+      setFormState({
+          ...formState,
+          [name]: value
+      });
+      console.log(name, value);
+  };
 
-    const handleChange = event => {
-        const { name, value } = event.target;
-        setFormState({
-            ...formState,
-            [name]: value
-        });
-        console.log(name, value);
-    };
-
-    return (
-        <Grommet theme={customTheme}>
-            <Box align="center" pad="large" >
-                <h1>Sign Up!</h1>
-                <Form onSubmit={handleFormSubmit} >
-                    <Box border gap="medium" pad="large" width="medium" background="orange">
-                        <FormField 
-                          htmlFor="username"
-                          name="username"
-                          type="username"
-                          label="Username"
-                          contentProps={{
-                            background: "lightblue"
-                          }}
-                          
-                          >
-                            <TextInput 
-                              id="username"
-                              name="username"                              
-                              onChange={handleChange} 
-                              />
-                        </FormField>
-                        <FormField htmlFor="email" name="email" label="Email" contentProps={{
-                            background: "lightblue"
-                          }}>
-                            <TextInput id="email" name="email" type="email" onChange={handleChange}/>
-                        </FormField>
-                        <FormField htmlFor="password" name="password" label="Password" contentProps={{
-                            background: "lightblue"
-                          }}>
-                            <TextInput id="password" name="password"  type="password" onChange={handleChange}/>
-                        </FormField>
-                        <Button type="submit" label="Welcome!" primary color="purple" />
-                    </Box>
-                </Form>
-                <Link to='/signin'>Sign-in Instead</Link>
-                {error && <div>Sign up failed</div>}
+  return (
+    <Grommet theme={customTheme}>
+      <Box align="center" pad="large" >
+        <h1>Sign Up!</h1>
+        <Form onSubmit={handleFormSubmit} >
+            <Box border gap="medium" pad="large" width="medium" background="orange">
+                <FormField 
+                  htmlFor="username"
+                  name="username"
+                  type="username"
+                  label="Username"
+                  contentProps={{
+                    background: "lightblue"
+                  }}
+                  
+                  >
+                    <TextInput 
+                      id="username"
+                      name="username"                              
+                      onChange={handleChange} 
+                      />
+                </FormField>
+                <FormField htmlFor="email" name="email" label="Email" contentProps={{
+                    background: "lightblue"
+                  }}>
+                    <TextInput id="email" name="email" type="email" onChange={handleChange}/>
+                </FormField>
+                <FormField htmlFor="password" name="password" label="Password" contentProps={{
+                    background: "lightblue"
+                  }}>
+                    <TextInput id="password" name="password"  type="password" onChange={handleChange}/>
+                </FormField>
+                <Button type="submit" label="Welcome!" primary color="purple" />
             </Box>
-        </Grommet>
-
-    )
+        </Form>
+        <Link to='/signin'>Sign-in Instead</Link>
+        {error && <div>Sign up failed</div>}
+      </Box>
+    </Grommet>
+  )
 }
 
 export default SignUp;

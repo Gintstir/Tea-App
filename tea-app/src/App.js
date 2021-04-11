@@ -21,10 +21,10 @@ import Profile from "./pages/Profile";
 import Pantry from "./pages/Pantry";
 import AboutUs from './pages/AboutUs';
 
-import Upload from "./components/Upload";
-import Brew from "./components/Brew";
+// import Upload from "./components/Upload";
+// import Brew from "./components/Brew";
 import SignIn from "./components/SignIn";
-import Recipe from './components/Recipe';
+// import Recipe from './components/Recipe';
 import SignUp from './components/SignUp';
 
 const uploadLink = createUploadLink()
@@ -70,7 +70,7 @@ function App() {
             <Route exact path="/about">
               <AboutUs />
             </Route>            
-            <Route exact path="/upload">
+            {/* <Route exact path="/upload">
               <Upload />
             </Route>
             <Route exact path="/recipe">
@@ -78,7 +78,7 @@ function App() {
             </Route>            
             <Route exact path="/brew">
               <Brew />
-            </Route>
+            </Route> */}
           </Switch>
           <Foot />
         </Router>
