@@ -46,6 +46,7 @@ function AboutUs() {
           />
         );
     };
+    
     return (
         <Grommet theme={customTheme}>
             <Box pad="large" >
