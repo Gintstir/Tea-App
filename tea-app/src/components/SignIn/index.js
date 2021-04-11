@@ -71,7 +71,7 @@ function SignIn (props) {
     const { name, value } = event.target;
     setFormState({
       ...formState,
-      [name]: value
+      [name]: value      
     });
   };
 
