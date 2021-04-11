@@ -34,7 +34,7 @@ function Foot () {
   
     return (
         <Grommet theme={customTheme}>
-            <Footer background="light-6" >
+            <Footer background="light-6" style={{position: "fixed", left: "0", right: "0", bottom:"0"}}>
                 <Box align="center" direction="row" gap="xsmall" margin={{left:"10px"}}>
                     
                     <Text alignSelf="center" color="black" size="small">
