@@ -35,7 +35,7 @@ const NavBar = ({ isLoggedin }) => {
   
   return (
     <Grommet theme={customTheme}>
-      <Nav direction="row" pad="small" align="center">
+      <Nav direction="row" pad="small" align="center" background="purple">
         <Link to='/'><Home /></ Link>
         {isLoggedin && <Link to='/pantry'><Drawer /></Link>}
         {isLoggedin ? <Button margin={{left: 'auto'}} onClick={handleLogout}><Logout /></Button> : <Link  style={{marginLeft: 'auto'}} to='/signin'><Login /></ Link> }
