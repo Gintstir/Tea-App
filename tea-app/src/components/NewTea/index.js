@@ -8,10 +8,7 @@ import {
   Button,
   Grommet,
   Text,
-  Select,
 } from "grommet";
-
-import { FormClose } from "grommet-icons";
 
 import { useMutation } from "@apollo/react-hooks";
 

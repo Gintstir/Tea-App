@@ -3,6 +3,15 @@ import React from "react";
 // import { grommet } from "grommet/themes";
 import { Grommet, Text, Card, CardBody } from "grommet";
 
+const colors = {
+  black: "#6F7269",
+  green: "#749A5C",
+  rooibos: "#FC6161",
+  oolong: "#FFBC44",
+  white: "#FBFBF7",
+  herbal: "#A2065A",
+};
+
 const PantryShelfCard = ({ cardData }) => {
   return (
     <Grommet>
