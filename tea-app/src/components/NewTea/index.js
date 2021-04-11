@@ -29,6 +29,11 @@ const NewTea = () => {
       await addTea({
         variables: values,
       });
+      setValue({
+        type: "",
+        name: "",
+        brand: "",
+      });
     } catch (e) {
       console.log(e);
     }

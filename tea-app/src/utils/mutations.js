@@ -51,14 +51,14 @@ export const ADD_EXTRA = gql`
 
 export const ADD_RECIPE = gql`
   mutation addRecipe(
-    $type: Sting!
-    $name: String
+    $type: String!
+    $name: String!
     $brand: String!
     $extra: [String!]
     $temperature: String!
     $steepTime: Int!
     $picture: String!
-    $note: String!
+    $note: String
   ) {
     addRecipe(
       type: $type
@@ -66,7 +66,7 @@ export const ADD_RECIPE = gql`
       brand: $brand
       extra: $extra
       temperature: $temperature
-      steeptime: $steepTime
+      steepTime: $steepTime
       picture: $picture
       note: $note
     ) {
@@ -126,7 +126,7 @@ export const REMOVE_RECIPE = gql`
 `;
 
 export const UPLOAD_IMAGE = gql`
-  mutation loadImage($image: Upload!) {
-    loadImage(image: $image)
+  mutation loadImage($image: Upload!, $imageName: String!) {
+    loadImage(image: $image, imageName: $imageName)
   }
 `;

@@ -1,10 +1,7 @@
-import React, { useState } from 'react'
-import { useMutation } from "@apollo/react-hooks";
+import React from 'react'
 
-import { Box, Grommet, FileInput, Text, Form, Button, Image } from 'grommet'
+import { Box, Grommet, FileInput, Text } from 'grommet'
 import { Trash } from 'grommet-icons'
-
-import { UPLOAD_IMAGE } from '../../utils/mutations'
 
 const customTheme = {
     fileInput: {
@@ -28,59 +25,27 @@ const customTheme = {
     }
 }
 
-const Upload = () => {
+const Upload = ({ setImage }) => {
 
-    const [image, setImage] = useState()
-
-    const [uploadImage, { error }] = useMutation(UPLOAD_IMAGE)
-
-    const imageSubmit = async (event) => {
-        event.preventDefault()
-        const { data } = await uploadImage({ 
-            variables: { image }
-        })
-        if (data) {
-            console.log('success')
-        }
-    }
-
-    if (error) {
-        return (
-            <h1>error!</h1>
-        )
+    const handleChange = (event) => {
+        const file = event.target.files[0]
+        setImage(file)
     }
 
     return(
-        <Grommet full theme={customTheme}>
-            <Box fill align='center' justify='start' pad='large'>
-                <Box width='medium'>
-                    <Form onSubmit={imageSubmit}>
-                        <FileInput 
-                            id="recipeImage"
-                            multiple={false}
-                            accept={"image/jpeg, image/png"}
-                            renderFile={file => (
-                                <Box direction='row' gap='small'>
-                                    <Text weight='bold'>{file.name}</Text>
-                                    <Text color='text-weak'>{(file.size/1000/1000).toFixed(3)} mb</Text>
-                                </Box>
-                            )}
-                            onChange={async event => {
-                                const file = event.target.files[0]
-                                setImage(file)
-                            }}
-                        />
-                        <Box justify='center' direction='row' pad='small'>
-                            <Button 
-                                primary
-                                type="submit"
-                                label="Submit"
-                            />
-                        </Box>
-                    </Form>
-                    <Image fit="cover" src="http://localhost:3001/images/jUReeafZ94qQ0lgZqQ6Bv.jpg" />
-                </Box>
-            </Box>
+        <Grommet theme={customTheme}>
+            <FileInput 
+                id="recipeImage"
+                multiple={false}
+                accept={"image/jpeg, image/png"}
+                renderFile={file => (
+                    <Box direction='row' gap='small'>
+                        <Text weight='bold'>{file.name}</Text>
+                        <Text color='text-weak'>{(file.size/1000/1000).toFixed(3)} mb</Text>
+                    </Box>
+                )}
+                onChange={handleChange}
+            />
         </Grommet>
     )
 }

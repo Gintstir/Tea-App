@@ -1,6 +1,6 @@
 const path = require('path')
 const { createWriteStream } = require('fs')
-const { nanoid } = require('nanoid')
+// const { nanoid } = require('nanoid')
 const jimp = require('jimp')
 
 const loadImageToServer = async (createReadStream, filename) => {
@@ -19,11 +19,11 @@ const loadImageToServer = async (createReadStream, filename) => {
     })
 }
 
-const generateFilename = (oldFilename) => {
-    let fileExt = oldFilename.split('.')
-    fileExt = fileExt[fileExt.length - 1]
-    return nanoid() + '.' + fileExt
-}
+// const generateFilename = (oldFilename) => {
+//     let fileExt = oldFilename.split('.')
+//     fileExt = fileExt[fileExt.length - 1]
+//     return nanoid() + '.' + fileExt
+// }
 
 const resizeImage = async (imgPath, width = 600, height = jimp.AUTO, quality = 70) => {
     return new Promise(async (res) => {
@@ -44,15 +44,15 @@ const resizeImage = async (imgPath, width = 600, height = jimp.AUTO, quality = 7
 // Create function that saves the image path to database
 
 const imageController = {
-    async loadImage (__, { image } ) {
+    async loadImage (__, { image, imageName } ) {
         try {
-            const { createReadStream, filename } = await image
-            const newFilename = generateFilename(filename)
-            let isSuccess = await loadImageToServer(createReadStream, newFilename)
+            const { createReadStream } = await image
+            // const newFilename = generateFilename(filename)
+            let isSuccess = await loadImageToServer(createReadStream, imageName)
             if (!isSuccess) {
                 return false
             }
-            isSuccess = await resizeImage(path.join(__dirname, '../images', newFilename))
+            isSuccess = await resizeImage(path.join(__dirname, '../images', imageName))
 
             if (isSuccess) {
                 return true
@@ -62,10 +62,6 @@ const imageController = {
         } catch (e) {
             console.error(e)
         }
-    },
-    async findImage() {
-        console.log('hello from the findImage')
-        return 'Hey There'
     }
 }
 
