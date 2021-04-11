@@ -1,10 +1,11 @@
 import React from 'react';
 
+import { Link } from "react-router-dom";
+
 import {   
   Group,
 //   Linkedin,
   Github,
-
 } from 'grommet-icons';
 import { deepMerge } from 'grommet/utils';
 
@@ -32,8 +33,8 @@ const customTheme = deepMerge(grommet, {
 function Foot () {
   
     return (
-        <Grommet theme={customTheme}>
-            <Footer background="light-6" style={{position: "fixed", left: "0", right: "0", bottom:"0"}}>
+        <Grommet theme={customTheme} style={{marginTop: "auto"}}>
+            <Footer background="light-6">
                 <Box align="center" direction="row" gap="xsmall" margin={{left:"10px"}}>
                     
                     <Text alignSelf="center" color="black" size="small">
@@ -46,11 +47,11 @@ function Foot () {
                     href="https://github.com/Gintstir/Tea-App"
                     icon={<Github color="black" size="large"/>}
                     />
-                    <Anchor
-                    a11yTitle="About us"
-                    href="/aboutUs"
-                    icon={<Group color="black" size="large"/>}
-                    />
+                    <Link to="/about">
+                        <Box pad="12px">
+                            <Group color="black" size="large" a11yTitle="About us"/>
+                        </Box>
+                    </Link>
                     {/* <Anchor
                     a11yTitle="Give us a Job!"
                     href="https://twitter.com/"

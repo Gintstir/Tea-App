@@ -1,13 +1,20 @@
 import React from "react";
 
 import { Card, Grommet, Text } from "grommet";
-import recipeData from "../../utils/default-recipes";
 import { Clock, Java, AddCircle, Edit, Spa } from "grommet-icons";
 
-export const TeaCard = () => {
+export const TeaCard = ({selectedTea}) => {
+  
   const editTeaCard = () => {
     console.log("send help");
   };
+
+  if (!selectedTea.type) {
+    return (
+      <Text>Please Select a Tea</Text>
+    )
+  }
+
   return (
     <Grommet>
       <Card className="card">
@@ -16,23 +23,23 @@ export const TeaCard = () => {
       </div> */}
         <div className="card-content">
           <span className="card-title activator grey-text text-darken-4">
-            <Java size="medium" /> {recipeData[0].type}{" "}
+            <Java size="medium" /> {selectedTea.type}{" "}
             <Text> (click for notes) </Text>
             <i className="material-icons right">more_vert</i>
           </span>
           <Text size="small" margin="small">
             {" "}
             <AddCircle size="small" />
-            Additions: {recipeData[0].extra}{" "}
+            Additions: {selectedTea.extra}{" "}
           </Text>
           <Text size="small" margin="small">
             {" "}
             <Java size="small" /> Steeping temperature:{" "}
-            {recipeData[0].temperature}{" "}
+            {selectedTea.temperature}{" "}
           </Text>
           <Text size="small" margin="small">
             {" "}
-            <Clock size="small" /> Steep Time: {recipeData[0].steepTime}{" "}
+            <Clock size="small" /> Steep Time: {selectedTea.steepTime}{" "}
           </Text>
           <Text margin="medium" onClick={() => editTeaCard()}>
             {" "}
@@ -44,7 +51,7 @@ export const TeaCard = () => {
             <i className="material-icons right">close</i>
           </span>
           <Spa size="medium" />{" "}
-          <Text size="small">Notes: {recipeData[0].note}</Text>
+          <Text size="small">Notes: {selectedTea.note}</Text>
         </div>
       </Card>
     </Grommet>

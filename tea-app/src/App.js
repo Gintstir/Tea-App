@@ -62,26 +62,23 @@ function App() {
             <Route exact path="/pantry">
               {isLoggedin ? <Pantry /> : <Redirect to="/" />}
             </Route>
-            <Route exact path="/upload">
-              <Upload />
-            </Route>
-            <Route exact path="/landing">
-              <Landing />
-            </Route>
-            <Route exact path="/aboutUs">
-              <AboutUs />
-            </Route>
-            <Route exact path="/brew">
-              <Brew />
-            </Route>
             <Route exact path="/signup">
               {isLoggedin ? <Redirect to="/" /> : <SignUp />}
             </Route>
             <Route exact path="/signin">
               {isLoggedin ? <Redirect to="/" /> : <SignIn />}
+            </Route>           
+            <Route exact path="/about">
+              <AboutUs />
+            </Route>            
+            <Route exact path="/upload">
+              <Upload />
             </Route>
             <Route exact path="/recipe">
               <Recipe />
+            </Route>            
+            <Route exact path="/brew">
+              <Brew />
             </Route>
           </Switch>
           <Foot />
