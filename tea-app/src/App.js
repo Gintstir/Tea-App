@@ -21,11 +21,11 @@ import Profile from "./pages/Profile";
 import Pantry from "./pages/Pantry";
 import AboutUs from './pages/AboutUs';
 
-// import Upload from "./components/Upload";
-// import Brew from "./components/Brew";
 import SignIn from "./components/SignIn";
-// import Recipe from './components/Recipe';
 import Register from './components/Register';
+import NewRecipe from "./components/NewRecipe";
+import Upload from "./components/Upload";
+
 
 const uploadLink = createUploadLink()
 
@@ -70,13 +70,13 @@ function App() {
             <Route exact path="/about">
               <AboutUs />
             </Route>            
-            {/* <Route exact path="/upload">
-              <Upload />
+            <Route exact path="/newrecipe">
+              <NewRecipe/>
             </Route>
-            <Route exact path="/recipe">
-              <Recipe />
+            <Route exact path="/upload">
+              <Upload />
             </Route>            
-            <Route exact path="/brew">
+            {/* <Route exact path="/brew">
               <Brew />
             </Route> */}
           </Switch>
