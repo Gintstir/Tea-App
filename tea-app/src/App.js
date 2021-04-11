@@ -25,7 +25,7 @@ import AboutUs from './pages/AboutUs';
 // import Brew from "./components/Brew";
 import SignIn from "./components/SignIn";
 // import Recipe from './components/Recipe';
-import SignUp from './components/SignUp';
+import SignUp from './components/SignUp/index.js';
 
 const uploadLink = createUploadLink()
 
