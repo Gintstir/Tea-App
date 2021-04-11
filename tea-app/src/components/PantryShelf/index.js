@@ -7,7 +7,8 @@ import { AddCircle } from "grommet-icons";
 import PantryShelfPic from "../../assets/images/PantryShelf.png";
 import "./pantry.css";
 
-import PantryShelfCard from "../PantryShelfCard";
+import PantryShelfTeaCard from "../PantryShelfTeaCard";
+import PantryShelfExtraCard from "../PantryShelfExtraCard";
 
 const PantryShelf = ({ shelfName, setShow, pantryData }) => {
   const specificData = pantryData[`${shelfName.toLowerCase()}s`];
@@ -55,12 +56,23 @@ const PantryShelf = ({ shelfName, setShow, pantryData }) => {
             style={{ zIndex: 5 }}
           >
             {specificData.length
-              ? specificData.map((data) => (
-                  <PantryShelfCard
-                    cardData={data}
-                    key={typeof data === "string" ? data : data._id}
-                  />
-                ))
+              ? specificData.map((data) => {
+                  if (shelfName === "Extra") {
+                    return (
+                      <PantryShelfExtraCard
+                        cardData={data}
+                        key={typeof data === "string" ? data : data._id}
+                      />
+                    );
+                  } else {
+                    return (
+                      <PantryShelfTeaCard
+                        cardData={data}
+                        key={typeof data === "string" ? data : data._id}
+                      />
+                    );
+                  }
+                })
               : `Add a${isVowel(shelfName[0]) ? "n" : ""} ${shelfName}`}
           </Grid>
           <div className="pantry-shelf-container">

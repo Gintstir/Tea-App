@@ -8,6 +8,7 @@ import {
   Button,
   Grommet,
   Text,
+  Select,
 } from "grommet";
 
 import { useMutation } from "@apollo/react-hooks";
@@ -49,7 +50,20 @@ const NewTea = () => {
           onSubmit={async ({ value }) => handleSubmit(value)}
         >
           <FormField name="type" htmlFor="tea-type-id" label="Type">
-            <TextInput id="tea-type-id" name="type" />
+            <Select
+              name="type"
+              id="tea-type-id"
+              value={value.type}
+              options={[
+                "black tea",
+                "green tea",
+                "white tea",
+                "rooibos",
+                "herbal",
+                "oolong tea",
+              ]}
+            />
+            {/* <TextInput id="tea-type-id" name="type" /> */}
           </FormField>
           <FormField name="name" htmlFor="tea-name-id" label="Name">
             <TextInput id="tea-name-id" name="name" />
