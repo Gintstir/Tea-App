@@ -18,15 +18,14 @@ import Foot from "./components/Footer"
 
 import Landing from "./pages/Landing";
 import Profile from "./pages/Profile";
+import Pantry from "./pages/Pantry";
 import AboutUs from './pages/AboutUs';
 
-import Upload from "./components/Upload";
-import Brew from "./components/Brew";
+// import Upload from "./components/Upload";
+// import Brew from "./components/Brew";
 import SignIn from "./components/SignIn";
-import Recipe from './components/Recipe';
-import SignUp from './components/SignUp';
-import Pantry from "./pages/Pantry";
-
+// import Recipe from './components/Recipe';
+import Register from './components/Register';
 
 const uploadLink = createUploadLink()
 
@@ -63,7 +62,7 @@ function App() {
               {isLoggedin ? <Pantry /> : <Redirect to="/" />}
             </Route>
             <Route exact path="/signup">
-              {isLoggedin ? <Redirect to="/" /> : <SignUp />}
+              {isLoggedin ? <Redirect to="/" /> : <Register />}
             </Route>
             <Route exact path="/signin">
               {isLoggedin ? <Redirect to="/" /> : <SignIn />}
@@ -71,7 +70,7 @@ function App() {
             <Route exact path="/about">
               <AboutUs />
             </Route>            
-            <Route exact path="/upload">
+            {/* <Route exact path="/upload">
               <Upload />
             </Route>
             <Route exact path="/recipe">
@@ -79,7 +78,7 @@ function App() {
             </Route>            
             <Route exact path="/brew">
               <Brew />
-            </Route>
+            </Route> */}
           </Switch>
           <Foot />
         </Router>
