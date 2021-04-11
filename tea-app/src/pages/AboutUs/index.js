@@ -4,6 +4,9 @@ import { Box, Card, Button, CardBody, CardFooter, Collapsible, Heading, Grommet,
 import { FormDown, FormUp, Github, Linkedin } from 'grommet-icons';
 import { deepMerge } from 'grommet/utils';
 
+import michelePicture from '../../assets/images/T01C034EDAN-U01C2CM0UMC-47c00d2e7cf3-512.jpg'
+import otherPicture from '../../assets/images/pexels-taryn-elliott-3889850.jpg'
+
 const customTheme = deepMerge(grommet, {
     global: {
         font: {
@@ -50,7 +53,7 @@ function AboutUs() {
                         <CardBody height="small">
                             <Image
                                 fit="cover"
-                                src="tea-app/src/assets/images/T01C034EDAN-U01C2CM0UMC-47c00d2e7cf3-512.jpg"
+                                src={michelePicture}
                                 allyTitle="Michele Lee Lynch"
                             />
                         </CardBody>
@@ -86,7 +89,7 @@ function AboutUs() {
                         <CardBody height="small">
                             <Image
                                 fit="cover"
-                                src="tea-app/src/pages/AboutUs/pexels-koko-rahmadie-227908.jpg"
+                                src={otherPicture}
                                 allyTitle="Michele Lee Lynch"
                             />
                         </CardBody>
@@ -122,7 +125,7 @@ function AboutUs() {
                         <CardBody height="small">
                             <Image
                                 fit="cover"
-                                src="tea-app/src/pages/AboutUs/pexels-koko-rahmadie-227908.jpg"
+                                src={otherPicture}
                                 allyTitle="Michele Lee Lynch"
                             />
                         </CardBody>
@@ -158,7 +161,7 @@ function AboutUs() {
                         <CardBody height="small">
                             <Image
                                 fit="cover"
-                                src="tea-app/src/pages/AboutUs/pexels-koko-rahmadie-227908.jpg"
+                                src={otherPicture}
                                 allyTitle="Michele Lee Lynch"
                             />
                         </CardBody>

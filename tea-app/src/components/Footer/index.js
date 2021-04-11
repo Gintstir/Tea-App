@@ -1,10 +1,11 @@
 import React from 'react';
 
+import { Link } from "react-router-dom";
+
 import {   
   Group,
 //   Linkedin,
   Github,
-
 } from 'grommet-icons';
 import { deepMerge } from 'grommet/utils';
 
@@ -46,11 +47,11 @@ function Foot () {
                     href="https://github.com/Gintstir/Tea-App"
                     icon={<Github color="black" size="large"/>}
                     />
-                    <Anchor
-                    a11yTitle="About us"
-                    href="/aboutUs"
-                    icon={<Group color="black" size="large"/>}
-                    />
+                    <Link to="/about">
+                        <Box pad="12px">
+                            <Group color="black" size="large" a11yTitle="About us"/>
+                        </Box>
+                    </Link>
                     {/* <Anchor
                     a11yTitle="Give us a Job!"
                     href="https://twitter.com/"

@@ -6,9 +6,7 @@ import TeaCard from "../../components/MaterializeTeaCard";
 import { Grommet, Header, Main, Text, Card } from "grommet";
 
 const Landing = () => {
-  const [selectedTea, setSelectedTea] = useState({
-    name: "I will be a dynamically generated teacard! oooooo!",
-  });
+  const [selectedTea, setSelectedTea] = useState({});
 
   return (
     <Grommet>
@@ -20,11 +18,8 @@ const Landing = () => {
       <Main pad="small" style={{ fontFamily: "Marck Script" }}>
         All things in due time
       </Main>
-      <Card id="landingCard" style={{ fontFamily: "Nothing You Could Do" }}>
-        {selectedTea.name}
-      </Card>
       <Card>
-        <TeaCard />
+        <TeaCard selectedTea={selectedTea} />
       </Card>
       <div>
         <TeaButtons setSelectedTea={setSelectedTea} />

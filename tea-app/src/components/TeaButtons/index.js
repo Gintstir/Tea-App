@@ -38,6 +38,7 @@ const Identifier = ({ children, size, ...rest }) => (
 );
 
 const TeaButtons = ({ setSelectedTea }) => {
+  
   const populateCard = (clickedColor) => {
     const foundRecipe = recipeData.find(
       (recipe) => recipe.name === clickedColor
