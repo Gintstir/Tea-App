@@ -24,7 +24,9 @@
   },
   "homepage": "https://github.com/Gintstir/Tea-App#readme",
   "dependencies": {
-    "concurrently": "^6.0.0",
     "if-env": "^1.0.4"
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.0"
   }
 }
