@@ -2,8 +2,9 @@ import React, { useState} from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import Auth from '../../utils/auth';
 import { LOGIN } from '../../utils/mutations';
-// import { grommet } from "grommet/themes";
-import { Grommet, Box, Form, FormField, TextInput, grommet, Button } from "grommet";
+
+
+import { Grommet, Box, Form, TextInput, grommet, Button } from "grommet";
 import { deepMerge } from 'grommet/utils';
 
 import { Link } from "react-router-dom";
@@ -20,41 +21,32 @@ const customTheme = deepMerge(grommet, {
       orange: "#FFBC44",
       yellow: "#FFEB59",     
       
-      }
-    
-  },
-  formField: {
-    border: {
-      error: {
-        color: 'border',
-      },
-      color: 'border',
-      side: 'all',
-    }, 
-    round: '8px',
-    label: {
-      size: 'medium',
-      color: 'purple',
-      margin: {
-        horizontal: 'none',
-      },
-      textAlign: 'center'
     },
-  },
-  
-  textInput:{
-    textAlign: "center"
-  },
-  placeholder: {
+    input: {
+      padding: {
+        horizontal: "small",
+        vertical: "medium"      
+      },      
+    },    
+  },  
+  textInput: {
     extend: () => `
-      width: 100%
+      font-size: 20px;
+      background: lightblue;
+      
+      &:focus {
+        border-color: red;
+        box-shadow: none;
+      }      
     `
-  }
+  },  
 });
 
 function SignIn (props) {
   const [formState, setFormState] = useState({ username: '', password: '' })
   const [login, {error}] = useMutation(LOGIN);
+ 
+
 
   const handleFormSubmit = async event => {
     event.preventDefault();
@@ -80,39 +72,38 @@ function SignIn (props) {
       <Box align="center" pad="large">
         <h1> Login! </h1>
         <Form onSubmit={handleFormSubmit}>
-          <Box border gap="medium" pad="large" width="medium" background="orange">
-            <FormField htmlFor="username" name="username" type="text" label="Username" contentProps={{ background: "lightblue" }}>
+          <Box fill gap="medium" align="center" pad="large" width="medium" background="orange">
+              <Box width="medium">
                 <TextInput                                    
-                  id="username"
-                  name="username"                  
-                  type="text"
-                  onChange={handleChange}
-                  />
-
-            </FormField>
-            <FormField
-              htmlFor="password"
-              name="password"
-              type="password"
-              label="Password"
-              contentProps={{
-                background: "lightblue"
-              }}
+                    id="username"
+                    name="username"                  
+                    //type="username"
+                    onChange={handleChange}
+                    placeholder="Username"
+                    textAlign="center"
+                />
+              </Box>
+              <Box 
+                width="medium"                
               >
                 <TextInput
                   id="password"
                   name="password"                  
-                  type="password"
+                  type="password"                  
                   onChange={handleChange}
-                  contentProps={{
-                    background: "lightblue"}}
-                  />
-            </FormField>
+                  placeholder="Password"
+                  textAlign="center"
+                />                
+              </Box>          
             <Button type="submit" label="Let's Go!" primary color="purple"/>
           </Box>
         </Form>
-        <Link to='/signup'>Sign-up Instead</Link>
-        {error && <div>Login Failed</div>}
+        <Box pad="medium">
+          <Link to='/signup'>Not A member? Sign-up Instead!</Link>
+          <Box align="center" >
+          {error && <div color="status-error">Login Failed</div>}
+          </Box>
+        </Box>
       </Box>
     </Grommet>
   )

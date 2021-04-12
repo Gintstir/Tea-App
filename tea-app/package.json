@@ -17,6 +17,7 @@
     "grommet-icons": "^4.5.0",
     "jwt-decode": "^3.1.2",
     "materialize-css": "^1.0.0-rc.2",
+    "nanoid": "^3.1.22",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.3",

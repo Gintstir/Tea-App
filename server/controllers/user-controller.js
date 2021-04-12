@@ -19,6 +19,20 @@ const userController = {
         return user
     },
     async createUser(parent, args) {
+        args.extras = ['Milk', 'Honey', 'Sugar']
+        args.teas = [
+            {
+                type: "Black Tea",
+                name: "Earl Grey",
+                brand: "Harney & Sons"
+            },
+            {
+                type: "Green Tea",
+                name: "Sencha",
+                brand: "Hibiki-An"
+            }
+        ]
+        console.log(args)
         const user = await User.create(args)
         const token = signToken(user)
 
