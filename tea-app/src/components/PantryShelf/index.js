@@ -12,21 +12,6 @@ import PantryShelfExtraCard from "../PantryShelfExtraCard";
 const PantryShelf = ({ shelfName, pantryData }) => {
   const specificData = pantryData[`${shelfName.toLowerCase()}s`];
 
-  const isVowel = (letter) => {
-    letter = letter.toLowerCase();
-    if (
-      letter === "a" ||
-      letter === "e" ||
-      letter === "i" ||
-      letter === "o" ||
-      letter === "u"
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
   return (
     <Grommet>
       <Box>
@@ -39,25 +24,24 @@ const PantryShelf = ({ shelfName, pantryData }) => {
             columns={{ count: specificData.length, size: "xsmall" }}
             style={{ zIndex: 5 }}
           >
-            {specificData.length
-              ? specificData.map((data) => {
-                  if (shelfName === "Extra") {
-                    return (
-                      <PantryShelfExtraCard
-                        cardData={data}
-                        key={typeof data === "string" ? data : data._id}
-                      />
-                    );
-                  } else {
-                    return (
-                      <PantryShelfTeaCard
-                        cardData={data}
-                        key={typeof data === "string" ? data : data._id}
-                      />
-                    );
-                  }
-                })
-              : `Add a${isVowel(shelfName[0]) ? "n" : ""} ${shelfName}`}
+            {specificData.map((data) => {
+                if (shelfName === "Extra") {
+                  return (
+                    <PantryShelfExtraCard
+                      cardData={data}
+                      key={typeof data === "string" ? data : data._id}
+                    />
+                  );
+                } else {
+                  return (
+                    <PantryShelfTeaCard
+                      cardData={data}
+                      key={typeof data === "string" ? data : data._id}
+                    />
+                  );
+                }
+              })
+            }
           </Grid>
           <div className="pantry-shelf-container">
             <div

@@ -11,15 +11,13 @@ import {
   Text,
   CheckBoxGroup,
   grommet
+} from "grommet";
 
-<<<<<<< HEAD
 import Upload from '../Upload'
 import PantryShelf from '../PantryShelf'
-=======
-} from "grommet";
+
 import { deepMerge } from 'grommet/utils';
 import { useMutation } from "@apollo/react-hooks";
->>>>>>> 57148b1d7b3ddfef14d279f8ad38917dc4b395b3
 
 import Upload from "../Upload";
 
@@ -38,12 +36,8 @@ const customTheme = deepMerge(grommet, {
     }
 })
 
-<<<<<<< HEAD
 const NewRecipe = ({ setShow, teas, extras }) => {
-=======
-const NewRecipe = ({ setShow }) => {
   const [image, setImage] = useState();
->>>>>>> 57148b1d7b3ddfef14d279f8ad38917dc4b395b3
 
   const [formValue, setFormValue] = useState({
     type: "",
@@ -115,11 +109,7 @@ const NewRecipe = ({ setShow }) => {
                 </Form>
                 { error && <Text>{error.message}</Text>}    
             </Box>
-          </Box>
-        </Form>
-        {error && <Text>{error.message}</Text>}
-      </Box>
-    </Grommet>
+        </Grommet>
   );
 };
 
