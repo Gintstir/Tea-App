@@ -1,6 +1,5 @@
 const path = require('path')
 const { createWriteStream } = require('fs')
-// const { nanoid } = require('nanoid')
 const jimp = require('jimp')
 
 const loadImageToServer = async (createReadStream, filename) => {
@@ -18,12 +17,6 @@ const loadImageToServer = async (createReadStream, filename) => {
         }        
     })
 }
-
-// const generateFilename = (oldFilename) => {
-//     let fileExt = oldFilename.split('.')
-//     fileExt = fileExt[fileExt.length - 1]
-//     return nanoid() + '.' + fileExt
-// }
 
 const resizeImage = async (imgPath, width = 600, height = jimp.AUTO, quality = 70) => {
     return new Promise(async (res) => {

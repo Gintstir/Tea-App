@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { nanoid } from 'nanoid'
 
-import { Form, FormField, TextInput, Box, Button, Grommet, Text, CheckBoxGroup } from 'grommet'
+import { Form, FormField, TextInput, Box, Button, Grommet, Text, CheckBoxGroup} from 'grommet'
 import { useMutation } from '@apollo/react-hooks'
 
 import Upload from '../Upload'
@@ -60,6 +60,9 @@ const NewRecipe = ({ setShow }) => {
         return nanoid() + '.' + fileExt
     }
     
+
+
+
     return (
         <Grommet>
             <Box justify="center">
@@ -78,25 +81,25 @@ const NewRecipe = ({ setShow }) => {
                     onSubmit={ async ({value}) => handleSubmit(value) }
                 >
                     <FormField name="type" htmlFor="tea-type-id" label="Type">
-                        <TextInput id="tea-type-id" name="type" />
+                        <TextInput type="text" id="tea-type-id" name="type" />
                     </FormField>
                     <FormField name="name" htmlFor="tea-name-id" label="Name">
-                        <TextInput id="tea-name-id" name="name" />
+                        <TextInput type="text" id="tea-name-id" name="name" />
                     </FormField>
                     <FormField name="brand" htmlFor="tea-brand-id" label="Brand">
-                        <TextInput id="tea-brand-id" name="brand" />
+                        <TextInput type="text" id="tea-brand-id" name="brand" />
                     </FormField>
                     <FormField name="extra" htmlFor="tea-extra-id" label="Extra">
                         <CheckBoxGroup options={["Milk", "Sugar", "Honey"]} id="tea-extra-id" name="extra" />
                     </FormField>
                     <FormField name="temperature" htmlFor="tea-temperature-id" label="Temperature">
-                        <TextInput id="tea-temperature-id" name="temperature" />
+                        <TextInput type="text" id="tea-temperature-id" name="temperature" />
                     </FormField>
                     <FormField name="steepTime" htmlFor="tea-steepTime-id" label="Steep Time">
                         <TextInput type="number" id="tea-steepTime-id" name="steepTime" />
                     </FormField>
-                    <FormField name="note" htmlFor="tea-note-id" label="Note">
-                        <TextInput id="tea-note-id" name="note" />
+                    <FormField type="text" name="note" htmlFor="tea-note-id" label="Note">
+                        <TextInput type="text" id="tea-note-id" name="note" />
                     </FormField>
                     <FormField name="image" htmlFor="tea-image-id" label="Picture">
                         <Upload setImage={setImage} />
