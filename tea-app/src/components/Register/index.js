@@ -19,17 +19,29 @@ const customTheme = deepMerge(grommet, {
       red: "#FC6161",
       orange: "#FFBC44",
       yellow: "#FFEB59",      
+    },
+  input: {
+    padding: {
+      horizontal: "small",
+      vertical: "medium"      
+    },
+    
+  },    
+},
+textInput: {
+  extend: () => `
+    font-size: 20px;
+    background: lightblue;
+    
+    &:focus {
+      border-color: red;
+      box-shadow: none;
     }
-  },
-  textInput: {
-   
-    //  background: lightblue;
-    //  font-size: 20px;
     
-     
-    
-  },  
-  round: '8px',
+  `
+},
+  
+round: '8px',
     
 });
 
@@ -62,32 +74,39 @@ const Register = () => {
       <Box align="center" pad="large" >
         <h1>Sign Up!</h1>
         <Form onSubmit={handleFormSubmit} >
-            <Box fill gap="medium" pad="large" width="medium" background="orange">
+            <Box fill align="center" gap="medium" pad="large" width="medium" background="orange">
                 <Box width="medium">                  
-                    <TextInput 
+                  <TextInput 
                       type="username"
                       id="username"
                       name="username"                              
                       onChange={handleChange}
-                      placeholder={<span>Username</span>}                      
-                      />                
+                      placeholder="Username"
+                      textAlign="center" 
+                       
+                      
+                                      
+                      />          
                 </Box>
                 <Box width="medium">                  
                     <TextInput 
-                      type="email"
+                      type="username"
                       id="email"
                       name="email"                      
                       onChange={handleChange}
-                      placeholder={<span>Email</span>}
+                      placeholder="Email"
+                      textAlign="center"  
                       />                
                 </Box>
                 <Box width="medium">                  
                     <TextInput
-                      type="password"
+                      type="username"
                       id="password"
                       name="password"                     
                       onChange={handleChange}
-                      placeholder={<span>Password</span>}
+                      placeholder="Password"
+                      textAlign="center" 
+
                       />                
                 </Box>
                 <Button type="submit" label="Welcome!" primary color="purple" />
