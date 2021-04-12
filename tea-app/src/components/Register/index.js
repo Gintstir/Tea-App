@@ -41,7 +41,7 @@ textInput: {
   `
 },
   
-round: '8px',
+// round: '10px',
     
 });
 
@@ -77,20 +77,17 @@ const Register = () => {
             <Box fill align="center" gap="medium" pad="large" width="medium" background="orange">
                 <Box width="medium">                  
                   <TextInput 
-                      type="username"
+                      //type="username"
                       id="username"
                       name="username"                              
                       onChange={handleChange}
                       placeholder="Username"
-                      textAlign="center" 
-                       
-                      
-                                      
+                      textAlign="center"                                     
                       />          
                 </Box>
                 <Box width="medium">                  
                     <TextInput 
-                      type="username"
+                      //type="username"
                       id="email"
                       name="email"                      
                       onChange={handleChange}
@@ -100,20 +97,21 @@ const Register = () => {
                 </Box>
                 <Box width="medium">                  
                     <TextInput
-                      type="username"
+                      //type="username"
                       id="password"
                       name="password"                     
                       onChange={handleChange}
                       placeholder="Password"
-                      textAlign="center" 
-
-                      />                
+                      textAlign="center"
+                    />                
                 </Box>
                 <Button type="submit" label="Welcome!" primary color="purple" />
             </Box>
         </Form>
-        <Link to='/signin'>Sign-in Instead</Link>
-        {error && <div>Sign up failed</div>}
+        <Box pad="medium">
+          <Link to='/signin'>Already a member? Click here to sign in</Link>
+          {error && <div>Sign up failed</div>}
+        </Box>
       </Box>
     </Grommet>
   )
