@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useQuery } from '@apollo/react-hooks'
 
 // import { grommet } from "grommet/themes";
-import { Grommet, Header, Main, Text, Spinner, Box, Button, Layer } from "grommet";
+import { Grommet, Header, Main, Text, Spinner, Box, Button, Layer, Heading } from "grommet";
+import { AddCircle } from "grommet-icons";
 
 import { QUERY_ME } from '../../utils/queries'
 import { FormClose } from "grommet-icons";
@@ -36,10 +37,39 @@ const Pantry = () => {
       <Main>
         { loading ? 
           <Spinner /> :
-          <Box>
-            <PantryShelf shelfName="Tea" setShow={setShow} pantryData={data?.me} />
-            <PantryShelf shelfName="Extra" setShow={setShow} pantryData={data?.me} />
+          <>
+          <Box direction="row" pad="xsmall">
+            <Heading level={3} margin={{ bottom: "none" }}>
+              Teas
+            </Heading>
           </Box>
+          <Box>
+            <Button
+              alignSelf="start"
+              margin="small"
+              onClick={() => setShow({ content: `NewTea`, show: true })}
+            >
+              <AddCircle size="small" /> Add Tea
+            </Button>
+          </Box>
+          <PantryShelf shelfName="Tea" pantryData={data?.me} />
+
+          <Box>
+            <Box direction="row" pad="xsmall">
+            <Heading level={3} margin={{ bottom: "none" }}>
+              Extras
+            </Heading>
+          </Box>
+            <Button
+              alignSelf="start"
+              margin="small"
+              onClick={() => setShow({ content: `NewExtra`, show: true })}
+            >
+              <AddCircle size="small" /> Add Extra
+            </Button>
+          </Box>
+          <PantryShelf shelfName="Extra" setShow={setShow} pantryData={data?.me} />
+          </>
         }
       </Main>
     </Grommet>

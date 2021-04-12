@@ -8,13 +8,13 @@ import { FormClose } from "grommet-icons";
 import { QUERY_ME } from '../../utils/queries'
 import NewRecipe from "../../components/NewRecipe";
 
-const Profile = ({profile}) => {
+const Profile = ({ profile }) => {
 
   const [show, setShow] = useState(false)
 
-  const { loading } = useQuery(QUERY_ME)
+  const { data, loading } = useQuery(QUERY_ME)
 
-  // const { teas, extras, recipes } = data?.me
+  const { teas, extras, recipes } = data?.me || {}
 
   const toggleNewRecipe = () => {
     setShow(true)
@@ -32,7 +32,7 @@ const Profile = ({profile}) => {
             <Box style={{minHeight: "unset"}} direction="row" justify="end">
               <Button style={{padding: "0"}} icon={<FormClose size="35px" />} onClick={() => setShow(false)} />           
             </Box>
-            <NewRecipe setShow={setShow} />        
+            <NewRecipe setShow={setShow} teas={teas} extras={extras} />        
           </Box>
         </Layer>
       }

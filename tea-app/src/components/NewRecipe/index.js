@@ -5,10 +5,11 @@ import { Form, FormField, TextInput, Box, Button, Grommet, Text, CheckBoxGroup} 
 import { useMutation } from '@apollo/react-hooks'
 
 import Upload from '../Upload'
+import PantryShelf from '../PantryShelf'
 
 import { ADD_RECIPE, UPLOAD_IMAGE } from '../../utils/mutations'
 
-const NewRecipe = ({ setShow }) => {
+const NewRecipe = ({ setShow, teas, extras }) => {
 
     const [image, setImage] = useState()
 
@@ -59,9 +60,6 @@ const NewRecipe = ({ setShow }) => {
         fileExt = fileExt[fileExt.length - 1]
         return nanoid() + '.' + fileExt
     }
-    
-
-
 
     return (
         <Grommet>
@@ -80,28 +78,23 @@ const NewRecipe = ({ setShow }) => {
                     })}
                     onSubmit={ async ({value}) => handleSubmit(value) }
                 >
-                    <FormField name="type" htmlFor="tea-type-id" label="Type">
-                        <TextInput type="text" id="tea-type-id" name="type" />
+                    <FormField name="type" htmlFor="tea-type-id" label="Type" contentProps={{border: false}} pad={true} required={true}>
+                        <PantryShelf />
+
                     </FormField>
-                    <FormField name="name" htmlFor="tea-name-id" label="Name">
-                        <TextInput type="text" id="tea-name-id" name="name" />
-                    </FormField>
-                    <FormField name="brand" htmlFor="tea-brand-id" label="Brand">
-                        <TextInput type="text" id="tea-brand-id" name="brand" />
-                    </FormField>
-                    <FormField name="extra" htmlFor="tea-extra-id" label="Extra">
+                    <FormField name="extra" htmlFor="tea-extra-id" label="Extra" contentProps={{border: false}} pad={true} required={true}>
                         <CheckBoxGroup options={["Milk", "Sugar", "Honey"]} id="tea-extra-id" name="extra" />
                     </FormField>
-                    <FormField name="temperature" htmlFor="tea-temperature-id" label="Temperature">
+                    <FormField name="temperature" htmlFor="tea-temperature-id" label="Temperature" contentProps={{border: false}} pad={true} required={true}>
                         <TextInput type="text" id="tea-temperature-id" name="temperature" />
                     </FormField>
-                    <FormField name="steepTime" htmlFor="tea-steepTime-id" label="Steep Time">
+                    <FormField name="steepTime" htmlFor="tea-steepTime-id" label="Steep Time" contentProps={{border: false}} pad={true} required={true}>
                         <TextInput type="number" id="tea-steepTime-id" name="steepTime" />
                     </FormField>
-                    <FormField type="text" name="note" htmlFor="tea-note-id" label="Note">
+                    <FormField type="text" name="note" htmlFor="tea-note-id" label="Note" contentProps={{border: false}} pad={true} required={true}>
                         <TextInput type="text" id="tea-note-id" name="note" />
                     </FormField>
-                    <FormField name="image" htmlFor="tea-image-id" label="Picture">
+                    <FormField name="image" htmlFor="tea-image-id" label="Picture" contentProps={{border: false}} pad={true} required={true}>
                         <Upload setImage={setImage} />
                     </FormField>
                     <Box direction="row" gap="medium"  justify="center">

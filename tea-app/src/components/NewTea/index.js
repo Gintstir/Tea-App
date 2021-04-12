@@ -78,13 +78,13 @@ const NewTea = () => {
           }
           onSubmit={async ({ value }) => handleSubmit(value)}
         >
-          <FormField name="type" htmlFor="tea-type-id" label="Type">
+          <FormField name="type" htmlFor="tea-type-id" label="Type" contentProps={{border: false}} pad={true} required={true}>
             <TeaButtons selectedTea={selectedTea} setSelectedTea={setSelectedTea} cardHeight={100} cardWidth={150} />
           </FormField>
-          <FormField name="name" htmlFor="tea-name-id" label="Name">
+          <FormField name="name" htmlFor="tea-name-id" label="Name" contentProps={{border: false}} pad={true} required={true}>
             <TextInput id="tea-name-id" name="name" />
           </FormField>
-          <FormField name="brand" htmlFor="tea-brand-id" label="Brand">
+          <FormField name="brand" htmlFor="tea-brand-id" label="Brand" contentProps={{border: false}} pad={true} required={true}>
             <TextInput id="tea-brand-id" name="brand" />
           </FormField>
           <Box direction="row" gap="medium" justify="center">

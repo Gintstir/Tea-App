@@ -1,8 +1,7 @@
 import React from "react";
 
 // import { grommet } from "grommet/themes";
-import { Grommet, Heading, Box, Grid, Button } from "grommet";
-import { AddCircle } from "grommet-icons";
+import { Grommet, Box, Grid } from "grommet";
 
 import PantryShelfPic from "../../assets/images/PantryShelf.png";
 import "./pantry.css";
@@ -10,7 +9,7 @@ import "./pantry.css";
 import PantryShelfTeaCard from "../PantryShelfTeaCard";
 import PantryShelfExtraCard from "../PantryShelfExtraCard";
 
-const PantryShelf = ({ shelfName, setShow, pantryData }) => {
+const PantryShelf = ({ shelfName, pantryData }) => {
   const specificData = pantryData[`${shelfName.toLowerCase()}s`];
 
   const isVowel = (letter) => {
@@ -31,21 +30,6 @@ const PantryShelf = ({ shelfName, setShow, pantryData }) => {
   return (
     <Grommet>
       <Box>
-        <Box direction="row" pad="xsmall">
-          <Heading level={3} margin={{ bottom: "none" }}>
-            {shelfName}s
-          </Heading>
-        </Box>
-        <Box>
-          <Button
-            alignSelf="start"
-            margin="small"
-            onClick={() => setShow({ content: `New${shelfName}`, show: true })}
-          >
-            <AddCircle size="small" /> Add {shelfName}
-          </Button>
-        </Box>
-
         <Box overflow={{ horizontal: "auto" }}>
           <Grid
             margin={{ right: "auto" }}

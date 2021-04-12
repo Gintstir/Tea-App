@@ -42,7 +42,7 @@ const NewExtra = () => {
                     })}
                     onSubmit={ async ({value}) => handleSubmit(value) }
                 >
-                    <FormField name="type" htmlFor="tea-type-id" label="Type">
+                    <FormField contentProps={{border: false}} pad={true} required={true} name="type" htmlFor="tea-type-id" label="Type">
                         <TextInput id="tea-type-id" name="type" />
                     </FormField>
                     <Box direction="row" gap="medium" justify="center">
