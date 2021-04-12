@@ -5,8 +5,14 @@ import TeaCard from "../../components/MaterializeTeaCard";
 // import { grommet } from "grommet/themes";
 import { Grommet, Header, Main, Text, Card } from "grommet";
 
+import recipeData from "../../utils/default-recipes";
+
 const Landing = () => {
   const [selectedTea, setSelectedTea] = useState({});
+
+  const foundRecipe = recipeData.find(
+    (recipe) => recipe.name === selectedTea?.color
+  );
 
   return (
     <Grommet>
@@ -19,10 +25,10 @@ const Landing = () => {
         All things in due time
       </Main>
       <Card>
-        <TeaCard selectedTea={selectedTea} />
+        <TeaCard selectedTea={foundRecipe} />
       </Card>
       <div>
-        <TeaButtons setSelectedTea={setSelectedTea} />
+        <TeaButtons selectedTea={selectedTea} setSelectedTea={setSelectedTea} cardHeight={150} cardWidth={150} />
       </div>
     </Grommet>
   );

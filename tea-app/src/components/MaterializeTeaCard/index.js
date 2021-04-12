@@ -4,7 +4,8 @@ import { Card, Grommet, Text } from "grommet";
 import { Clock, Java, AddCircle, Edit, Spa } from "grommet-icons";
 
 export const TeaCard = ({ selectedTea }) => {
-  if (!selectedTea.type) {
+
+  if (!selectedTea) {
     return <Text>Please Select a Tea</Text>;
   }
 

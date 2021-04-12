@@ -4,32 +4,32 @@ const data = [
   {
     color: "black",
     icon: <Spa size="large" />,
-    message: "Black Tea",
+    name: "Black Tea",
   },
   {
     color: "green",
     icon: <Spa size="large" />,
-    message: "Green Tea",
+    name: "Green Tea",
   },
   {
     color: "white",
     icon: <Spa size="large" />,
-    message: "White Tea",
+    name: "White Tea",
   },
   {
     color: "oolong",
     icon: <Spa size="large" />,
-    message: "Oolong Tea",
+    name: "Oolong Tea",
   },
   {
     color: "herbal",
     icon: <Spa size="large" />,
-    message: "Herbal",
+    name: "Herbal",
   },
   {
     color: "rooibos",
     icon: <Spa size="large" />,
-    message: "Rooibos",
+    name: "Rooibos",
   },
 ];
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from '@apollo/react-hooks'
 
 // import { grommet } from "grommet/themes";
-import { Grommet, Header, Main, Text, Spinner, Layer, Box, Button } from "grommet";
+import { Grommet, Spinner, Layer, Box, Button } from "grommet";
 import { FormClose } from "grommet-icons";
 
 import { QUERY_ME } from '../../utils/queries'
@@ -12,7 +12,7 @@ const Profile = ({profile}) => {
 
   const [show, setShow] = useState(false)
 
-  const { data, loading } = useQuery(QUERY_ME)
+  const { loading } = useQuery(QUERY_ME)
 
   // const { teas, extras, recipes } = data?.me
 
@@ -28,13 +28,11 @@ const Profile = ({profile}) => {
       { 
         show && 
         <Layer>
-          <Box margin="medium" overflow={{vertical: "auto"}}>
-            <Box direction="row" justify="end" margin={{bottom: "25px"}}>
-              <Button fill={false} onClick={() => setShow(false)} >
-                <FormClose />
-              </Button>               
+          <Box pad={{ left: "large", right: "large", top: "35px", bottom: "35px"}}  overflow={{vertical: "auto"}}>
+            <Box style={{minHeight: "unset"}} direction="row" justify="end">
+              <Button style={{padding: "0"}} icon={<FormClose size="35px" />} onClick={() => setShow(false)} />           
             </Box>
-            <NewRecipe setShow={setShow} />         
+            <NewRecipe setShow={setShow} />        
           </Box>
         </Layer>
       }

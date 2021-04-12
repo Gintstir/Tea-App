@@ -7,30 +7,49 @@ import {
   Box,
   Button,
   Grommet,
-  Text,
-  Select,
+  Text
 } from "grommet";
+
+import TeaButtons from '../TeaButtons'
 
 import { useMutation } from "@apollo/react-hooks";
 
 import { ADD_TEA } from "../../utils/mutations";
 
 const NewTea = () => {
+  const [selectedTea, setSelectedTea] = useState({})
   const [value, setValue] = useState({
-    type: "",
+    type: {},
     name: "",
     brand: "",
   });
 
+  value.type = selectedTea
+
   const [addTea, { error }] = useMutation(ADD_TEA);
 
+  const validateForm = (obj) => {
+    if (!obj.type || !obj.name || !obj.brand) {
+      console.log("oops")
+      return false
+    }
+    return true
+  }
+
   const handleSubmit = async (values) => {
+    values.type = values.type.name
+
+    if (!validateForm(values)) {
+      return
+    }
+    console.log(values)
     try {
       await addTea({
         variables: values,
       });
+      setSelectedTea({})
       setValue({
-        type: "",
+        type: {},
         name: "",
         brand: "",
       });
@@ -44,31 +63,23 @@ const NewTea = () => {
       <Box justify="center">
         <Form
           value={value}
-          onChange={(nextValue) => setValue(nextValue)}
+          onChange={(nextValue) => {
+            setValue(nextValue)
+          }}
           onReset={() =>
-            setValue({
-              type: "",
-              name: "",
-              brand: "",
-            })
+            {
+              setSelectedTea({})
+              setValue({
+                type: {},
+                name: "",
+                brand: "",
+              })
+            }
           }
           onSubmit={async ({ value }) => handleSubmit(value)}
         >
           <FormField name="type" htmlFor="tea-type-id" label="Type">
-            <Select
-              name="type"
-              id="tea-type-id"
-              value={value.type}
-              options={[
-                "Black Tea",
-                "Green Tea",
-                "White Tea",
-                "Rooibos",
-                "Herbal",
-                "Oolong Tea",
-              ]}
-            />
-            {/* <TextInput id="tea-type-id" name="type" /> */}
+            <TeaButtons selectedTea={selectedTea} setSelectedTea={setSelectedTea} cardHeight={100} cardWidth={150} />
           </FormField>
           <FormField name="name" htmlFor="tea-name-id" label="Name">
             <TextInput id="tea-name-id" name="name" />

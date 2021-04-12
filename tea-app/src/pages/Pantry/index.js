@@ -21,12 +21,10 @@ const Pantry = () => {
     <Grommet>
       { 
         show.show && 
-        <Layer content={show.content}>
-          <Box margin="medium">
-            <Box direction="row" justify="end">
-              <Button fill={false} onClick={() => setShow({ content: '', show: false })} >
-                <FormClose />
-              </Button>               
+        <Layer full={true} margin={{vertical: "30px", horizontal: "100px"}} content={show.content}>
+          <Box margin="medium" overflow="auto">
+            <Box style={{minHeight: "unset"}} direction="row" justify="end">
+              <Button style={{padding: "0"}} icon={<FormClose size="35px" />} onClick={() => setShow(false)} />           
             </Box>
             {show.content === 'NewTea' ? <NewTea /> : <NewExtra />}           
           </Box>
