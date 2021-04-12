@@ -3,16 +3,9 @@ import React from "react";
 import { Card, Grommet, Text } from "grommet";
 import { Clock, Java, AddCircle, Edit, Spa } from "grommet-icons";
 
-export const TeaCard = ({selectedTea}) => {
-  
-  const editTeaCard = () => {
-    console.log("send help");
-  };
-
+export const TeaCard = ({ selectedTea }) => {
   if (!selectedTea.type) {
-    return (
-      <Text>Please Select a Tea</Text>
-    )
+    return <Text>Please Select a Tea</Text>;
   }
 
   return (
@@ -41,7 +34,7 @@ export const TeaCard = ({selectedTea}) => {
             {" "}
             <Clock size="small" /> Steep Time: {selectedTea.steepTime}{" "}
           </Text>
-          <Text margin="medium" onClick={() => editTeaCard()}>
+          <Text margin="medium">
             {" "}
             <Edit size="medium" />{" "}
           </Text>
