@@ -1,3 +1,5 @@
+console.log("Hi, Service worker here just checking in. 🤓");
+
 // This optional code is used to register a service worker.
 // register() is not called by default.
 
