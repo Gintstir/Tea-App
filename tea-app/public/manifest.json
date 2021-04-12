@@ -50,9 +50,10 @@
     }
     
   ],
-  "start_url": "/",
+  "start_url": ".",
   "orientation": "portrait",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#01579b"
+  "background_color": "#01579b",
+  "prefer_related_applications": true
 }
