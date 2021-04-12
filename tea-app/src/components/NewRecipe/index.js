@@ -1,58 +1,69 @@
-import React, { useState } from 'react'
-import { nanoid } from 'nanoid'
+import React, { useState } from "react";
+import { nanoid } from "nanoid";
 
-import { Form, FormField, TextInput, Box, Button, Grommet, Text, CheckBoxGroup} from 'grommet'
-import { useMutation } from '@apollo/react-hooks'
+import {
+  Form,
+  FormField,
+  TextInput,
+  Box,
+  Button,
+  Grommet,
+  Text,
+  CheckBoxGroup,
+  grommet
 
+<<<<<<< HEAD
 import Upload from '../Upload'
 import PantryShelf from '../PantryShelf'
+=======
+} from "grommet";
+import { deepMerge } from 'grommet/utils';
+import { useMutation } from "@apollo/react-hooks";
+>>>>>>> 57148b1d7b3ddfef14d279f8ad38917dc4b395b3
 
-import { ADD_RECIPE, UPLOAD_IMAGE } from '../../utils/mutations'
+import Upload from "../Upload";
 
-const NewRecipe = ({ setShow, teas, extras }) => {
+import { ADD_RECIPE, UPLOAD_IMAGE } from "../../utils/mutations";
 
-    const [image, setImage] = useState()
-
-    const [formValue, setFormValue] = useState({
-        type: '',
-        name: '',
-        brand: '',
-        extra: [],
-        temperature: '',
-        steepTime: '',
-        note: ''
-    })
-    
-    const [addRecipe, { error }] = useMutation(ADD_RECIPE)
-
-    const [uploadImage] = useMutation(UPLOAD_IMAGE)
-
-    const handleSubmit = (value) => {
-        
-        // console.log(nanoid())
-        let imageName
-        if (image) {
-            imageName = generateFileName(image?.name)
+const customTheme = deepMerge(grommet, {
+    global: {
+        input: {
+            padding: {
+                vertical: "20px"
+            }
+        },
+        colors: {
+            placeholder: "#A2065A"
         }
+    }
+})
 
-        value.steepTime = parseInt(value.steepTime)
-        
-        Promise.all([
-            addRecipe({ variables: { ...value, picture: imageName} }),
-            uploadImage({ variables: { image, imageName }})
-        ]).then(values => {
-            setFormValue({
-                type: '',
-                name: '',
-                brand: '',
-                extra: [],
-                temperature: '',
-                steepTime: '',
-                note: ''
-            })
+<<<<<<< HEAD
+const NewRecipe = ({ setShow, teas, extras }) => {
+=======
+const NewRecipe = ({ setShow }) => {
+  const [image, setImage] = useState();
+>>>>>>> 57148b1d7b3ddfef14d279f8ad38917dc4b395b3
 
-            setShow(false)
-        })
+  const [formValue, setFormValue] = useState({
+    type: "",
+    name: "",
+    brand: "",
+    extra: [],
+    temperature: "",
+    steepTime: "",
+    note: "",
+  });
+
+  const [addRecipe, { error }] = useMutation(ADD_RECIPE);
+
+  const [uploadImage] = useMutation(UPLOAD_IMAGE);
+
+  const handleSubmit = (value) => {
+    // console.log(nanoid())
+    let imageName;
+    if (image) {
+      imageName = generateFileName(image?.name);
     }
 
     const generateFileName = (oldFilename) => {
@@ -104,8 +115,12 @@ const NewRecipe = ({ setShow, teas, extras }) => {
                 </Form>
                 { error && <Text>{error.message}</Text>}    
             </Box>
-        </Grommet>
-    )
-}
+          </Box>
+        </Form>
+        {error && <Text>{error.message}</Text>}
+      </Box>
+    </Grommet>
+  );
+};
 
-export default NewRecipe
+export default NewRecipe;
