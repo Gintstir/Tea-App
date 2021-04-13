@@ -1,50 +1,13 @@
 import React, { useState } from 'react'
-<<<<<<< HEAD
-
-import { Form, FormField, TextInput, Box, Button, Grommet, Text, grommet } from 'grommet'
-
-import { deepMerge } from 'grommet/utils';
-
-=======
->>>>>>> 870aacb298e0276e95c61b7d41d13440da2fd418
 import { useMutation } from '@apollo/react-hooks'
 
 import { Form, FormField, TextInput, Box, Button, Grommet } from 'grommet'
 
 import Auth from '../../utils/auth'
 
-<<<<<<< HEAD
-const customTheme = deepMerge(grommet, {
-    global: {
-        colors: {     
-          // Setting new colors
-          blue: "#00C8FF",
-          green: "#749A5C",
-          teal: "#82FFF2",
-          purple: "#A2065A",
-          red: "#FC6161",
-          orange: "#FFBC44",
-          yellow: "#FFEB59", 
-          
-          placeholder: "black"
-        },
-      input: {
-        padding: {
-          horizontal: "small",
-          vertical: "medium"      
-        },
-        
-      },    
-    },    
-});
-
-
-const NewExtra = () => {
-=======
 import { ADD_EXTRA } from '../../utils/mutations'
 
 const NewExtra = ({ setAddNotification }) => {
->>>>>>> 870aacb298e0276e95c61b7d41d13440da2fd418
     
     const [value, setValue] = useState({
         type: ''
