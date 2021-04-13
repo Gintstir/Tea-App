@@ -8,8 +8,7 @@ import {
   Box,
   Button,
   Grommet,
-  Text,
-  grommet,
+  Text,  
   Paragraph
 } from "grommet";
 

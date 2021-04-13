@@ -1,7 +1,7 @@
 import React from "react";
 
 // import { grommet } from "grommet/themes";
-import { Button, Grommet, Nav, grommet, Text, Header, Box } from "grommet";
+import { Button, Grommet, grommet, Text, Header, Box } from "grommet";
 import { Drawer, Home, Login, Logout } from "grommet-icons";
 import { Link } from "react-router-dom";
 import { deepMerge } from 'grommet/utils';
@@ -58,19 +58,3 @@ export default NavBar;
 
 
 
-{/* <Header direction="row">
-
-<Link to='/'><Home /></ Link>
-{isLoggedin && <Link to='/pantry'><Drawer /></Link>}
-
-<Box direction="row" gap="small" justify="center" style={{margin: "0 auto"}}>
-  <Text alignText="center" size="xlarge" style={{ fontFamily: "Homemade Apple" }}>
-    Steep
-  </Text>
-</Box>
-
-<Nav>
-  {isLoggedin ? <Button margin={{left: 'auto'}} onClick={handleLogout}><Logout /></Button> : <Link  style={{marginLeft: 'auto'}} to='/signin'><Login /></ Link> }
-</Nav>
-
-</Header> */}

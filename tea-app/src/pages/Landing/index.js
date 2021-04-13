@@ -3,7 +3,7 @@ import TeaButtons from "../../components/TeaButtons";
 import TeaCard from "../../components/MaterializeTeaCard";
 
 // import { grommet } from "grommet/themes";
-import { Grommet, Header, Main, Text, Card } from "grommet";
+import { Grommet, Main, Card } from "grommet";
 
 import recipeData from "../../utils/default-recipes";
 
