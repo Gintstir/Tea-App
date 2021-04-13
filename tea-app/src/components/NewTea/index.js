@@ -42,12 +42,16 @@ const NewTea = ({ setAddNotification }) => {
   const validateForm = (obj) => {
     if (!obj.type || !obj.name || !obj.brand) {
       setAddNotification({show: true, type:'error', message: "Please fill out all of the fields!"})
+      setTimeout(() => {
+        setAddNotification({show: false, type: '', message: ''})
+      }, 3000)
       return false
     }
     return true
   }
 
-  const handleSubmit = async (values) => {
+  const handleSubmit = async (event) => {
+    event.preventDefault()
 
     const token = Auth.loggedIn() ? Auth.getToken() : null
 
@@ -55,14 +59,14 @@ const NewTea = ({ setAddNotification }) => {
         return false
     }
 
-    values.type = values.type.name
+    event.value.type = event.value.type.name
 
-    if (!validateForm(values)) {
+    if (!validateForm(event.value)) {
       return
     }
     try {
       await addTea({
-        variables: values,
+        variables: event.value,
       });
       setSelectedTea({})
       setValue({
@@ -101,7 +105,7 @@ const NewTea = ({ setAddNotification }) => {
               })
             }
           }
-          onSubmit={async ({ value }) => handleSubmit(value)}
+          onSubmit={event => handleSubmit(event)}
         >
           <FormField style={{fontFamily: "Abhaya Libre"}} name="type" htmlFor="tea-type-id" label="Type" contentProps={{border: false}} pad={true}>
             <TeaButtons selectedTea={selectedTea} setSelectedTea={setSelectedTea} cardHeight={100} cardWidth={150} />

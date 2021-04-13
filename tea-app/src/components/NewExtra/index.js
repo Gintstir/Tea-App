@@ -15,7 +15,8 @@ const NewExtra = ({ setAddNotification }) => {
 
     const [addExtra, { error }] = useMutation(ADD_EXTRA)
 
-    const handleSubmit = async values => {
+    const handleSubmit = async (event) => {
+        event.preventDefault()
         const token = Auth.loggedIn() ? Auth.getToken() : null
 
         if (!token) {
@@ -24,7 +25,7 @@ const NewExtra = ({ setAddNotification }) => {
 
         try {
             await addExtra({
-                variables: values
+                variables: event.value
             })
             setValue({type: ''})
             setAddNotification({show: true, type: 'success', message: "Extra added successfully!"})
@@ -32,7 +33,11 @@ const NewExtra = ({ setAddNotification }) => {
                 setAddNotification({show: false, type: '', message: ''})
             }, 3000)
         } catch (e) {
-            console.log(e)
+            setAddNotification({show: true, type:'error', message: `Error: ${e.message.replace('GraphQL error: ', '')}`})
+            setTimeout(() => {
+              setAddNotification({show: false, type: '', message: ''})
+            }, 3000)
+            console.error(e)
         }
     }
 
@@ -49,7 +54,7 @@ const NewExtra = ({ setAddNotification }) => {
                     onReset={() => setValue({
                         type: ''
                     })}
-                    onSubmit={ async ({value}) => handleSubmit(value) }
+                    onSubmit={ (event) => handleSubmit(event) }
                 >
                     <FormField contentProps={{border: false}} pad={true} required={true} name="type" htmlFor="tea-type-id" label="Type">
                         <TextInput id="tea-type-id" name="type" />

@@ -17,18 +17,19 @@ const userSchema = new Schema(
         username: {
             type: String,
             required: true,
+            unique: [true, 'This username/email has already been used'],
             trim: true
         },
         email: {
             type: String,
             required: true,
-            unique: true,
+            unique: [true, 'This username/email has already been used'],
             match: [/.+@.+\..+/, 'Incorrect email format!']
         },
         password: {
             type: String,
             required: true,
-            minLength: 8
+            minLength: [8, 'Password needs to be atleast 8 characters']
         },
         teas: [
             teaSchema
