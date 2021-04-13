@@ -18,7 +18,9 @@ const customTheme = deepMerge(grommet, {
       purple: "#A2065A",
       red: "#FC6161",
       orange: "#FFBC44",
-      yellow: "#FFEB59",      
+      yellow: "#FFEB59", 
+      
+      placeholder: "black"
     },
   input: {
     padding: {
@@ -72,7 +74,7 @@ const Register = () => {
   return (
     <Grommet theme={customTheme}>
       <Box align="center" pad="large" >
-        <h1>Sign Up!</h1>
+        <h1 style={{fontFamily: "Abhaya Libre"}}>Sign Up!</h1>
         <Form onSubmit={handleFormSubmit} >
             <Box fill align="center" gap="medium" pad="large" width="medium" background="orange">
                 <Box width="medium">                  
@@ -82,7 +84,8 @@ const Register = () => {
                       name="username"                              
                       onChange={handleChange}
                       placeholder="Username"
-                      textAlign="center"                                     
+                      textAlign="center"
+                      style={{fontFamily: "Abhaya Libre"}}                                     
                       />          
                 </Box>
                 <Box width="medium">                  
@@ -92,7 +95,8 @@ const Register = () => {
                       name="email"                      
                       onChange={handleChange}
                       placeholder="Email"
-                      textAlign="center"  
+                      textAlign="center"
+                      style={{fontFamily: "Abhaya Libre"}}  
                       />                
                 </Box>
                 <Box width="medium">                  
@@ -103,14 +107,15 @@ const Register = () => {
                       onChange={handleChange}
                       placeholder="Password"
                       textAlign="center"
+                      style={{fontFamily: "Abhaya Libre"}}
                     />                
                 </Box>
-                <Button type="submit" label="Welcome!" primary color="purple" />
+                <Button style={{fontFamily: "Abhaya Libre"}} type="submit" label="Welcome!" primary color="purple" />
             </Box>
         </Form>
         <Box pad="medium">
-          <Link to='/signin'>Already a member? Click here to sign in</Link>
-          {error && <div>Sign up failed</div>}
+          <Link  style={{fontFamily: "Abhaya Libre"}} to='/signin'>Already a member? Click here to sign in</Link>
+          {error && <div style={{fontFamily: "Abhaya Libre"}}>Sign up failed</div>}
         </Box>
       </Box>
     </Grommet>

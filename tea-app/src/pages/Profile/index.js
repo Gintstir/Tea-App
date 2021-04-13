@@ -8,13 +8,13 @@ import { FormClose } from "grommet-icons";
 import { QUERY_ME } from '../../utils/queries'
 import NewRecipe from "../../components/NewRecipe";
 
-const Profile = ({profile}) => {
+const Profile = ({ profile }) => {
 
   const [show, setShow] = useState(false)
 
-  const { loading } = useQuery(QUERY_ME)
+  const { data, loading } = useQuery(QUERY_ME)
 
-  // const { teas, extras, recipes } = data?.me
+  const { teas, extras, recipes } = data?.me || {}
 
   const toggleNewRecipe = () => {
     setShow(true)
@@ -27,16 +27,16 @@ const Profile = ({profile}) => {
     <Grommet>
       { 
         show && 
-        <Layer>
-          <Box pad={{ left: "large", right: "large", top: "35px", bottom: "35px"}}  overflow={{vertical: "auto"}}>
-            <Box style={{minHeight: "unset"}} direction="row" justify="end">
+        <Layer  full={true} margin={{vertical: "30px", horizontal: "100px"}}>
+          <Box pad={{vertical: "35px"}} overflow={{vertical: "auto"}}>
+            <Box pad={{right: "large"}}  style={{minHeight: "unset"}} direction="row" justify="end">
               <Button style={{padding: "0"}} icon={<FormClose size="35px" />} onClick={() => setShow(false)} />           
             </Box>
-            <NewRecipe setShow={setShow} />        
+            <NewRecipe setShow={setShow} teas={teas} extras={extras} />        
           </Box>
         </Layer>
       }
-      <Button onClick={toggleNewRecipe} label="Add Recipe" />
+      <Button style={{fontFamily: "Abhaya Libre"}} onClick={toggleNewRecipe} label="Add Recipe" />
     </Grommet>
   );
 }

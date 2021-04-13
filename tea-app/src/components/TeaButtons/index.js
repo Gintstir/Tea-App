@@ -42,41 +42,38 @@ const TeaButtons = ({ selectedTea, setSelectedTea, cardHeight, cardWidth }) => {
 
   return (
     <Grommet theme={theme} >
-      <Box pad="small">
-        {/* Responsive Grid */}
-        <div className="row">
-          {data.map((value) => (
-            <Box className="col s6 m4 l2" justify="center" align="center" key={value.name}>
-              <Card
-                margin="12px"
-                style={{
-                  width: "100%",
-                  minWidth: `${cardWidth*.667}px`,
-                  maxWidth: `${cardWidth*1.33}px`,
-                  height: `${cardHeight}px`
-                }}
-                background={value.color}
-                onClick={() => populateCard(value)}
-              >
-                <CardBody style={{position: "relative"}} pad="small" align="center" justify="center">
-                  { selectedTea.color === value.color &&
-                  <Box style={{ position: "absolute", top: "5px", right:"5px"}}>
-                    <Checkmark />
-                  </Box>}
-                  
-                  {value.icon}
-                </CardBody>
-                <CardFooter justify="center">
-                  <Text size="small" weight="bold" textAlign="center">
-                    {value.name}
-                  </Text>
-                </CardFooter>
-              </Card>                         
-            </Box>
-          ))}          
-        </div>
-
-      </Box>
+      {/* Responsive Grid */}
+      <div className="row">
+        {data.map((value) => (
+          <Box className="col s6 m4 l2" justify="center" align="center" key={value.name}>
+            <Card
+              margin="12px"
+              style={{
+                width: "100%",
+                minWidth: `${cardWidth*.667}px`,
+                maxWidth: `${cardWidth*1.33}px`,
+                height: `${cardHeight}px`
+              }}
+              background={value.color}
+              onClick={() => populateCard(value)}
+            >
+              <CardBody style={{position: "relative"}} pad="small" align="center" justify="center">
+                { selectedTea.color === value.color &&
+                <Box style={{ position: "absolute", top: "5px", right:"5px"}}>
+                  <Checkmark />
+                </Box>}
+                
+                {value.icon}
+              </CardBody>
+              <CardFooter justify="center">
+                <Text size="medium" weight="bold" textAlign="center" style={{fontFamily: "Abhaya Libre"}}>
+                  {value.name}
+                </Text>
+              </CardFooter>
+            </Card>                         
+          </Box>
+        ))}          
+      </div>
     </Grommet>
   );
 };

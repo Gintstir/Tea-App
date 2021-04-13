@@ -7,10 +7,6 @@
 }
 
 .pantry-shelf {
-    position: absolute;
-    left: 0;
-    right: 0;
-
     background-size: cover;
     background-position: bottom;
 }

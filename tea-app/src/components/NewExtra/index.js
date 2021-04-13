@@ -1,12 +1,23 @@
 import React, { useState } from 'react'
-
-import { Form, FormField, TextInput, Box, Button, Grommet, Text } from 'grommet'
 import { useMutation } from '@apollo/react-hooks'
 
-import { ADD_EXTRA } from '../../utils/mutations'
+import { Form, FormField, TextInput, Box, Button, Grommet, grommet } from 'grommet'
+
+import { deepMerge } from 'grommet/utils';
+
 import Auth from '../../utils/auth'
 
-const NewExtra = () => {
+import { ADD_EXTRA } from '../../utils/mutations'
+
+const customTheme = deepMerge(grommet, {
+    global: {
+        colors: {
+            purple: "#A2065A",
+        }
+    }
+})
+
+const NewExtra = ({ setAddNotification }) => {
     
     const [value, setValue] = useState({
         type: ''
@@ -26,13 +37,21 @@ const NewExtra = () => {
                 variables: values
             })
             setValue({type: ''})
+            setAddNotification({show: true, type: 'success', message: "Extra added successfully!"})
+            setTimeout(() => {
+                setAddNotification({show: false, type: '', message: ''})
+            }, 3000)
         } catch (e) {
             console.log(e)
         }
     }
+
+    if (error) {
+        setAddNotification({show: true, type:'error', message: `An error occurred! ${error.message}`})
+    }
     
     return (
-        <Grommet>
+        <Grommet theme={customTheme}>
             <Box justify="center">
                 <Form
                     value={value}
@@ -42,15 +61,14 @@ const NewExtra = () => {
                     })}
                     onSubmit={ async ({value}) => handleSubmit(value) }
                 >
-                    <FormField name="type" htmlFor="tea-type-id" label="Type">
-                        <TextInput id="tea-type-id" name="type" />
+                    <FormField contentProps={{border: false}} pad={true} required={true} name="type" htmlFor="tea-type-id" label="Type">
+                        <TextInput style={{fontFamily: "Ahbaya Libre"}} id="tea-type-id" name="type" />
                     </FormField>
                     <Box direction="row" gap="medium" justify="center">
-                        <Button type="submit" primary label="Submit" />
-                        <Button type="reset" label="Reset" />
+                        <Button style={{fontFamily: "Ahbaya Libre"}} color="purple" type="submit" primary label="Submit" />
+                        <Button style={{fontFamily: "Ahbaya Libre"}} color="purple" type="reset" label="Reset" />
                     </Box>
                 </Form>
-                { error && <Text>{error.message}</Text>}
             </Box>
         </Grommet>
     )
