@@ -1,10 +1,19 @@
 import React from 'react'
 
-import { Box, Grommet, FileInput, Text } from 'grommet'
+import { Box, Grommet, FileInput, Text, grommet } from 'grommet'
 import { Trash } from 'grommet-icons'
 
-const customTheme = {
+import {deepMerge} from 'grommet/utils'
+
+const customTheme = deepMerge(grommet, {
+    
     fileInput: {
+        global: {
+            colors: {
+                purple: "#A2065A",
+                green: "#749A5C",
+            }
+        },
         background: '#f2f2f2',
         border: { size: 'medium' },
         pad: { horizontal: 'large', vertical: 'medium' },
@@ -16,14 +25,14 @@ const customTheme = {
           remove: Trash,
         },
         dragOver: {
-          border: { color: 'focus' },
+          border: { color: 'purple' },
         },
         hover: {
-          border: { color: 'control' },
+          border: { color: 'green' },
           extend: `letterSpacing: '0.1em'`,
         }
     }
-}
+})
 
 const Upload = ({ setImage }) => {
 
@@ -35,6 +44,7 @@ const Upload = ({ setImage }) => {
     return(
         <Grommet theme={customTheme}>
             <FileInput 
+                style={{fontFamily: "Abhaya Libre"}}
                 id="recipeImage"
                 multiple={false}
                 accept={"image/jpeg, image/png"}

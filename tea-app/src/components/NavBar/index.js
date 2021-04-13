@@ -41,7 +41,7 @@ const NavBar = ({ isLoggedin }) => {
             {isLoggedin && <Link to='/pantry'><Drawer size="medium" color="darkgreen"/></Link>}
           </Box>
           <Box direction="row" gap="small" justify="center" style={{style:"0 auto"}}>
-            <Text size="3xl" color="black" style={{ margin: "0 auto", fontFamily: "Unica One" }}>
+            <Text size="3xl" color="black" style={{fontFamily: "Unica One" }}>
               Steep
             </Text>
           </Box>

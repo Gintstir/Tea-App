@@ -111,7 +111,7 @@ const NewTea = ({ setAddNotification }) => {
             <TeaButtons selectedTea={selectedTea} setSelectedTea={setSelectedTea} cardHeight={100} cardWidth={150} />
           </FormField>
           <FormField style={{fontFamily: "Abhaya Libre"}} name="name" htmlFor="tea-name-id" label="Name" contentProps={{border: false}} pad={true} required={true}>
-            <TextInput id="tea-name-id" name="name" />
+            <TextInput id="tea-name-id" name="name" style={{fontFamily: "Abhaya Libre"}}/>
           </FormField>
           <FormField style={{fontFamily: "Abhaya Libre"}} name="brand" htmlFor="tea-brand-id" label="Brand" contentProps={{border: false}} pad={true} required={true}>
             <TextInput id="tea-brand-id" name="brand" />
