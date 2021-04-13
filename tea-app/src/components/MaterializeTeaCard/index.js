@@ -6,7 +6,7 @@ import { Clock, Java, AddCircle, Edit, Spa } from "grommet-icons";
 export const TeaCard = ({ selectedTea }) => {
 
   if (!selectedTea) {
-    return <Text>Please Select a Tea</Text>;
+    return <Text margin={{left: "30px"}}>Please Select a Tea</Text>;
   }
 
   return (
