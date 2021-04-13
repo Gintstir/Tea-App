@@ -17,12 +17,11 @@ const colors = {
   Herbal: "#A2065A",
 };
 
-const PantryShelfTeaCard = ({ cardData, canSelect, canDelete, setItem, item }) => {
+const PantryShelfTeaCard = ({ cardData, canSelect, canDelete, setItem, item, setAddNotification }) => {
 
   const [deleteTea] = useMutation(REMOVE_TEA, {
     uupdate(cache, { data: {removeTea }}) {
       const { me } = cache.readQuery({ query: QUERY_ME })
-      console.log(removeTea)
       cache.writeQuery({
         query: QUERY_ME,
         data: { me: {
@@ -48,7 +47,15 @@ const PantryShelfTeaCard = ({ cardData, canSelect, canDelete, setItem, item }) =
       await deleteTea({
         variables: { id: cardData._id }
       })
+      setAddNotification({show: true, type:'warning', message: "Tea removed"})
+      setTimeout(() => {
+        setAddNotification({show: false, type: '', message: ''})
+      }, 3000)
     } catch (e) {
+      setAddNotification({show: true, type:'error', message: `Error: ${e.message.replace('GraphQL error: ', '')}`})
+      setTimeout(() => {
+        setAddNotification({show: false, type: '', message: ''})
+      }, 3000)
       console.error(e)
     }
   }
@@ -68,7 +75,7 @@ const PantryShelfTeaCard = ({ cardData, canSelect, canDelete, setItem, item }) =
             <Checkmark />
           </Box>}
           {canDelete && !canSelect && 
-          <Box onClick={handleDelete} style={{ position: "absolute", top: "5px", right:"5px"}}>
+          <Box onClick={handleDelete} style={{ position: "absolute", top: "5px", right:"5px" }}>
             <SubtractCircle size="18px" />
           </Box>}
           <Text textAlign="center">{cardData.name}</Text>

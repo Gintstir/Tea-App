@@ -1,14 +1,19 @@
 import React, { useState } from 'react'
+<<<<<<< HEAD
 
 import { Form, FormField, TextInput, Box, Button, Grommet, Text, grommet } from 'grommet'
 
 import { deepMerge } from 'grommet/utils';
 
+=======
+>>>>>>> 870aacb298e0276e95c61b7d41d13440da2fd418
 import { useMutation } from '@apollo/react-hooks'
 
-import { ADD_EXTRA } from '../../utils/mutations'
+import { Form, FormField, TextInput, Box, Button, Grommet } from 'grommet'
+
 import Auth from '../../utils/auth'
 
+<<<<<<< HEAD
 const customTheme = deepMerge(grommet, {
     global: {
         colors: {     
@@ -35,6 +40,11 @@ const customTheme = deepMerge(grommet, {
 
 
 const NewExtra = () => {
+=======
+import { ADD_EXTRA } from '../../utils/mutations'
+
+const NewExtra = ({ setAddNotification }) => {
+>>>>>>> 870aacb298e0276e95c61b7d41d13440da2fd418
     
     const [value, setValue] = useState({
         type: ''
@@ -54,9 +64,17 @@ const NewExtra = () => {
                 variables: values
             })
             setValue({type: ''})
+            setAddNotification({show: true, type: 'success', message: "Extra added successfully!"})
+            setTimeout(() => {
+                setAddNotification({show: false, type: '', message: ''})
+            }, 3000)
         } catch (e) {
             console.log(e)
         }
+    }
+
+    if (error) {
+        setAddNotification({show: true, type:'error', message: `An error occurred! ${error.message}`})
     }
     
     return (
@@ -78,7 +96,6 @@ const NewExtra = () => {
                         <Button style={{fontFamily: "Ahbaya Libre"}} color="purple" type="reset" label="Reset" />
                     </Box>
                 </Form>
-                { error && <Text>{error.message}</Text>}
             </Box>
         </Grommet>
     )

@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
 
-import { Form, FormField, TextInput, Box, Button, Grommet, Text, grommet } from "grommet";
+import { Form, FormField, TextInput, Box, Button, Grommet, grommet } from "grommet";
 import { deepMerge } from 'grommet/utils';
 
+import Auth from '../../utils/auth'
+
 import { ADD_TEA } from "../../utils/mutations";
+
 import TeaButtons from '../TeaButtons'
 
 const customTheme = deepMerge(grommet, {
@@ -20,13 +23,10 @@ const customTheme = deepMerge(grommet, {
       yellow: "#FFEB59",
       placeholder: "black"
     },
-  },
-  
-// round: '10px',
-    
+  },    
 });
 
-const NewTea = ({ setAddSuccessful }) => {
+const NewTea = ({ setAddNotification }) => {
 
   const [selectedTea, setSelectedTea] = useState({})
   const [value, setValue] = useState({
@@ -37,17 +37,24 @@ const NewTea = ({ setAddSuccessful }) => {
 
   value.type = selectedTea
 
-  const [addTea, { error }] = useMutation(ADD_TEA);
+  const [addTea] = useMutation(ADD_TEA);
 
   const validateForm = (obj) => {
     if (!obj.type || !obj.name || !obj.brand) {
-      console.log("oops")
+      setAddNotification({show: true, type:'error', message: "Please fill out all of the fields!"})
       return false
     }
     return true
   }
 
   const handleSubmit = async (values) => {
+
+    const token = Auth.loggedIn() ? Auth.getToken() : null
+
+    if (!token) {
+        return false
+    }
+
     values.type = values.type.name
 
     if (!validateForm(values)) {
@@ -63,9 +70,16 @@ const NewTea = ({ setAddSuccessful }) => {
         name: "",
         brand: "",
       });
-      setAddSuccessful({show: true, message: "Tea added successfully!"})
+      setAddNotification({show: true, type:'success', message: "Tea added successfully!"})
+      setTimeout(() => {
+        setAddNotification({show: false, type: '', message: ''})
+      }, 3000)
     } catch (e) {
-      console.log(e);
+      setAddNotification({show: true, type:'error', message: `Error: ${e.message.replace('GraphQL error: ', '')}`})
+      setTimeout(() => {
+        setAddNotification({show: false, type: '', message: ''})
+      }, 3000)
+      console.error(e)
     }
   };
 
@@ -89,7 +103,7 @@ const NewTea = ({ setAddSuccessful }) => {
           }
           onSubmit={async ({ value }) => handleSubmit(value)}
         >
-          <FormField style={{fontFamily: "Abhaya Libre"}} name="type" htmlFor="tea-type-id" label="Type" contentProps={{border: false}} pad={true} required={true}>
+          <FormField style={{fontFamily: "Abhaya Libre"}} name="type" htmlFor="tea-type-id" label="Type" contentProps={{border: false}} pad={true}>
             <TeaButtons selectedTea={selectedTea} setSelectedTea={setSelectedTea} cardHeight={100} cardWidth={150} />
           </FormField>
           <FormField style={{fontFamily: "Abhaya Libre"}} name="name" htmlFor="tea-name-id" label="Name" contentProps={{border: false}} pad={true} required={true}>
@@ -103,7 +117,6 @@ const NewTea = ({ setAddSuccessful }) => {
             <Button style={{fontFamily: "Abhaya Libre"}} type="reset" label="Reset" color="purple"/>
           </Box>
         </Form>
-        {error && <Text>{error.message}</Text>}
       </Box>
     </Grommet>
   );

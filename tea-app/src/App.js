@@ -8,9 +8,6 @@ import ApolloClient from 'apollo-client';
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { createUploadLink } from "apollo-upload-client";
 
-// import { Provider } from 'react-redux';
-// import store from './utils/store';
-
 import Auth from './utils/auth'
 
 import NavBar from "./components/NavBar";
@@ -23,9 +20,6 @@ import AboutUs from './pages/AboutUs';
 
 import SignIn from "./components/SignIn";
 import Register from './components/Register';
-import NewRecipe from "./components/NewRecipe";
-import Upload from "./components/Upload";
-
 
 const uploadLink = createUploadLink()
 
@@ -69,16 +63,7 @@ function App() {
             </Route>           
             <Route exact path="/about">
               <AboutUs />
-            </Route>            
-            <Route exact path="/newrecipe">
-              <NewRecipe/>
             </Route>
-            <Route exact path="/upload">
-              <Upload />
-            </Route>            
-            {/* <Route exact path="/brew">
-              <Brew />
-            </Route> */}
           </Switch>
           <Foot />
         </Router>

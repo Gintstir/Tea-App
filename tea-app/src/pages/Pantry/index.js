@@ -3,33 +3,27 @@ import { useQuery } from '@apollo/react-hooks'
 
 // import { grommet } from "grommet/themes";
 import { Grommet, Header, Main, Text, Spinner, Box, Button, Layer, Heading } from "grommet";
-import { AddCircle } from "grommet-icons";
+import { AddCircle, FormClose } from "grommet-icons";
 
 import { QUERY_ME } from '../../utils/queries'
-import { FormClose } from "grommet-icons";
 
 import NewTea from '../../components/NewTea'
 import NewExtra from '../../components/NewExtra'
 import PantryShelf from "../../components/PantryShelf";
+import Notification from "../../components/Notification";
 
 const Pantry = () => {
 
   const { loading, data } = useQuery(QUERY_ME)
   
   const [show, setShow] = useState({ content: '', show: false })
-  const [addSuccessful, setAddSuccessful] = useState({show: false, message: ''})
+  const [addNotification, setAddNotification] = useState({show: false, type: '', message: ''})
 
   return (
     <Grommet>
       {
-        addSuccessful.show && 
-        <Layer position="top" modal={false}>
-          <Box>
-            <Heading>
-              Added Successfully
-            </Heading>
-          </Box>
-        </Layer>
+        addNotification.show && 
+        <Notification setAddNotification={setAddNotification} addNotification={addNotification} />
       }
       {
         show.show && 
@@ -38,7 +32,7 @@ const Pantry = () => {
             <Box style={{minHeight: "unset"}} direction="row" justify="end">
               <Button style={{padding: "0"}} icon={<FormClose size="35px" />} onClick={() => setShow(false)} />
             </Box>
-            {show.content === 'NewTea' ? <NewTea setAddSuccessful={setAddSuccessful} /> : <NewExtra setAddSuccessful={setAddSuccessful} />}
+            {show.content === 'NewTea' ? <NewTea setAddNotification={setAddNotification} /> : <NewExtra setAddNotification={setAddNotification} />}
           </Box>
         </Layer>
       }
@@ -64,7 +58,7 @@ const Pantry = () => {
               <AddCircle size="small" /> Add Tea
             </Button>
           </Box>
-          <PantryShelf shelfName="Tea" pantryData={data?.me.teas} canDelete={true} canSelect={false} />
+          <PantryShelf shelfName="Tea" pantryData={data?.me.teas} canDelete={true} canSelect={false} setAddNotification={setAddNotification} />
 
           <Box>
             <Box direction="row" pad="xsmall">
@@ -81,7 +75,7 @@ const Pantry = () => {
               <AddCircle size="small" /> Add Extra
             </Button>
           </Box>
-          <PantryShelf shelfName="Extra" pantryData={data?.me.extras}  canDelete={true} canSelect={false} />
+          <PantryShelf shelfName="Extra" pantryData={data?.me.extras}  canDelete={true} canSelect={false} setAddNotification={setAddNotification} />
           </>
         }
       </Main>
