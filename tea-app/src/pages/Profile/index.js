@@ -36,7 +36,7 @@ const Profile = ({ profile }) => {
           </Box>
         </Layer>
       }
-      <Button onClick={toggleNewRecipe} label="Add Recipe" />
+      <Button style={{fontFamily: "Abhaya Libre"}} onClick={toggleNewRecipe} label="Add Recipe" />
     </Grommet>
   );
 }

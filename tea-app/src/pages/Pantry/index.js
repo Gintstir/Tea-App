@@ -32,19 +32,20 @@ const Pantry = () => {
         </Layer>
       }
       <Header background="light-4" pad="small">
-        <Text size="large">Your Pantry</Text>
+        <Text style={{fontFamily: "Abhaya Libre"}} size="large">Your Pantry</Text>
       </Header>
       <Main margin={{bottom: "35px"}}>
         { loading ? 
           <Spinner /> :
           <>
           <Box direction="row" pad="xsmall">
-            <Heading level={3} margin={{ bottom: "none" }}>
+            <Heading style={{fontFamily: "Abhaya Libre"}} level={3} margin={{ bottom: "none" }}>
               Teas
             </Heading>
           </Box>
           <Box>
             <Button
+              style={{fontFamily: "Abhaya Libre"}} 
               alignSelf="start"
               margin="small"
               onClick={() => setShow({ content: `NewTea`, show: true })}
@@ -56,11 +57,12 @@ const Pantry = () => {
 
           <Box>
             <Box direction="row" pad="xsmall">
-            <Heading level={3} margin={{ bottom: "none" }}>
+            <Heading style={{fontFamily: "Abhaya Libre"}} level={3} margin={{ bottom: "none" }}>
               Extras
             </Heading>
           </Box>
             <Button
+              style={{fontFamily: "Abhaya Libre"}} 
               alignSelf="start"
               margin="small"
               onClick={() => setShow({ content: `NewExtra`, show: true })}

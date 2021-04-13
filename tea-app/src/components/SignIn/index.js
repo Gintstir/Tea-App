@@ -19,7 +19,10 @@ const customTheme = deepMerge(grommet, {
       purple: "#A2065A",
       red: "#FC6161",
       orange: "#FFBC44",
-      yellow: "#FFEB59",     
+      yellow: "#FFEB59", 
+      
+      placeholder: "black"
+
       
     },
     input: {
@@ -39,7 +42,8 @@ const customTheme = deepMerge(grommet, {
         box-shadow: none;
       }      
     `
-  },  
+  },
+ 
 });
 
 function SignIn (props) {
@@ -70,7 +74,7 @@ function SignIn (props) {
   return (
     <Grommet theme={customTheme}>
       <Box align="center" pad="large">
-        <h1> Login! </h1>
+        <h1 style={{fontFamily: "Abhaya Libre"}}> Login! </h1>
         <Form onSubmit={handleFormSubmit}>
           <Box fill gap="medium" align="center" pad="large" width="medium" background="orange">
               <Box width="medium">
@@ -81,6 +85,7 @@ function SignIn (props) {
                     onChange={handleChange}
                     placeholder="Username"
                     textAlign="center"
+                    style={{fontFamily: "Abhaya Libre"}}
                 />
               </Box>
               <Box 
@@ -93,13 +98,14 @@ function SignIn (props) {
                   onChange={handleChange}
                   placeholder="Password"
                   textAlign="center"
+                  style={{fontFamily: "Abhaya Libre"}}
                 />                
               </Box>          
-            <Button type="submit" label="Let's Go!" primary color="purple"/>
+            <Button style={{fontFamily: "Abhaya Libre"}} type="submit" label="Let's Go!" primary color="purple"/>
           </Box>
         </Form>
         <Box pad="medium">
-          <Link to='/signup'>Not A member? Sign-up Instead!</Link>
+          <Link to='/signup' style={{fontFamily: "Abhaya Libre"}}>Not A member? Sign-up Instead!</Link>
           <Box align="center" >
           {error && <div color="status-error">Login Failed</div>}
           </Box>

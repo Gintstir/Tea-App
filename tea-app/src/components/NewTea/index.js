@@ -7,14 +7,39 @@ import {
   Box,
   Button,
   Grommet,
-  Text
+  Text,
+  grommet
 } from "grommet";
+
+import { deepMerge } from 'grommet/utils';
 
 import TeaButtons from '../TeaButtons'
 
 import { useMutation } from "@apollo/react-hooks";
 
 import { ADD_TEA } from "../../utils/mutations";
+
+const customTheme = deepMerge(grommet, {
+  global: {
+    colors: {     
+      // Setting new colors
+      blue: "#00C8FF",
+      green: "#749A5C",
+      teal: "#82FFF2",
+      purple: "#A2065A",
+      red: "#FC6161",
+      orange: "#FFBC44",
+      yellow: "#FFEB59",
+      
+       
+      
+      placeholder: "black"
+    },
+  },
+  
+// round: '10px',
+    
+});
 
 const NewTea = () => {
   const [selectedTea, setSelectedTea] = useState({})
@@ -59,7 +84,7 @@ const NewTea = () => {
   };
 
   return (
-    <Grommet>
+    <Grommet theme={customTheme}>
       <Box justify="center">
         <Form
           value={value}
@@ -78,18 +103,18 @@ const NewTea = () => {
           }
           onSubmit={async ({ value }) => handleSubmit(value)}
         >
-          <FormField name="type" htmlFor="tea-type-id" label="Type" contentProps={{border: false}} pad={true} required={true}>
+          <FormField style={{fontFamily: "Abhaya Libre"}} name="type" htmlFor="tea-type-id" label="Type" contentProps={{border: false}} pad={true} required={true}>
             <TeaButtons selectedTea={selectedTea} setSelectedTea={setSelectedTea} cardHeight={100} cardWidth={150} />
           </FormField>
-          <FormField name="name" htmlFor="tea-name-id" label="Name" contentProps={{border: false}} pad={true} required={true}>
+          <FormField style={{fontFamily: "Abhaya Libre"}} name="name" htmlFor="tea-name-id" label="Name" contentProps={{border: false}} pad={true} required={true}>
             <TextInput id="tea-name-id" name="name" />
           </FormField>
-          <FormField name="brand" htmlFor="tea-brand-id" label="Brand" contentProps={{border: false}} pad={true} required={true}>
+          <FormField style={{fontFamily: "Abhaya Libre"}} name="brand" htmlFor="tea-brand-id" label="Brand" contentProps={{border: false}} pad={true} required={true}>
             <TextInput id="tea-brand-id" name="brand" />
           </FormField>
           <Box direction="row" gap="medium" justify="center">
-            <Button type="submit" primary label="Submit" />
-            <Button type="reset" label="Reset" />
+            <Button style={{fontFamily: "Abhaya Libre"}} type="submit" primary color="purple" label="Submit" />
+            <Button style={{fontFamily: "Abhaya Libre"}} type="reset" label="Reset" color="purple"/>
           </Box>
         </Form>
         {error && <Text>{error.message}</Text>}

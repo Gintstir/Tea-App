@@ -11,7 +11,7 @@ export const TeaCard = ({ selectedTea }) => {
 
   return (
     <Grommet>
-      <Box align="center">
+      <Box align="center" margin={{top: "40px"}}>
       <Card className="card" background={selectedTea.color} width="large"  pad={{left: "10px"}}>
         {/* <div className="card-image waves-effect waves-block waves-light">
         <img className="activator" src="images/office.jpg" />
