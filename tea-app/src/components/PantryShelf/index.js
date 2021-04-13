@@ -10,21 +10,20 @@ import PantryShelfTeaCard from "../PantryShelfTeaCard";
 import PantryShelfExtraCard from "../PantryShelfExtraCard";
 
 const PantryShelf = ({ shelfName, pantryData }) => {
-  const specificData = pantryData[`${shelfName.toLowerCase()}s`];
 
   return (
     <Grommet>
       <Box>
         <Box overflow={{ horizontal: "auto" }}>
           <Grid
-            margin={{ right: "auto" }}
+            margin={{ right: "auto"}}
             pad={{ right: "15px", left: "15px" }}
             gap="small"
             justify="start"
-            columns={{ count: specificData.length, size: "xsmall" }}
+            columns={{ count: pantryData.length, size: "xsmall" }}
             style={{ zIndex: 5 }}
           >
-            {specificData.map((data) => {
+            {pantryData.map((data) => {
                 if (shelfName === "Extra") {
                   return (
                     <PantryShelfExtraCard
@@ -42,14 +41,14 @@ const PantryShelf = ({ shelfName, pantryData }) => {
                 }
               })
             }
-          </Grid>
-          <div className="pantry-shelf-container">
-            <div
-              className="pantry-shelf"
-              style={{ backgroundImage: `url(${PantryShelfPic})` }}
-            ></div>
-          </div>
+          </Grid>            
         </Box>
+        <div className="pantry-shelf-container">
+          <div
+            className="pantry-shelf"
+            style={{ backgroundImage: `url(${PantryShelfPic})` }}
+          ></div>
+        </div>
       </Box>
     </Grommet>
   );

@@ -20,21 +20,21 @@ const Pantry = () => {
 
   return (
     <Grommet>
-      { 
+      {
         show.show && 
         <Layer full={true} margin={{vertical: "30px", horizontal: "100px"}} content={show.content}>
           <Box margin="medium" overflow="auto">
             <Box style={{minHeight: "unset"}} direction="row" justify="end">
-              <Button style={{padding: "0"}} icon={<FormClose size="35px" />} onClick={() => setShow(false)} />           
+              <Button style={{padding: "0"}} icon={<FormClose size="35px" />} onClick={() => setShow(false)} />
             </Box>
-            {show.content === 'NewTea' ? <NewTea /> : <NewExtra />}           
+            {show.content === 'NewTea' ? <NewTea /> : <NewExtra />}
           </Box>
         </Layer>
       }
       <Header background="light-4" pad="small">
         <Text size="large">Your Pantry</Text>
       </Header>
-      <Main>
+      <Main margin={{bottom: "35px"}}>
         { loading ? 
           <Spinner /> :
           <>
@@ -52,7 +52,7 @@ const Pantry = () => {
               <AddCircle size="small" /> Add Tea
             </Button>
           </Box>
-          <PantryShelf shelfName="Tea" pantryData={data?.me} />
+          <PantryShelf shelfName="Tea" pantryData={data?.me.teas} />
 
           <Box>
             <Box direction="row" pad="xsmall">
@@ -68,7 +68,7 @@ const Pantry = () => {
               <AddCircle size="small" /> Add Extra
             </Button>
           </Box>
-          <PantryShelf shelfName="Extra" setShow={setShow} pantryData={data?.me} />
+          <PantryShelf shelfName="Extra" setShow={setShow} pantryData={data?.me.extras} />
           </>
         }
       </Main>
