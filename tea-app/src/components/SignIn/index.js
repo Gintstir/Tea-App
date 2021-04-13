@@ -9,6 +9,8 @@ import { deepMerge } from 'grommet/utils';
 
 import { Link } from "react-router-dom";
 
+import Notification from '../Notification'
+
 const customTheme = deepMerge(grommet, {
   global: {
     colors: {      
@@ -22,8 +24,6 @@ const customTheme = deepMerge(grommet, {
       yellow: "#FFEB59", 
       
       placeholder: "black"
-
-      
     },
     input: {
       padding: {
@@ -46,11 +46,11 @@ const customTheme = deepMerge(grommet, {
  
 });
 
-function SignIn (props) {
+const SignIn = () => {
   const [formState, setFormState] = useState({ username: '', password: '' })
-  const [login, {error}] = useMutation(LOGIN);
- 
-
+  const [addNotification, setAddNotification] = useState({show: false, type: '', message: ''})
+  
+  const [login] = useMutation(LOGIN);
 
   const handleFormSubmit = async event => {
     event.preventDefault();
@@ -59,7 +59,11 @@ function SignIn (props) {
       const token = mutationResponse.data.login.token;
       Auth.login(token);
     } catch(e) {
-      console.log(e)
+      setAddNotification({show: true, type:'error', message: `Error: ${e.message.replace('GraphQL error: ', '')}`})
+      setTimeout(() => {
+        setAddNotification({show: false, type: '', message: ''})
+      }, 3000)
+      console.error(e)
     }
   };
 
@@ -73,24 +77,25 @@ function SignIn (props) {
 
   return (
     <Grommet theme={customTheme}>
+      {
+        addNotification.show && 
+        <Notification setAddNotification={setAddNotification} addNotification={addNotification} />
+      }
       <Box align="center" pad="large">
         <h1 style={{fontFamily: "Abhaya Libre"}}> Login! </h1>
         <Form onSubmit={handleFormSubmit}>
           <Box fill gap="medium" align="center" pad="large" width="medium" background="orange">
               <Box width="medium">
                 <TextInput                                    
-                    id="username"
-                    name="username"                  
-                    //type="username"
-                    onChange={handleChange}
-                    placeholder="Username"
-                    textAlign="center"
-                    style={{fontFamily: "Abhaya Libre"}}
+                  id="username"
+                  name="username"
+                  onChange={handleChange}
+                  placeholder="Username"
+                  textAlign="center"
+                  style={{fontFamily: "Abhaya Libre"}}
                 />
               </Box>
-              <Box 
-                width="medium"                
-              >
+              <Box width="medium">
                 <TextInput
                   id="password"
                   name="password"                  
@@ -99,16 +104,13 @@ function SignIn (props) {
                   placeholder="Password"
                   textAlign="center"
                   style={{fontFamily: "Abhaya Libre"}}
-                />                
-              </Box>          
+                />
+              </Box>
             <Button style={{fontFamily: "Abhaya Libre"}} type="submit" label="Let's Go!" primary color="purple"/>
           </Box>
         </Form>
         <Box pad="medium">
           <Link to='/signup' style={{fontFamily: "Abhaya Libre"}}>Not A member? Sign-up Instead!</Link>
-          <Box align="center" >
-          {error && <div color="status-error">Login Failed</div>}
-          </Box>
         </Box>
       </Box>
     </Grommet>
