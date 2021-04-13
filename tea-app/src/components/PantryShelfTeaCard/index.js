@@ -2,7 +2,11 @@ import React from "react";
 
 // import { grommet } from "grommet/themes";
 import { Grommet, Text, Card, CardBody, CardFooter, Box } from "grommet";
-import { Checkmark, Spa } from "grommet-icons";
+import { Checkmark, Trash } from "grommet-icons";
+
+import { REMOVE_TEA } from "../../utils/mutations";
+import { useMutation } from "@apollo/client";
+import { QUERY_ME } from "../../utils/queries";
 
 const colors = {
   "Black Tea": "#6F7269",
@@ -15,6 +19,20 @@ const colors = {
 
 const PantryShelfTeaCard = ({ cardData, canSelect, canDelete, setItem, item }) => {
 
+  const [deleteTea] = useMutation(REMOVE_TEA, {
+    uupdate(cache, { data: {removeTea }}) {
+      const { me } = cache.readQuery({ query: QUERY_ME })
+      console.log(removeTea)
+      cache.writeQuery({
+        query: QUERY_ME,
+        data: { me: {
+          ...me,
+          teas: removeTea.teas
+        }}
+      })
+    }
+  })
+
   const handleSelect = () => {
     if (canSelect) {
       if (item?._id === cardData._id) {
@@ -22,6 +40,16 @@ const PantryShelfTeaCard = ({ cardData, canSelect, canDelete, setItem, item }) =
       } else {
         setItem(cardData)
       }
+    }
+  }
+
+  const handleDelete = async () => {
+    try {
+      await deleteTea({
+        variables: { id: cardData._id }
+      })
+    } catch (e) {
+      console.error(e)
     }
   }
 
@@ -35,11 +63,14 @@ const PantryShelfTeaCard = ({ cardData, canSelect, canDelete, setItem, item }) =
         background={colors[cardData.type] || "light-1"}
       >
         <CardBody style={{position: "relative"}}  fill="vertical" justify="center" align="center">
-          {canSelect && item?._id === cardData._id && 
+          {canSelect && !canDelete && item?._id === cardData._id && 
           <Box style={{ position: "absolute", top: "5px", right:"5px"}}>
             <Checkmark />
           </Box>}
-          <Spa size="medium" />
+          {canDelete && !canSelect && 
+          <Box onClick={handleDelete} style={{ position: "absolute", top: "5px", right:"5px"}}>
+            <Trash size="medium" />
+          </Box>}
           <Text textAlign="center">{cardData.name}</Text>
           <CardFooter pad={{ horizontal: "medium" }}>
             <Text size="small" weight="bold">

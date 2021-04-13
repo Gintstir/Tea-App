@@ -9,7 +9,8 @@ import {
   Button,
   Grommet,
   Text,
-  Paragraph
+  Paragraph,
+  RangeInput
 } from "grommet";
 
 import Upload from '../Upload'
@@ -76,6 +77,22 @@ const NewRecipe = ({ setShow, teas, extras }) => {
         return nanoid() + '.' + fileExt
     }
 
+    const convertToTimer = (timeSeconds) => {
+
+        if(!timeSeconds) {
+            return ''
+        }
+
+        timeSeconds = parseInt(timeSeconds)
+
+        if(timeSeconds < 60) {
+            return `(${timeSeconds} sec)`
+        } else {
+            return `(${Math.floor(timeSeconds/60)} min ${timeSeconds%60} sec)`
+        }
+    }
+
+    console.log(formValue)
     return (
         <Grommet>
             <Box justify="center">
@@ -105,10 +122,11 @@ const NewRecipe = ({ setShow, teas, extras }) => {
                     <FormField name="temperature" htmlFor="tea-temperature-id" label="Temperature" contentProps={{border: false}} margin={{horizontal: "20px"}} required={true}>
                         <TextInput type="text" id="tea-temperature-id" name="temperature" />
                     </FormField>
-                    <FormField name="steepTime" htmlFor="tea-steepTime-id" label="Steep Time (seconds)" contentProps={{border: false}} margin={{horizontal: "20px"}}  required={true}>
-                        <TextInput type="number" id="tea-steepTime-id" name="steepTime" />
+                    <FormField name="steepTime" htmlFor="tea-steepTime-id" label={`Steep Time ${convertToTimer(formValue.steepTime)}`} contentProps={{border: false}} margin={{horizontal: "20px"}}  required={true}>
+                        <RangeInput name="steepTime" min={30} max={540} step={15}/>
+                        {/* <TextInput type="number" id="tea-steepTime-id" name="steepTime" /> */}
                     </FormField>
-                    <FormField type="text" name="note" htmlFor="tea-note-id" label="Note" contentProps={{border: false}} margin={{horizontal: "20px"}}  required={true}>
+                    <FormField type="text" name="note" htmlFor="tea-note-id" label="Notes" contentProps={{border: false}} margin={{horizontal: "20px"}}  required={true}>
                         <TextInput type="text" id="tea-note-id" name="note" />
                     </FormField>
                     <FormField name="image" htmlFor="tea-image-id" label="Picture" contentProps={{border: false}} margin={{horizontal: "20px"}}>

@@ -52,7 +52,7 @@ const Pantry = () => {
               <AddCircle size="small" /> Add Tea
             </Button>
           </Box>
-          <PantryShelf shelfName="Tea" pantryData={data?.me.teas} />
+          <PantryShelf shelfName="Tea" pantryData={data?.me.teas} canDelete={true} canSelect={false} />
 
           <Box>
             <Box direction="row" pad="xsmall">
@@ -68,7 +68,7 @@ const Pantry = () => {
               <AddCircle size="small" /> Add Extra
             </Button>
           </Box>
-          <PantryShelf shelfName="Extra" setShow={setShow} pantryData={data?.me.extras} />
+          <PantryShelf shelfName="Extra" pantryData={data?.me.extras}  canDelete={true} canSelect={false} />
           </>
         }
       </Main>

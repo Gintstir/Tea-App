@@ -1,10 +1,27 @@
 import React from "react";
 
-// import { grommet } from "grommet/themes";
 import { Grommet, Text, Card, CardBody, Box } from "grommet";
-import { Checkmark } from "grommet-icons";
+import { Checkmark, Trash } from "grommet-icons";
+
+import { REMOVE_EXTRA } from '../../utils/mutations'
+import { useMutation } from "@apollo/client";
+import { QUERY_ME } from "../../utils/queries";
 
 const PantryShelfExtraCard = ({ cardData, canSelect, canDelete, setItem, item }) => {
+
+
+  const [deleteExtra] = useMutation(REMOVE_EXTRA, {
+    update(cache, { data: {removeExtra }}) {
+      const { me } = cache.readQuery({ query: QUERY_ME })
+      cache.writeQuery({
+        query: QUERY_ME,
+        data: { me: {
+          ...me,
+          extras: removeExtra.extras
+        }}
+      })
+    }
+  })
 
   const handleSelect = () => {
     if (canSelect) {
@@ -16,6 +33,16 @@ const PantryShelfExtraCard = ({ cardData, canSelect, canDelete, setItem, item })
     }
   }
 
+  const handleDelete = async () => {
+    try {
+      await deleteExtra({
+        variables: { type: cardData }
+      })
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   return (
     <Grommet>
       {/* make background equal to user's selection for teatype */}
@@ -24,6 +51,10 @@ const PantryShelfExtraCard = ({ cardData, canSelect, canDelete, setItem, item })
           {canSelect &&  item.includes(cardData) && 
           <Box style={{ position: "absolute", top: "5px", right:"5px"}}>
             <Checkmark />
+          </Box>}
+          {canDelete && !canSelect && 
+          <Box onClick={handleDelete} style={{ position: "absolute", top: "5px", right:"5px"}}>
+            <Trash size="medium" />
           </Box>}
           <Text textAlign="center">{cardData}</Text>
         </CardBody>
