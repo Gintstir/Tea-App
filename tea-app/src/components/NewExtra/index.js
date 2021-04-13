@@ -1,10 +1,38 @@
 import React, { useState } from 'react'
 
-import { Form, FormField, TextInput, Box, Button, Grommet, Text } from 'grommet'
+import { Form, FormField, TextInput, Box, Button, Grommet, Text, grommet } from 'grommet'
+
+import { deepMerge } from 'grommet/utils';
+
 import { useMutation } from '@apollo/react-hooks'
 
 import { ADD_EXTRA } from '../../utils/mutations'
 import Auth from '../../utils/auth'
+
+const customTheme = deepMerge(grommet, {
+    global: {
+        colors: {     
+          // Setting new colors
+          blue: "#00C8FF",
+          green: "#749A5C",
+          teal: "#82FFF2",
+          purple: "#A2065A",
+          red: "#FC6161",
+          orange: "#FFBC44",
+          yellow: "#FFEB59", 
+          
+          placeholder: "black"
+        },
+      input: {
+        padding: {
+          horizontal: "small",
+          vertical: "medium"      
+        },
+        
+      },    
+    },    
+});
+
 
 const NewExtra = () => {
     
@@ -32,7 +60,7 @@ const NewExtra = () => {
     }
     
     return (
-        <Grommet>
+        <Grommet theme={customTheme}>
             <Box justify="center">
                 <Form
                     value={value}
@@ -46,8 +74,8 @@ const NewExtra = () => {
                         <TextInput id="tea-type-id" name="type" />
                     </FormField>
                     <Box direction="row" gap="medium" justify="center">
-                        <Button type="submit" primary label="Submit" />
-                        <Button type="reset" label="Reset" />
+                        <Button style={{fontFamily: "Ahbaya Libre"}} color="purple" type="submit" primary label="Submit" />
+                        <Button style={{fontFamily: "Ahbaya Libre"}} color="purple" type="reset" label="Reset" />
                     </Box>
                 </Form>
                 { error && <Text>{error.message}</Text>}
