@@ -16,13 +16,22 @@ const Landing = () => {
 
   return (
     <Grommet>
-      
-      <Main pad="small" direction="row-reverse" margin={{right: "50px"}} style={{ fontFamily: "Marck Script" }}>
-        All things in due time
+      <Main
+        pad="small"
+        direction="row-reverse"
+        margin="small"
+        style={{ fontFamily: "Abhaya Libre" }}
+      >
+        All things in due time,
       </Main>
-      
+
       <div>
-        <TeaButtons selectedTea={selectedTea} setSelectedTea={setSelectedTea} cardHeight={150} cardWidth={150} />
+        <TeaButtons
+          selectedTea={selectedTea}
+          setSelectedTea={setSelectedTea}
+          cardHeight={150}
+          cardWidth={150}
+        />
       </div>
       <Card>
         <TeaCard selectedTea={foundRecipe} />

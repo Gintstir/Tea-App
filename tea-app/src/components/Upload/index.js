@@ -46,8 +46,7 @@ const Upload = ({ setImage }) => {
 
     return(
         <Grommet theme={customTheme}>
-            <FileInput 
-                style={{fontFamily: "Abhaya Libre"}}
+            <FileInput                 
                 id="recipeImage"
                 multiple={false}
                 accept={"image/jpeg, image/png"}
