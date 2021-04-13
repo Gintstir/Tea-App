@@ -1,7 +1,7 @@
 import React from "react";
 
 // import { grommet } from "grommet/themes";
-import { Button, Grommet, Nav, grommet } from "grommet";
+import { Button, Grommet, grommet, Text, Header, Box } from "grommet";
 import { Drawer, Home, Login, Logout } from "grommet-icons";
 import { Link } from "react-router-dom";
 import { deepMerge } from 'grommet/utils';
@@ -33,14 +33,28 @@ const NavBar = ({ isLoggedin }) => {
     Auth.logout()
   }
   
-  return (
+  return (    
     <Grommet theme={customTheme}>
-      <Nav direction="row" pad="small" align="center">
-        <Link to='/'><Home /></ Link>
-        {isLoggedin && <Link to='/pantry'><Drawer /></Link>}
-        {isLoggedin ? <Button margin={{left: 'auto'}} onClick={handleLogout}><Logout /></Button> : <Link  style={{marginLeft: 'auto'}} to='/signin'><Login /></ Link> }
-      </Nav>
+      <Header pad="small" background="red">
+          <Box align="center" gap="small" justiy="center" direction="row" margin={{left:"20px"}}>
+            <Link to='/' ><Home size="medium" color="orange" /></ Link>
+            {isLoggedin && <Link to='/pantry'><Drawer size="medium" color="darkgreen"/></Link>}
+          </Box>
+          <Box direction="row" gap="small" justify="center" style={{style:"0 auto"}}>
+            <Text size="3xl" color="black" style={{ margin: "0 auto", fontFamily: "Unica One" }}>
+              Steep
+            </Text>
+          </Box>
+          <Box align="center" direction="row" gap="small" margin={{right:"10px"}}>
+            {isLoggedin ? <Button margin={{left: 'auto'}} onClick={handleLogout}><Logout size="medium" color="white"/></Button> : <Link  style={{marginLeft: 'auto'}} to='/signin'><Login size="medium" color="white"/></ Link> }
+          </Box>
+      </Header>
     </Grommet>
+
+   
   );
 }
 export default NavBar;
+
+
+
