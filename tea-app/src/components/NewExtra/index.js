@@ -1,11 +1,21 @@
 import React, { useState } from 'react'
 import { useMutation } from '@apollo/react-hooks'
 
-import { Form, FormField, TextInput, Box, Button, Grommet } from 'grommet'
+import { Form, FormField, TextInput, Box, Button, Grommet, grommet } from 'grommet'
+
+import { deepMerge } from 'grommet/utils';
 
 import Auth from '../../utils/auth'
 
 import { ADD_EXTRA } from '../../utils/mutations'
+
+const customTheme = deepMerge(grommet, {
+    global: {
+        colors: {
+            purple: "#A2065A",
+        }
+    }
+})
 
 const NewExtra = ({ setAddNotification }) => {
     
@@ -46,7 +56,7 @@ const NewExtra = ({ setAddNotification }) => {
     }
     
     return (
-        <Grommet>
+        <Grommet theme={customTheme}>
             <Box justify="center">
                 <Form
                     value={value}
@@ -57,11 +67,11 @@ const NewExtra = ({ setAddNotification }) => {
                     onSubmit={ (event) => handleSubmit(event) }
                 >
                     <FormField contentProps={{border: false}} pad={true} required={true} name="type" htmlFor="tea-type-id" label="Type">
-                        <TextInput id="tea-type-id" name="type" />
+                        <TextInput style={{fontFamily: "Ahbaya Libre"}} id="tea-type-id" name="type" />
                     </FormField>
                     <Box direction="row" gap="medium" justify="center">
-                        <Button type="submit" primary label="Submit" />
-                        <Button type="reset" label="Reset" />
+                        <Button style={{fontFamily: "Ahbaya Libre"}} color="purple" type="submit" primary label="Submit" />
+                        <Button style={{fontFamily: "Ahbaya Libre"}} color="purple" type="reset" label="Reset" />
                     </Box>
                 </Form>
             </Box>
