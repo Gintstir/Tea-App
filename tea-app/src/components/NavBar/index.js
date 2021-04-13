@@ -2,7 +2,7 @@ import React from "react";
 
 // import { grommet } from "grommet/themes";
 import { Button, Grommet, grommet, Text, Header, Box } from "grommet";
-import { Drawer, Home, Login, Logout } from "grommet-icons";
+import { Drawer, Home, Login, Logout, CircleInformation } from "grommet-icons";
 import { Link } from "react-router-dom";
 import { deepMerge } from 'grommet/utils';
 
@@ -45,7 +45,8 @@ const NavBar = ({ isLoggedin }) => {
               Steep
             </Text>
           </Box>
-          <Box align="center" direction="row" gap="small" margin={{right:"10px"}}>
+          <Box align="center" justify="center" direction="row" gap="small" margin={{right:"20px"}}>
+            <Link to='/faq'><CircleInformation size="medium" color="darkgrey" /></Link>
             {isLoggedin ? <Button margin={{left: 'auto'}} onClick={handleLogout}><Logout size="medium" color="white"/></Button> : <Link  style={{marginLeft: 'auto'}} to='/signin'><Login size="medium" color="white"/></ Link> }
           </Box>
       </Header>

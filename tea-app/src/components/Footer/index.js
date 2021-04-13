@@ -25,8 +25,10 @@ const customTheme = deepMerge(grommet, {
         orange: "#FFBC44",
         yellow: "#FFEB59",     
         
-        }
-      
+        },
+        font: {
+            family: `Abhaya Libre`,
+        },      
     },
 });
 
@@ -37,7 +39,7 @@ function Foot () {
             <Footer background="light-6">
                 <Box align="center" direction="row" gap="xsmall" margin={{left:"20px"}}>
                     
-                    <Text alignSelf="center" color="black" size="small" style={{fontFamily: "Abhaya Libre"}}>
+                    <Text alignSelf="center" color="black" size="small" >
                     Thanks for visiting!
                     </Text>
                 </Box>
@@ -60,7 +62,7 @@ function Foot () {
                 </Box>
                 <Box align="center" direction="row" gap="xsmall" margin={{right:"20px"}}>
                     
-                    <Text alignSelf="center" color="black" size="small" style={{fontFamily: "Abhaya Libre"}}>
+                    <Text alignSelf="center" color="black" size="small" >
                     ©Copyright, 2021
                     </Text>
                 </Box>

@@ -23,7 +23,11 @@ const customTheme = deepMerge(grommet, {
       yellow: "#FFEB59", 
       
       placeholder: "black"
+    },    
+    font: {
+      family: `Abhaya Libre`,
     },
+    
     input: {
       padding: {
         horizontal: "small",
@@ -86,7 +90,7 @@ const Register = () => {
         <Notification setAddNotification={setAddNotification} addNotification={addNotification} />
       }
       <Box align="center" pad="large" >
-        <h1 style={{fontFamily: "Abhaya Libre"}}>Sign Up!</h1>
+        <h1 >Sign Up!</h1>
         <Form onSubmit={handleFormSubmit} >
             <Box fill align="center" gap="medium" pad="large" width="medium" background="orange">
                 <Box width="medium">                  
@@ -97,7 +101,7 @@ const Register = () => {
                       onChange={handleChange}
                       placeholder="Username"
                       textAlign="center"
-                      style={{fontFamily: "Abhaya Libre"}}                                     
+                                                           
                       />          
                 </Box>
                 <Box width="medium">                  
@@ -108,7 +112,7 @@ const Register = () => {
                       onChange={handleChange}
                       placeholder="Email"
                       textAlign="center"
-                      style={{fontFamily: "Abhaya Libre"}}  
+                        
                       />                
                 </Box>
                 <Box width="medium">                  
@@ -119,14 +123,14 @@ const Register = () => {
                       onChange={handleChange}
                       placeholder="Password"
                       textAlign="center"
-                      style={{fontFamily: "Abhaya Libre"}}
+                      
                     />                
                 </Box>
-                <Button style={{fontFamily: "Abhaya Libre"}} type="submit" label="Welcome!" primary color="purple" />
+                <Button  type="submit" label="Welcome!" primary color="purple" />
             </Box>
         </Form>
         <Box pad="medium">
-          <Link  style={{fontFamily: "Abhaya Libre"}} to='/signin'>Already a member? Click here to sign in</Link>
+          <Link  to='/signin'>Already a member? Click here to sign in</Link>
         </Box>
       </Box>
     </Grommet>

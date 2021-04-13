@@ -23,6 +23,9 @@ const customTheme = deepMerge(grommet, {
       yellow: "#FFEB59",
       placeholder: "black"
     },
+    font: {
+      family: `Abhaya Libre`,            
+    },
   },    
 });
 
@@ -107,18 +110,18 @@ const NewTea = ({ setAddNotification }) => {
           }
           onSubmit={event => handleSubmit(event)}
         >
-          <FormField style={{fontFamily: "Abhaya Libre"}} name="type" htmlFor="tea-type-id" label="Type" contentProps={{border: false}} pad={true}>
+          <FormField  name="type" htmlFor="tea-type-id" label="Type" contentProps={{border: false}} pad={true}>
             <TeaButtons selectedTea={selectedTea} setSelectedTea={setSelectedTea} cardHeight={100} cardWidth={150} />
           </FormField>
-          <FormField style={{fontFamily: "Abhaya Libre"}} name="name" htmlFor="tea-name-id" label="Name" contentProps={{border: false}} pad={true} required={true}>
-            <TextInput id="tea-name-id" name="name" style={{fontFamily: "Abhaya Libre"}}/>
+          <FormField  name="name" htmlFor="tea-name-id" label="Name" contentProps={{border: false}} pad={true} required={true}>
+            <TextInput id="tea-name-id" name="name" />
           </FormField>
-          <FormField style={{fontFamily: "Abhaya Libre"}} name="brand" htmlFor="tea-brand-id" label="Brand" contentProps={{border: false}} pad={true} required={true}>
+          <FormField  name="brand" htmlFor="tea-brand-id" label="Brand" contentProps={{border: false}} pad={true} required={true}>
             <TextInput id="tea-brand-id" name="brand" />
           </FormField>
           <Box direction="row" gap="medium" justify="center">
-            <Button style={{fontFamily: "Abhaya Libre"}} type="submit" primary color="purple" label="Submit" />
-            <Button style={{fontFamily: "Abhaya Libre"}} type="reset" label="Reset" color="purple"/>
+            <Button  type="submit" primary color="purple" label="Submit" />
+            <Button  type="reset" label="Reset" color="purple"/>
           </Box>
         </Form>
       </Box>

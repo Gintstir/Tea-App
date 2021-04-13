@@ -25,6 +25,9 @@ const customTheme = deepMerge(grommet, {
       
       placeholder: "black"
     },
+    font: {
+      family: `Abhaya Libre`,
+    },
     input: {
       padding: {
         horizontal: "small",
@@ -82,7 +85,7 @@ const SignIn = () => {
         <Notification setAddNotification={setAddNotification} addNotification={addNotification} />
       }
       <Box align="center" pad="large">
-        <h1 style={{fontFamily: "Abhaya Libre"}}> Login! </h1>
+        <h1 > Login! </h1>
         <Form onSubmit={handleFormSubmit}>
           <Box fill gap="medium" align="center" pad="large" width="medium" background="orange">
               <Box width="medium">
@@ -92,7 +95,7 @@ const SignIn = () => {
                   onChange={handleChange}
                   placeholder="Username"
                   textAlign="center"
-                  style={{fontFamily: "Abhaya Libre"}}
+                  
                 />
               </Box>
               <Box width="medium">
@@ -103,14 +106,14 @@ const SignIn = () => {
                   onChange={handleChange}
                   placeholder="Password"
                   textAlign="center"
-                  style={{fontFamily: "Abhaya Libre"}}
+                  
                 />
               </Box>
-            <Button style={{fontFamily: "Abhaya Libre"}} type="submit" label="Let's Go!" primary color="purple"/>
+            <Button  type="submit" label="Let's Go!" primary color="purple"/>
           </Box>
         </Form>
         <Box pad="medium">
-          <Link to='/signup' style={{fontFamily: "Abhaya Libre"}}>Not A member? Sign-up Instead!</Link>
+          <Link to='/signup' >Not A member? Sign-up Instead!</Link>
         </Box>
       </Box>
     </Grommet>

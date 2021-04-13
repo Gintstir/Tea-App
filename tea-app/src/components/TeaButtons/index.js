@@ -8,9 +8,7 @@ import { Checkmark } from "grommet-icons";
 const theme = {
   global: {
     font: {
-      family: `-apple-system,
-         BlinkMacSystemFont, 
-         "Segoe UI"`,
+      family: `Abhaya Libre`,
     },
     colors: {
       black: "#6F7269",
@@ -66,7 +64,7 @@ const TeaButtons = ({ selectedTea, setSelectedTea, cardHeight, cardWidth }) => {
                 {value.icon}
               </CardBody>
               <CardFooter justify="center">
-                <Text size="medium" weight="bold" textAlign="center" style={{fontFamily: "Abhaya Libre"}}>
+                <Text size="medium" weight="bold" textAlign="center">
                   {value.name}
                 </Text>
               </CardFooter>

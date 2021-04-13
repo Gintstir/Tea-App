@@ -14,7 +14,11 @@ const customTheme = deepMerge(grommet, {
         colors: {
             purple: "#A2065A",
             green: "#749A5C",
-        }
+        },
+        font: {
+            family: `Abhaya Libre`,
+            
+        },
     }
 })
 
@@ -60,7 +64,7 @@ const NewExtra = ({ setAddNotification }) => {
         <Grommet theme={customTheme}>
             <Box justify="center">
                 <Form
-                    style={{fontFamily: "Abhaya Libre"}}
+                    
                     value={value}
                     onChange={nextValue => setValue(nextValue)}
                     onReset={() => setValue({
@@ -68,12 +72,12 @@ const NewExtra = ({ setAddNotification }) => {
                     })}
                     onSubmit={ (event) => handleSubmit(event) }
                 >
-                    <FormField style={{fontFamily: "Ahbaya Libre"}} contentProps={{border: false}} pad={true} required={true} name="type" htmlFor="tea-type-id" label="Type">
-                        <TextInput style={{fontFamily: "Ahbaya Libre"}} id="tea-type-id" name="type" />
+                    <FormField contentProps={{border: false}} pad={true} required={true} name="type" htmlFor="tea-type-id" label="Type">
+                        <TextInput  id="tea-type-id" name="type" />
                     </FormField>
                     <Box direction="row" gap="medium" justify="center">
-                        <Button style={{fontFamily: "Ahbaya Libre"}} color="purple" type="submit" primary label="Submit" />
-                        <Button style={{fontFamily: "Ahbaya Libre"}} color="purple" type="reset" label="Reset" />
+                        <Button  color="purple" type="submit" primary label="Submit" />
+                        <Button  color="purple" type="reset" label="Reset" />
                     </Box>
                 </Form>
             </Box>

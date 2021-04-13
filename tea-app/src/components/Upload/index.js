@@ -14,6 +14,9 @@ const customTheme = deepMerge(grommet, {
                 green: "#749A5C",
             }
         },
+        font: {
+            family: `Abhaya Libre`,
+        },
         background: '#f2f2f2',
         border: { size: 'medium' },
         pad: { horizontal: 'large', vertical: 'medium' },
