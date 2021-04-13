@@ -1,11 +1,21 @@
 import React, { useState } from 'react'
 import { useMutation } from '@apollo/react-hooks'
 
-import { Form, FormField, TextInput, Box, Button, Grommet } from 'grommet'
+import { Form, FormField, TextInput, Box, Button, Grommet, grommet } from 'grommet'
+
+import { deepMerge } from 'grommet/utils';
 
 import Auth from '../../utils/auth'
 
 import { ADD_EXTRA } from '../../utils/mutations'
+
+const customTheme = deepMerge(grommet, {
+    global: {
+        colors: {
+            purple: "#A2065A",
+        }
+    }
+})
 
 const NewExtra = ({ setAddNotification }) => {
     
