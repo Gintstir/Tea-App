@@ -37,7 +37,7 @@ const Pantry = () => {
         </Layer>
       }
       <Header background="light-4" pad="small">
-        <Text style={{fontFamily: "Abhaya Libre"}} size="large">Your Pantry</Text>
+        <Text style={{fontFamily: "Abhaya Libre"}} size="large">Pantry</Text>
       </Header>
       <Main margin={{bottom: "35px"}}>
         { loading ? 
@@ -50,6 +50,7 @@ const Pantry = () => {
           </Box>
           <Box>
             <Button
+              
               style={{fontFamily: "Abhaya Libre"}} 
               alignSelf="start"
               margin="small"
@@ -67,6 +68,8 @@ const Pantry = () => {
             </Heading>
           </Box>
             <Button
+              
+              plain="true"
               style={{fontFamily: "Abhaya Libre"}} 
               alignSelf="start"
               margin="small"

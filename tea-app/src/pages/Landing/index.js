@@ -17,7 +17,7 @@ const Landing = () => {
   return (
     <Grommet>
       
-      <Main pad="small" direction="row-reverse" style={{ fontFamily: "Marck Script" }}>
+      <Main pad="small" direction="row-reverse" margin={{right: "50px"}} style={{ fontFamily: "Marck Script" }}>
         All things in due time
       </Main>
       
