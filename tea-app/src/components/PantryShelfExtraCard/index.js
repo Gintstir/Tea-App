@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Grommet, Text, Card, CardBody, Box } from "grommet";
-import { Checkmark, Trash } from "grommet-icons";
+import { Checkmark, SubtractCircle } from "grommet-icons";
 
 import { REMOVE_EXTRA } from '../../utils/mutations'
 import { useMutation } from "@apollo/client";
@@ -54,7 +54,7 @@ const PantryShelfExtraCard = ({ cardData, canSelect, canDelete, setItem, item })
           </Box>}
           {canDelete && !canSelect && 
           <Box onClick={handleDelete} style={{ position: "absolute", top: "5px", right:"5px"}}>
-            <Trash size="medium" />
+            <SubtractCircle size="18px" />
           </Box>}
           <Text textAlign="center">{cardData}</Text>
         </CardBody>

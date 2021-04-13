@@ -123,7 +123,7 @@ const NewRecipe = ({ setShow, teas, extras }) => {
                         <TextInput type="text" id="tea-temperature-id" name="temperature" />
                     </FormField>
                     <FormField name="steepTime" htmlFor="tea-steepTime-id" label={`Steep Time ${convertToTimer(formValue.steepTime)}`} contentProps={{border: false}} margin={{horizontal: "20px"}}  required={true}>
-                        <RangeInput name="steepTime" min={30} max={540} step={15}/>
+                        <RangeInput name="steepTime" min={0} max={360} step={10}/>
                         {/* <TextInput type="number" id="tea-steepTime-id" name="steepTime" /> */}
                     </FormField>
                     <FormField type="text" name="note" htmlFor="tea-note-id" label="Notes" contentProps={{border: false}} margin={{horizontal: "20px"}}  required={true}>

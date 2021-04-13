@@ -1,23 +1,11 @@
 import React, { useState } from "react";
-
-import {
-  Form,
-  FormField,
-  TextInput,
-  Box,
-  Button,
-  Grommet,
-  Text,
-  grommet
-} from "grommet";
-
-import { deepMerge } from 'grommet/utils';
-
-import TeaButtons from '../TeaButtons'
-
 import { useMutation } from "@apollo/react-hooks";
 
+import { Form, FormField, TextInput, Box, Button, Grommet, Text, grommet } from "grommet";
+import { deepMerge } from 'grommet/utils';
+
 import { ADD_TEA } from "../../utils/mutations";
+import TeaButtons from '../TeaButtons'
 
 const customTheme = deepMerge(grommet, {
   global: {
@@ -30,9 +18,6 @@ const customTheme = deepMerge(grommet, {
       red: "#FC6161",
       orange: "#FFBC44",
       yellow: "#FFEB59",
-      
-       
-      
       placeholder: "black"
     },
   },
@@ -41,7 +26,8 @@ const customTheme = deepMerge(grommet, {
     
 });
 
-const NewTea = () => {
+const NewTea = ({ setAddSuccessful }) => {
+
   const [selectedTea, setSelectedTea] = useState({})
   const [value, setValue] = useState({
     type: {},
@@ -67,7 +53,6 @@ const NewTea = () => {
     if (!validateForm(values)) {
       return
     }
-    console.log(values)
     try {
       await addTea({
         variables: values,
@@ -78,6 +63,7 @@ const NewTea = () => {
         name: "",
         brand: "",
       });
+      setAddSuccessful({show: true, message: "Tea added successfully!"})
     } catch (e) {
       console.log(e);
     }

@@ -2,7 +2,7 @@ import React from "react";
 
 // import { grommet } from "grommet/themes";
 import { Grommet, Text, Card, CardBody, CardFooter, Box } from "grommet";
-import { Checkmark, Trash } from "grommet-icons";
+import { Checkmark, SubtractCircle } from "grommet-icons";
 
 import { REMOVE_TEA } from "../../utils/mutations";
 import { useMutation } from "@apollo/client";
@@ -69,7 +69,7 @@ const PantryShelfTeaCard = ({ cardData, canSelect, canDelete, setItem, item }) =
           </Box>}
           {canDelete && !canSelect && 
           <Box onClick={handleDelete} style={{ position: "absolute", top: "5px", right:"5px"}}>
-            <Trash size="medium" />
+            <SubtractCircle size="18px" />
           </Box>}
           <Text textAlign="center">{cardData.name}</Text>
           <CardFooter pad={{ horizontal: "medium" }}>

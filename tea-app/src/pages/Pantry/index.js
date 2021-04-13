@@ -17,9 +17,20 @@ const Pantry = () => {
   const { loading, data } = useQuery(QUERY_ME)
   
   const [show, setShow] = useState({ content: '', show: false })
+  const [addSuccessful, setAddSuccessful] = useState({show: false, message: ''})
 
   return (
     <Grommet>
+      {
+        addSuccessful.show && 
+        <Layer position="top" modal={false}>
+          <Box>
+            <Heading>
+              Added Successfully
+            </Heading>
+          </Box>
+        </Layer>
+      }
       {
         show.show && 
         <Layer full={true} margin={{vertical: "30px", horizontal: "100px"}} content={show.content}>
@@ -27,7 +38,7 @@ const Pantry = () => {
             <Box style={{minHeight: "unset"}} direction="row" justify="end">
               <Button style={{padding: "0"}} icon={<FormClose size="35px" />} onClick={() => setShow(false)} />
             </Box>
-            {show.content === 'NewTea' ? <NewTea /> : <NewExtra />}
+            {show.content === 'NewTea' ? <NewTea setAddSuccessful={setAddSuccessful} /> : <NewExtra setAddSuccessful={setAddSuccessful} />}
           </Box>
         </Layer>
       }
