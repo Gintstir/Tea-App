@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
-
-import { Form, FormField, TextInput, Box, Button, Grommet, Text } from 'grommet'
 import { useMutation } from '@apollo/react-hooks'
 
-import { ADD_EXTRA } from '../../utils/mutations'
+import { Form, FormField, TextInput, Box, Button, Grommet } from 'grommet'
+
 import Auth from '../../utils/auth'
 
-const NewExtra = () => {
+import { ADD_EXTRA } from '../../utils/mutations'
+
+const NewExtra = ({ setAddNotification }) => {
     
     const [value, setValue] = useState({
         type: ''
@@ -26,9 +27,17 @@ const NewExtra = () => {
                 variables: values
             })
             setValue({type: ''})
+            setAddNotification({show: true, type: 'success', message: "Extra added successfully!"})
+            setTimeout(() => {
+                setAddNotification({show: false, type: '', message: ''})
+            }, 3000)
         } catch (e) {
             console.log(e)
         }
+    }
+
+    if (error) {
+        setAddNotification({show: true, type:'error', message: `An error occurred! ${error.message}`})
     }
     
     return (
@@ -50,7 +59,6 @@ const NewExtra = () => {
                         <Button type="reset" label="Reset" />
                     </Box>
                 </Form>
-                { error && <Text>{error.message}</Text>}
             </Box>
         </Grommet>
     )

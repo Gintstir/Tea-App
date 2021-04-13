@@ -7,8 +7,7 @@ import { REMOVE_EXTRA } from '../../utils/mutations'
 import { useMutation } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries";
 
-const PantryShelfExtraCard = ({ cardData, canSelect, canDelete, setItem, item }) => {
-
+const PantryShelfExtraCard = ({ cardData, canSelect, canDelete, setItem, item, setAddNotification }) => {
 
   const [deleteExtra] = useMutation(REMOVE_EXTRA, {
     update(cache, { data: {removeExtra }}) {
@@ -38,7 +37,15 @@ const PantryShelfExtraCard = ({ cardData, canSelect, canDelete, setItem, item })
       await deleteExtra({
         variables: { type: cardData }
       })
+      setAddNotification({show: true, type:'warning', message: "Extra removed"})
+      setTimeout(() => {
+        setAddNotification({show: false, type: '', message: ''})
+      }, 3000)
     } catch (e) {
+      setAddNotification({show: true, type:'error', message: `Error: ${e.message.replace('GraphQL error: ', '')}`})
+      setTimeout(() => {
+        setAddNotification({show: false, type: '', message: ''})
+      }, 3000)
       console.error(e)
     }
   }
