@@ -8,9 +8,7 @@ import { deepMerge } from 'grommet/utils';
 const customTheme = deepMerge(grommet, {
     global: {
         font: {
-            family: `-apple-system,
-               BlinkMacSystemFont, 
-               "Segoe UI"`,
+            family: `Abhaya Libre`,
           },
     },
     card: {

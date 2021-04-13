@@ -17,6 +17,7 @@ import Landing from "./pages/Landing";
 import Profile from "./pages/Profile";
 import Pantry from "./pages/Pantry";
 import AboutUs from './pages/AboutUs';
+import FAQ from './pages/FAQ';
 
 import SignIn from "./components/SignIn";
 import Register from './components/Register';
@@ -63,6 +64,9 @@ function App() {
             </Route>           
             <Route exact path="/about">
               <AboutUs />
+            </Route>
+            <Route exact path="/faq">
+              <FAQ />
             </Route>
           </Switch>
           <Foot />

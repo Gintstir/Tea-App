@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from '@apollo/react-hooks'
 
 // import { grommet } from "grommet/themes";
-import { Grommet, Spinner, Layer, Box, Button } from "grommet";
+import { Grommet, Spinner, Layer, Box, Button, Header, Text } from "grommet";
 import { FormClose } from "grommet-icons";
 
 import { QUERY_ME } from '../../utils/queries'
@@ -30,6 +30,9 @@ const Profile = () => {
 
   return (
     <Grommet>
+      <Header background="light-4" pad="small">
+        <Text style={{fontFamily: "Abhaya Libre"}} size="large">Profile</Text>
+      </Header>
       { 
         show && 
         <Layer full={true} margin={{vertical: "30px", horizontal: "100px"}}>
@@ -41,7 +44,9 @@ const Profile = () => {
           </Box>
         </Layer>
       }
-      <Button style={{fontFamily: "Abhaya Libre"}} onClick={toggleNewRecipe} label="Add Recipe" />
+      <Box margin={{vertical: "30px", horizontal: "80px"}}>
+        <Button alignSelf="start" pad="large" style={{fontFamily: "Abhaya Libre"}} color="purple" onClick={toggleNewRecipe} label="Add Recipe" />  
+      </Box>
       <Box fill={true} direction="column" align="center">
         {
           recipes.map(recipe => (
@@ -49,7 +54,6 @@ const Profile = () => {
           ))
         }        
       </Box>
-
     </Grommet>
   );
 }

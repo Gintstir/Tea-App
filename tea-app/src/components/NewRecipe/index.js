@@ -10,7 +10,8 @@ import {
   Grommet,
   Text,
   Paragraph,
-  RangeInput
+  RangeInput,
+  grommet
 } from "grommet";
 
 import Upload from '../Upload'
@@ -18,7 +19,20 @@ import PantryShelf from '../PantryShelf'
 
 import { useMutation } from "@apollo/react-hooks";
 
+import {deepMerge} from 'grommet/utils';
+
 import { ADD_RECIPE, UPLOAD_IMAGE } from "../../utils/mutations";
+
+const customTheme = deepMerge(grommet, {
+    global: {
+        colors: {
+            purple: "#A2065A",
+        },
+        font: {
+            family: `Abhaya Libre`,            
+        },
+    }
+})
 
 const NewRecipe = ({ setShow, teas, extras }) => {
     const [image, setImage] = useState();
@@ -94,7 +108,7 @@ const NewRecipe = ({ setShow, teas, extras }) => {
 
     console.log(formValue)
     return (
-        <Grommet>
+        <Grommet theme={customTheme}>
             <Box justify="center">
                 <Form
                     value={formValue}
@@ -115,26 +129,26 @@ const NewRecipe = ({ setShow, teas, extras }) => {
                     }}
                     onSubmit={ async ({value}) => handleSubmit(value) }
                 >
-                    <Paragraph size="medium" color={"#9e9e9e"} margin={{horizontal: "32px", vertical: "6px"}}>Teas</Paragraph>
+                    <Paragraph  size="large" color={"#9e9e9e"} margin={{horizontal: "32px", vertical: "6px"}}>Teas</Paragraph>
                     <PantryShelf shelfName={"Tea"} pantryData={teas} canSelect={true} canDelete={false} setItem={setTea} item={selectedTea} />
-                    <Paragraph size="medium" color={"#9e9e9e"} margin={{horizontal: "32px", vertical: "6px"}}>Extras</Paragraph>
+                    <Paragraph   size="large" color={"#9e9e9e"} margin={{horizontal: "32px", vertical: "6px"}}>Extras</Paragraph>
                     <PantryShelf shelfName={"Extra"} pantryData={extras} canSelect={true} canDelete={false} setItem={setExtras} item={selectedExtras}  />
-                    <FormField name="temperature" htmlFor="tea-temperature-id" label="Temperature" contentProps={{border: false}} margin={{horizontal: "20px"}} required={true}>
-                        <TextInput type="text" id="tea-temperature-id" name="temperature" />
+                    <FormField  name="temperature" htmlFor="tea-temperature-id" label="Temperature" contentProps={{border: false}} margin={{horizontal: "20px"}} required={true}>
+                        <TextInput  type="text" id="tea-temperature-id" name="temperature" />
                     </FormField>
-                    <FormField name="steepTime" htmlFor="tea-steepTime-id" label={`Steep Time ${convertToTimer(formValue.steepTime)}`} contentProps={{border: false}} margin={{horizontal: "20px"}}  required={true}>
-                        <RangeInput name="steepTime" min={0} max={360} step={10}/>
+                    <FormField  name="steepTime" htmlFor="tea-steepTime-id" label={`Steep Time ${convertToTimer(formValue.steepTime)}`} contentProps={{border: false}} margin={{horizontal: "20px"}}  required={true}>
+                        <RangeInput  name="steepTime" min={0} max={360} step={10}/>
                         {/* <TextInput type="number" id="tea-steepTime-id" name="steepTime" /> */}
                     </FormField>
-                    <FormField type="text" name="note" htmlFor="tea-note-id" label="Notes" contentProps={{border: false}} margin={{horizontal: "20px"}}  required={true}>
+                    <FormField  type="text" name="note" htmlFor="tea-note-id" label="Notes" contentProps={{border: false}} margin={{horizontal: "20px"}}  required={true}>
                         <TextInput type="text" id="tea-note-id" name="note" />
                     </FormField>
-                    <FormField name="image" htmlFor="tea-image-id" label="Picture" contentProps={{border: false}} margin={{horizontal: "20px"}}>
+                    <FormField  name="image" htmlFor="tea-image-id" label="Picture" contentProps={{border: false}} margin={{horizontal: "20px"}}>
                         <Upload setImage={setImage} />
                     </FormField>
                     <Box direction="row" gap="medium" margin={{top: "15px"}} justify="center">
-                        <Button type="submit" primary label="Submit" />
-                        <Button type="reset" label="Reset" />
+                        <Button type="submit" primary label="Submit" color="purple"/>
+                        <Button type="reset" label="Reset" color="purple"/>
                     </Box>
                 </Form>
                 { error && <Text>{error.message}</Text>}    

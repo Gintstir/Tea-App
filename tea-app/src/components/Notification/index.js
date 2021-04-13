@@ -1,7 +1,18 @@
 import React from "react";
 
-import { Grommet, Text, Box, Button, Layer } from "grommet";
+import { Grommet, Text, Box, Button, Layer, grommet } from "grommet";
+
+import {deepMerge} from 'grommet/utils';
+
 import { StatusGood, FormClose, CircleAlert } from "grommet-icons";
+
+const customTheme = deepMerge(grommet, {
+    global: {
+        font: {
+          family: `Abhaya Libre`,
+        },
+    },
+})
 
 const Notification = ({setAddNotification, addNotification}) => {
 
@@ -22,7 +33,7 @@ const Notification = ({setAddNotification, addNotification}) => {
     }
 
     return (
-        <Grommet>
+        <Grommet theme={customTheme}>
             <Layer
             position="bottom"
             modal={false}

@@ -25,8 +25,9 @@ const Recipe = () => {
                 <CardHeader>
                     {username}
                 </CardHeader>
-                <CardBody>
+                <CardBody >
                     <List
+                        
                         primaryKey="key"
                         secondaryKey="value"
                         data={[

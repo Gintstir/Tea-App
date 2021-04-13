@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { useQuery } from '@apollo/react-hooks'
 
 // import { grommet } from "grommet/themes";
-import { Grommet, Header, Main, Text, Spinner, Box, Button, Layer, Heading } from "grommet";
+import { Grommet, Header, Main, Text, Spinner, Box, Button, Layer, Heading, grommet } from "grommet";
+
+import {deepMerge} from 'grommet/utils';
+
 import { AddCircle, FormClose } from "grommet-icons";
 
 import { QUERY_ME } from '../../utils/queries'
@@ -12,6 +15,14 @@ import NewExtra from '../../components/NewExtra'
 import PantryShelf from "../../components/PantryShelf";
 import Notification from "../../components/Notification";
 
+const customTheme = deepMerge(grommet, {
+  global: {
+    font: {
+        family: `Abhaya Libre`,
+    },
+  },
+})
+
 const Pantry = () => {
 
   const { loading, data } = useQuery(QUERY_ME)
@@ -20,7 +31,7 @@ const Pantry = () => {
   const [addNotification, setAddNotification] = useState({show: false, type: '', message: ''})
 
   return (
-    <Grommet>
+    <Grommet theme={customTheme}>
       {
         addNotification.show && 
         <Notification setAddNotification={setAddNotification} addNotification={addNotification} />
@@ -37,20 +48,19 @@ const Pantry = () => {
         </Layer>
       }
       <Header background="light-4" pad="small">
-        <Text style={{fontFamily: "Abhaya Libre"}} size="large">Your Pantry</Text>
+        <Text size="large">Pantry</Text>
       </Header>
       <Main margin={{bottom: "35px"}}>
         { loading ? 
           <Spinner /> :
           <>
           <Box direction="row" pad="xsmall">
-            <Heading style={{fontFamily: "Abhaya Libre"}} level={3} margin={{ bottom: "none" }}>
+            <Heading level={3} margin={{ bottom: "none" }}>
               Teas
             </Heading>
           </Box>
           <Box>
-            <Button
-              style={{fontFamily: "Abhaya Libre"}} 
+            <Button               
               alignSelf="start"
               margin="small"
               onClick={() => setShow({ content: `NewTea`, show: true })}
@@ -62,12 +72,11 @@ const Pantry = () => {
 
           <Box>
             <Box direction="row" pad="xsmall">
-            <Heading style={{fontFamily: "Abhaya Libre"}} level={3} margin={{ bottom: "none" }}>
+            <Heading level={3} margin={{ bottom: "none" }}>
               Extras
             </Heading>
           </Box>
-            <Button
-              style={{fontFamily: "Abhaya Libre"}} 
+            <Button                           
               alignSelf="start"
               margin="small"
               onClick={() => setShow({ content: `NewExtra`, show: true })}
