@@ -17,7 +17,7 @@ const colors = {
   Herbal: "#A2065A",
 };
 
-const PantryShelfTeaCard = ({ cardData, canSelect, canDelete, setItem, item, setAddNotification }) => {
+const PantryShelfTeaCard = ({ cardData, canSelect, canDelete, setItem, item, setAddNotification, height, width }) => {
 
   const [deleteTea] = useMutation(REMOVE_TEA, {
     uupdate(cache, { data: {removeTea }}) {
@@ -65,8 +65,8 @@ const PantryShelfTeaCard = ({ cardData, canSelect, canDelete, setItem, item, set
       {/* make background equal to user's selection for teatype */}
       <Card
         onClick={canSelect ? handleSelect : null}
-        height="125px"
-        width="125px"
+        height={height ? height : "125px"}
+        width={width ? width : "125px" }
         background={colors[cardData.type] || "light-1"}
       >
         <CardBody style={{position: "relative"}}  fill="vertical" justify="center" align="center">

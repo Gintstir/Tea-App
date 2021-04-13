@@ -33,6 +33,8 @@ const NewExtra = ({ setAddNotification }) => {
             return false
         }
 
+        event.value.type.trim()
+
         try {
             await addExtra({
                 variables: event.value

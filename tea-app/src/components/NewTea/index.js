@@ -64,6 +64,11 @@ const NewTea = ({ setAddNotification }) => {
     if (!validateForm(event.value)) {
       return
     }
+
+    event.value.type.trim()
+    event.value.name.trim()
+    event.value.brand.trim()
+
     try {
       await addTea({
         variables: event.value,
