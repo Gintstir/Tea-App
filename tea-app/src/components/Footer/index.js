@@ -35,9 +35,9 @@ function Foot () {
     return (
         <Grommet theme={customTheme} style={{marginTop: "auto"}}>
             <Footer background="light-6">
-                <Box align="center" direction="row" gap="xsmall" margin={{left:"10px"}}>
+                <Box align="center" direction="row" gap="xsmall" margin={{left:"20px"}}>
                     
-                    <Text alignSelf="center" color="black" size="small">
+                    <Text alignSelf="center" color="black" size="small" style={{fontFamily: "Abhaya Libre"}}>
                     Thanks for visiting!
                     </Text>
                 </Box>
@@ -58,9 +58,9 @@ function Foot () {
                     icon={<Linkedin color="brand" />}
                     /> */}
                 </Box>
-                <Box align="center" direction="row" gap="xsmall" margin={{right:"10px"}}>
+                <Box align="center" direction="row" gap="xsmall" margin={{right:"20px"}}>
                     
-                    <Text alignSelf="center" color="black" size="small">
+                    <Text alignSelf="center" color="black" size="small" style={{fontFamily: "Abhaya Libre"}}>
                     ©Copyright, 2021
                     </Text>
                 </Box>

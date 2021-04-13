@@ -66,7 +66,7 @@ const TeaButtons = ({ selectedTea, setSelectedTea, cardHeight, cardWidth }) => {
                 {value.icon}
               </CardBody>
               <CardFooter justify="center">
-                <Text size="small" weight="bold" textAlign="center">
+                <Text size="medium" weight="bold" textAlign="center" style={{fontFamily: "Abhaya Libre"}}>
                   {value.name}
                 </Text>
               </CardFooter>
