@@ -33,21 +33,6 @@ const NavBar = ({ isLoggedin }) => {
   return (
     <Grommet theme={customTheme}>
       <Header pad="small" background="red">
-<<<<<<< HEAD
-          <Box align="center" gap="small" justiy="center" direction="row" margin={{left:"20px"}}>
-            <Link to='/' ><Home size="medium" color="orange" /></ Link>
-            {isLoggedin && <Link to='/pantry'><Drawer size="medium" color="darkgreen"/></Link>}
-          </Box>
-          <Box direction="row" gap="small" justify="center" style={{style:"0 auto"}}>
-            <Text size="3xl" color="black" style={{fontFamily: "Unica One" }}>
-              Steep
-            </Text>
-          </Box>
-          <Box align="center" justify="center" direction="row" gap="small" margin={{right:"20px"}}>
-            <Link to='/faq'><CircleInformation size="medium" color="darkgrey" /></Link>
-            {isLoggedin ? <Button margin={{left: 'auto'}} onClick={handleLogout}><Logout size="medium" color="white"/></Button> : <Link  style={{marginLeft: 'auto'}} to='/signin'><Login size="medium" color="white"/></ Link> }
-          </Box>
-=======
         <Box
           align="center"
           gap="small"
@@ -84,6 +69,7 @@ const NavBar = ({ isLoggedin }) => {
           gap="small"
           margin={{ right: "10px" }}
         >
+          <Link to='/faq'><CircleInformation color="darkgrey"/></Link>
           {isLoggedin ? (
             <Button margin={{ left: "auto" }} onClick={handleLogout}>
               <Logout size="medium" color="white" />
@@ -94,7 +80,6 @@ const NavBar = ({ isLoggedin }) => {
             </Link>
           )}
         </Box>
->>>>>>> 7b542e0f011b4cdfd26bf27c16027378535cba9d
       </Header>
     </Grommet>
   );

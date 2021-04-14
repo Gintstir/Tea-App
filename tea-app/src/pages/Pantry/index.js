@@ -64,6 +64,8 @@ const Pantry = () => {
               alignSelf="start"
               margin="small"
               onClick={() => setShow({ content: `NewTea`, show: true })}
+              focusIndicator={false}
+              style={{background: "none"}}
             >
               <AddCircle size="small" /> Add Tea
             </Button>
@@ -80,6 +82,8 @@ const Pantry = () => {
               alignSelf="start"
               margin="small"
               onClick={() => setShow({ content: `NewExtra`, show: true })}
+              focusIndicator={false}
+              style={{background: "none"}}
             >
               <AddCircle size="small" /> Add Extra
             </Button>
