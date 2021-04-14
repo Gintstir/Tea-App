@@ -130,7 +130,7 @@ export const REMOVE_RECIPE = gql`
 `;
 
 export const UPLOAD_IMAGE = gql`
-  mutation loadImage($image: Upload!, $imageName: String!) {
+  mutation loadImage($image: String!, $imageName: String!) {
     loadImage(image: $image, imageName: $imageName)
   }
 `;

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { nanoid } from "nanoid";
+import Jimp from "jimp/es"
 
 import {
   Form,
@@ -65,10 +66,14 @@ const NewRecipe = ({ setShow, teas, extras, setAddNotification }) => {
     });
     const [uploadImage] = useMutation(UPLOAD_IMAGE);
 
-    const handleSubmit = (value) => {
+    const handleSubmit = async (value) => {
         let imageName
+        let uploadImageString
+
         if (image) {
             imageName = generateFileName(image?.name)
+            uploadImageString = await resizeImage(image)
+            uploadImageString = uploadImageString.split('base64,')[1]
         }
 
         value.type = selectedTea.type
@@ -79,7 +84,7 @@ const NewRecipe = ({ setShow, teas, extras, setAddNotification }) => {
 
         Promise.all([
             addRecipe({ variables: { ...value, picture: imageName} }),
-            uploadImage({ variables: { image, imageName }})
+            uploadImage({ variables: { image: uploadImageString, imageName }})
         ]).then(values => {
             setImage()
             setFormValue({
@@ -97,12 +102,46 @@ const NewRecipe = ({ setShow, teas, extras, setAddNotification }) => {
                 setAddNotification({show: false, type: '', message: ''})
             }, 3000)
         })
+        .catch(err => {
+            console.error(err)
+        })
     }
 
     const generateFileName = (oldFilename) => {
         let fileExt = oldFilename.split('.')
         fileExt = fileExt[fileExt.length - 1]
         return nanoid() + '.' + fileExt
+    }
+
+    const resizeImage = async (image, width = 600, height = Jimp.AUTO, quality = 70) => {
+        const brandNewImg = await convertImageToBuffer(image)
+        return new Promise((res, rej) => {
+            Jimp.read(brandNewImg)
+            .then(newImage => {
+                return newImage
+                    .resize(width, height)
+                    .quality(quality)
+                    .getBase64Async(newImage._originalMime)
+            })
+            .then(readyImg => res(readyImg))
+            .catch(err => rej(err))
+        })
+    }
+
+    const convertImageToBuffer = async (image) => {
+        return new Promise((res, rej) => {
+            const reader = new FileReader()
+
+            reader.onload = (event) => {
+                res(event.target.result)
+            }
+            reader.onerror = (err) => {
+                console.error(err)
+                rej(err)
+            }
+
+            reader.readAsDataURL(image)
+        })
     }
 
     const convertToTimer = (timeSeconds) => {
