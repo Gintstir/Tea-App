@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box, Card, Button, CardBody, CardFooter, Collapsible, grommet, Heading, Grommet, Image, Paragraph} from 'grommet'
+import { Box, Card, Button, CardBody, CardFooter, Collapsible, grommet, Heading, Grommet, Avatar, Paragraph} from 'grommet'
 import { FormDown, FormUp, Github, Linkedin } from 'grommet-icons';
 import { deepMerge } from 'grommet/utils';
 
@@ -52,8 +52,10 @@ function AboutUsCard({item}) {
         <Grommet theme={customTheme}>                   
             <Card elevation="large" width="medium" key={item.heading} background={item.color}>
                 <CardBody pad={{vertical: 'small'}}height="small">
-                    <Image
-                        fit="contain"
+                    <Avatar
+                        // fit="contain"
+                        alignSelf="center"
+                        size="4xl"
                         src={item.image}
                         a11yTitle={item.a11yTitle}
                     />
@@ -69,14 +71,12 @@ function AboutUsCard({item}) {
                 <CardFooter>
                     <Box direction="row" align="center" gap="small">
                         <Button 
-                            icon={<Linkedin color="black" />}
-                            
+                            icon={<Linkedin color="black" />}                            
                             href={item.href1}
 
                         />
                         <Button
-                            icon={<Github color="black" />}
-                            
+                            icon={<Github color="black" />}                            
                             href={item.href2}
                         />
                         
