@@ -2,7 +2,7 @@ import React from "react";
 
 // import { grommet } from "grommet/themes";
 import { Button, Grommet, grommet, Text, Header, Box } from "grommet";
-import { Drawer, Home, Login, Logout } from "grommet-icons";
+import { Drawer, Home, Login, Logout, CircleInformation } from "grommet-icons";
 import { Link } from "react-router-dom";
 import { deepMerge } from "grommet/utils";
 
