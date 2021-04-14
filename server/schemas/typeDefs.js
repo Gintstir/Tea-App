@@ -58,7 +58,7 @@ const typeDefs = gql`
         removeTea(id: ID!): User
         removeRecipe(id: ID!): Recipe
 
-        loadImage(image: Upload!, imageName: String!): Boolean!
+        loadImage(image: String!, imageName: String!): Boolean!
     }
 
     

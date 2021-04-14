@@ -1,57 +1,19 @@
 const path = require('path')
-const { createWriteStream } = require('fs')
-const jimp = require('jimp')
+const fs = require('fs')
 
-const loadImageToServer = async (createReadStream, filename) => {
-    return new Promise (async res => {
-        try {
-            await new Promise( res => 
-                createReadStream()
-                    .pipe(createWriteStream(path.join(__dirname, '../images', filename)))
-                    .on('close', res)    
-            )
-            res(true)                    
-        } catch (e) {
-            console.error(e)
-            res(false)
-        }        
-    })
+const loadImageToServer = async (buffer, filename) => {
+    fs.writeFileSync(path.join(__dirname, '../images', filename), buffer)
 }
-
-const resizeImage = async (imgPath, width = 600, height = jimp.AUTO, quality = 70) => {
-    return new Promise(async (res) => {
-        try {
-            const image = await jimp.read(imgPath)
-            await image.resize(width, height)
-            await image.quality(quality)
-            await image.writeAsync(imgPath)
-            res(true)
-        } catch (e) {
-            console.error(e)
-            res(false)
-        }
-    })
-}
-
-/////////////////////////////////
-// Create function that saves the image path to database
 
 const imageController = {
     async loadImage (__, { image, imageName } ) {
         try {
-            const { createReadStream } = await image
-            // const newFilename = generateFilename(filename)
-            let isSuccess = await loadImageToServer(createReadStream, imageName)
+            image = Buffer.from(image, 'base64')
+            let isSuccess = loadImageToServer(image, imageName)
             if (!isSuccess) {
                 return false
             }
-            isSuccess = await resizeImage(path.join(__dirname, '../images', imageName))
-
-            if (isSuccess) {
-                return true
-            } else {
-                return false
-            }
+            return true
         } catch (e) {
             console.error(e)
         }
