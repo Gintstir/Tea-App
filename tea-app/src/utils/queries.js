@@ -14,6 +14,7 @@ export const QUERY_ME = gql`
             }
             extras
             recipes {
+                _id
                 tea {
                     _id
                     type
@@ -25,6 +26,7 @@ export const QUERY_ME = gql`
                 steepTime
                 picture
                 note
+                createdAt
             }            
         }
     }

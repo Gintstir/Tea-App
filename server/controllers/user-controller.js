@@ -15,7 +15,16 @@ const userController = {
             throw new AuthenticationError('Insufficient data for finding user')
         }
 
-        const user = await User.findOne({ username: findUsername }).populate('recipes')
+        const user = await User.findOne({ username: findUsername }).populate(
+            {
+                path: 'recipes',
+                options: {
+                    sort: {
+                        'createdAt': -1
+                    }
+                }
+            }
+        )
         return user
     },
     async createUser(parent, args) {

@@ -37,9 +37,10 @@ const Notification = ({setAddNotification, addNotification}) => {
             <Layer
             position="bottom"
             modal={false}
-            margin={{ vertical: 'medium', horizontal: 'small' }}
+            margin={{ vertical: 'medium', horizontal: 'medium' }}
             onEsc={ () => setAddNotification({show: false, type: '', message: ''}) }
             responsive={false}
+            full="horizontal"
             plain
             >
                 <Box
@@ -51,14 +52,14 @@ const Notification = ({setAddNotification, addNotification}) => {
                     elevation="medium"
                     pad={{ vertical: 'xsmall', horizontal: 'small' }}
                     background={backgroundColor}
-                >
-                    <Box align="center" direction="row" gap="xsmall">
+                >             
                     {
                         addNotification.type === 'success' ?
                         <StatusGood /> :
                         <CircleAlert />
                     }
-                        <Text>
+                    <Box align="center" direction="row" gap="xsmall">
+                        <Text textAlign="center">
                             {addNotification.message}
                         </Text>
                     </Box>

@@ -78,6 +78,10 @@ export const ADD_RECIPE = gql`
         brand
       }
       extra
+      temperature
+      steepTime
+      picture
+      note
       createdAt
     }
   }
@@ -120,7 +124,7 @@ export const REMOVE_RECIPE = gql`
       steepTime
       picture
       note
-      createAt
+      createdAt
     }
   }
 `;
