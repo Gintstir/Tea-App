@@ -62,7 +62,7 @@ function Foot () {
                 </Box>
                 <Box align="center" direction="row" gap="xsmall" margin={{right:"20px"}}>
                     
-                    <Text alignSelf="center" color="black" size="small" >
+                    <Text alignSelf="center" textAlign="end" color="black" size="small" >
                     ©Copyright, 2021
                     </Text>
                 </Box>

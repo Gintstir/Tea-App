@@ -44,7 +44,7 @@ const Profile = () => {
             <Box pad={{right: "large"}}  style={{minHeight: "unset"}} direction="row" justify="end">
               <Button style={{padding: "0"}} icon={<FormClose size="35px" />} onClick={() => setShow(false)} />           
             </Box>
-            <NewRecipe setShow={setShow} teas={teas} extras={extras} />        
+            <NewRecipe setAddNotification={setAddNotification} setShow={setShow} teas={teas} extras={extras} />        
           </Box>
         </Layer>
       }

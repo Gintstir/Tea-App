@@ -34,7 +34,7 @@ const customTheme = deepMerge(grommet, {
     }
 })
 
-const NewRecipe = ({ setShow, teas, extras }) => {
+const NewRecipe = ({ setShow, teas, extras, setAddNotification }) => {
     const [image, setImage] = useState();
     const [selectedExtras, setExtras] = useState([]);
     const [selectedTea, setTea] = useState();
@@ -92,6 +92,10 @@ const NewRecipe = ({ setShow, teas, extras }) => {
                 note: ''
             })
             setShow(false)
+            setAddNotification({show: true, type: 'success', message: 'Recipe added successfully!'})
+            setTimeout(() => {
+                setAddNotification({show: false, type: '', message: ''})
+            }, 3000)
         })
     }
 
