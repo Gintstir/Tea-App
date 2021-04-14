@@ -1,3 +1,5 @@
+const fs = require('fs')
+
 const { User, Recipe } = require('../models')
 
 const { AuthenticationError } = require('apollo-server-express')
@@ -39,6 +41,15 @@ const recipeController = {
                     { $pull: { recipes: deletedRecipe._id }},
                     { new: true}
                 )
+
+                const path = `./images/images/${deletedRecipe.picture}`
+
+                fs.unlink(path, (err) => {
+                    if (err) {
+                      console.error(err)
+                      return
+                    }
+                })
 
                 return deletedRecipe
 

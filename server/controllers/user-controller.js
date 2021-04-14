@@ -25,7 +25,6 @@ const userController = {
                 }
             }
         )
-        console.log(user)
         return user
     },
     async createUser(parent, args) {

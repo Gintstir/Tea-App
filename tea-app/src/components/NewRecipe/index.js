@@ -8,7 +8,6 @@ import {
   Box,
   Button,
   Grommet,
-  Text,
   Paragraph,
   RangeInput,
   grommet
@@ -22,6 +21,7 @@ import { useMutation } from "@apollo/react-hooks";
 import {deepMerge} from 'grommet/utils';
 
 import { ADD_RECIPE, UPLOAD_IMAGE } from "../../utils/mutations";
+import { QUERY_ME } from '../../utils/queries'
 
 const customTheme = deepMerge(grommet, {
     global: {
@@ -48,8 +48,21 @@ const NewRecipe = ({ setShow, teas, extras }) => {
         note: "",
     });
 
-    const [addRecipe, { error }] = useMutation(ADD_RECIPE);
-
+    const [addRecipe] = useMutation(ADD_RECIPE, {
+        update(cache, { data: { addRecipe }}) {
+            try {
+                const { me } = cache.readQuery({ query: QUERY_ME })
+                me.recipes.unshift(addRecipe)
+                cache.writeQuery({
+                    query: QUERY_ME,
+                    data: { me }
+                })
+      
+            } catch (e) {
+                console.warn("The query has not run, therefore no need to update!")
+            }
+        }
+    });
     const [uploadImage] = useMutation(UPLOAD_IMAGE);
 
     const handleSubmit = (value) => {
@@ -63,9 +76,6 @@ const NewRecipe = ({ setShow, teas, extras }) => {
         value.brand = selectedTea.brand
         value.extra = selectedExtras
         value.steepTime = parseInt(value.steepTime)
-
-        
-        console.log(value)
 
         Promise.all([
             addRecipe({ variables: { ...value, picture: imageName} }),
@@ -106,7 +116,6 @@ const NewRecipe = ({ setShow, teas, extras }) => {
         }
     }
 
-    console.log(formValue)
     return (
         <Grommet theme={customTheme}>
             <Box justify="center">
@@ -138,7 +147,6 @@ const NewRecipe = ({ setShow, teas, extras }) => {
                     </FormField>
                     <FormField  name="steepTime" htmlFor="tea-steepTime-id" label={`Steep Time ${convertToTimer(formValue.steepTime)}`} contentProps={{border: false}} margin={{horizontal: "20px"}}  required={true}>
                         <RangeInput  name="steepTime" min={0} max={360} step={10}/>
-                        {/* <TextInput type="number" id="tea-steepTime-id" name="steepTime" /> */}
                     </FormField>
                     <FormField  type="text" name="note" htmlFor="tea-note-id" label="Notes" contentProps={{border: false}} margin={{horizontal: "20px"}}  required={true}>
                         <TextInput type="text" id="tea-note-id" name="note" />
@@ -151,7 +159,6 @@ const NewRecipe = ({ setShow, teas, extras }) => {
                         <Button type="reset" label="Reset" color="purple"/>
                     </Box>
                 </Form>
-                { error && <Text>{error.message}</Text>}    
             </Box>
         </Grommet>
     );

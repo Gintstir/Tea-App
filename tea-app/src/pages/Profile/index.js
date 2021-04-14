@@ -3,15 +3,18 @@ import { useQuery } from '@apollo/react-hooks'
 
 // import { grommet } from "grommet/themes";
 import { Grommet, Spinner, Layer, Box, Button, Header, Text } from "grommet";
-import { FormClose } from "grommet-icons";
+import { AddCircle, FormClose } from "grommet-icons";
 
 import { QUERY_ME } from '../../utils/queries'
+
 import NewRecipe from "../../components/NewRecipe";
 import RecipeCard from "../../components/RecipeCard";
+import Notification from '../../components/Notification'
 
 const Profile = () => {
 
   const [show, setShow] = useState(false)
+  const [addNotification, setAddNotification] = useState({show: false, type: '', message: ''})
 
   const { data, loading } = useQuery(QUERY_ME)
 
@@ -21,15 +24,16 @@ const Profile = () => {
 
   const { teas, extras, recipes } = data?.me || {}
   
-  console.log(recipes)
-  
   if (!recipes || loading) {
     return <Spinner />
   }
   
-
   return (
     <Grommet>
+      {
+        addNotification.show && 
+        <Notification setAddNotification={setAddNotification} addNotification={addNotification} />
+      }
       <Header background="light-4" pad="small">
         <Text style={{fontFamily: "Abhaya Libre"}} size="large">Profile</Text>
       </Header>
@@ -45,12 +49,12 @@ const Profile = () => {
         </Layer>
       }
       <Box margin={{vertical: "30px", horizontal: "80px"}}>
-        <Button alignSelf="start" pad="large" style={{fontFamily: "Abhaya Libre"}} color="purple" onClick={toggleNewRecipe} label="Add Recipe" />  
+        <Button alignSelf="center" pad="large" style={{fontFamily: "Abhaya Libre"}} color="purple" onClick={toggleNewRecipe} label="Add Recipe" icon={<AddCircle />} />  
       </Box>
       <Box fill={true} direction="column" align="center">
         {
           recipes.map(recipe => (
-            <RecipeCard recipe={recipe} key={recipe._id} />
+            <RecipeCard setAddNotification={setAddNotification} recipe={recipe} key={recipe._id} />
           ))
         }        
       </Box>

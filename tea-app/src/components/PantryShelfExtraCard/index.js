@@ -12,6 +12,7 @@ const PantryShelfExtraCard = ({ cardData, canSelect, canDelete, setItem, item, s
   const [deleteExtra] = useMutation(REMOVE_EXTRA, {
     update(cache, { data: {removeExtra }}) {
       const { me } = cache.readQuery({ query: QUERY_ME })
+      console.log("HEERREE", removeExtra)
       cache.writeQuery({
         query: QUERY_ME,
         data: { me: {
