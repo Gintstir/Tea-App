@@ -37,13 +37,13 @@ function Foot () {
     return (
         <Grommet theme={customTheme} style={{marginTop: "auto"}}>
             <Footer background="light-6">
-                <Box align="center" direction="row" gap="xsmall" margin={{left:"20px"}}>
+                <Box align="center" direction="row" margin={{left:"20px"}}>
                     
                     <Text alignSelf="center" color="black" size="small" >
                     Thanks for visiting!
                     </Text>
                 </Box>
-                <Box direction="row" gap="small" justify="center" style={{margin: "0 auto"}}>
+                <Box direction="row" justify="center" style={{margin: "0 auto"}}>
                     <Anchor
                     a11yTitle="Share feedback on Github"
                     href="https://github.com/Gintstir/Tea-App"
@@ -60,8 +60,7 @@ function Foot () {
                     icon={<Linkedin color="brand" />}
                     /> */}
                 </Box>
-                <Box align="center" direction="row" gap="xsmall" margin={{right:"20px"}}>
-                    
+                <Box align="center" direction="row" margin={{right:"20px"}}>
                     <Text alignSelf="center" textAlign="end" color="black" size="small" >
                     ©Copyright, 2021
                     </Text>

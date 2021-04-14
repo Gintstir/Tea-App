@@ -35,6 +35,7 @@ const NewExtra = ({ setAddNotification }) => {
         const token = Auth.loggedIn() ? Auth.getToken() : null
 
         if (!token) {
+            Auth.logout()
             return false
         }
 
@@ -66,7 +67,6 @@ const NewExtra = ({ setAddNotification }) => {
         <Grommet theme={customTheme}>
             <Box justify="center">
                 <Form
-                    
                     value={value}
                     onChange={nextValue => setValue(nextValue)}
                     onReset={() => setValue({

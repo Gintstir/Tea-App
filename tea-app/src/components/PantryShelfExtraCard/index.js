@@ -7,6 +7,8 @@ import { REMOVE_EXTRA } from '../../utils/mutations'
 import { useMutation } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries";
 
+import Auth from '../../utils/auth'
+
 const PantryShelfExtraCard = ({ cardData, canSelect, canDelete, setItem, item, setAddNotification }) => {
 
   const [deleteExtra] = useMutation(REMOVE_EXTRA, {
@@ -34,6 +36,13 @@ const PantryShelfExtraCard = ({ cardData, canSelect, canDelete, setItem, item, s
   }
 
   const handleDelete = async () => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null
+
+    if (!token) {
+        Auth.logout()
+        return false
+    }
+
     try {
       await deleteExtra({
         variables: { type: cardData }

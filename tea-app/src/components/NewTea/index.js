@@ -59,7 +59,8 @@ const NewTea = ({ setAddNotification }) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null
 
     if (!token) {
-        return false
+      Auth.logout()
+      return false
     }
 
     event.value.type = event.value.type.name

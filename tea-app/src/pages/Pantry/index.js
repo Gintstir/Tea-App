@@ -38,7 +38,7 @@ const Pantry = () => {
       }
       {
         show.show && 
-        <Layer full={true} margin={{vertical: "30px", horizontal: "100px"}} content={show.content}>
+        <Layer full={true} responsive={false} margin={{vertical: "small", horizontal: "small"}} content={show.content}>
           <Box margin="medium" overflow="auto">
             <Box style={{minHeight: "unset"}} direction="row" justify="end">
               <Button style={{padding: "0"}} icon={<FormClose size="35px" />} onClick={() => setShow(false)} />
@@ -55,7 +55,7 @@ const Pantry = () => {
           <Spinner /> :
           <>
           <Box direction="row" pad="xsmall">
-            <Heading level={3} margin={{ bottom: "none" }}>
+            <Heading level={3} margin={{ left: "small", bottom: "none" }}>
               Teas
             </Heading>
           </Box>
@@ -74,7 +74,7 @@ const Pantry = () => {
 
           <Box>
             <Box direction="row" pad="xsmall">
-            <Heading level={3} margin={{ bottom: "none" }}>
+            <Heading level={3} margin={{ left: "small", bottom: "none" }}>
               Extras
             </Heading>
           </Box>

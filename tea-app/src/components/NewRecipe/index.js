@@ -24,6 +24,8 @@ import {deepMerge} from 'grommet/utils';
 import { ADD_RECIPE, UPLOAD_IMAGE } from "../../utils/mutations";
 import { QUERY_ME } from '../../utils/queries'
 
+import Auth from '../../utils/auth'
+
 const customTheme = deepMerge(grommet, {
     global: {
         colors: {
@@ -67,6 +69,14 @@ const NewRecipe = ({ setShow, teas, extras, setAddNotification }) => {
     const [uploadImage] = useMutation(UPLOAD_IMAGE);
 
     const handleSubmit = async (value) => {
+
+        const token = Auth.loggedIn() ? Auth.getToken() : null
+
+        if (!token) {
+            Auth.logout()
+            return false
+        }
+
         let imageName
         let uploadImageString
 
@@ -103,6 +113,10 @@ const NewRecipe = ({ setShow, teas, extras, setAddNotification }) => {
             }, 3000)
         })
         .catch(err => {
+            setAddNotification({show: true, type: 'error', message: 'Error occured while adding recipe!'})
+            setTimeout(() => {
+                setAddNotification({show: false, type: '', message: ''})
+            }, 3000)
             console.error(err)
         })
     }
@@ -166,8 +180,8 @@ const NewRecipe = ({ setShow, teas, extras, setAddNotification }) => {
     }
 
     return (
-        <Grommet theme={customTheme}>
-            <Box justify="center">
+        <Grommet theme={customTheme} style={{backgroundColor: "transparent"}}>
+            <Box justify="center" margin={{bottom: "large"}}>
                 <Form
                     value={formValue}
                     onChange={nextValue => setFormValue(nextValue)}
@@ -186,6 +200,7 @@ const NewRecipe = ({ setShow, teas, extras, setAddNotification }) => {
                         })
                     }}
                     onSubmit={ async ({value}) => handleSubmit(value) }
+                    style={{backgroundColor: "transparent"}}
                 >
                     <Paragraph  size="large" color={"#9e9e9e"} margin={{horizontal: "32px", vertical: "6px"}}>Teas</Paragraph>
                     <PantryShelf shelfName={"Tea"} pantryData={teas} canSelect={true} canDelete={false} setItem={setTea} item={selectedTea} />

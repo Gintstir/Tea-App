@@ -1,12 +1,13 @@
 import React from "react";
 
-// import { grommet } from "grommet/themes";
-import { Grommet, Text, Card, CardBody, CardFooter, Box } from "grommet";
-import { Checkmark, SubtractCircle } from "grommet-icons";
+import { Grommet, Text, Card, CardHeader, CardBody, CardFooter, Box, Heading } from "grommet";
+import { Checkmark, Spa, SubtractCircle } from "grommet-icons";
 
 import { REMOVE_TEA } from "../../utils/mutations";
 import { useMutation } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries";
+
+import Auth from '../../utils/auth'
 
 const colors = {
   "Black Tea": "#6F7269",
@@ -43,6 +44,13 @@ const PantryShelfTeaCard = ({ cardData, canSelect, canDelete, setItem, item, set
   }
 
   const handleDelete = async () => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null
+
+    if (!token) {
+        Auth.logout()
+        return false
+    }
+
     try {
       await deleteTea({
         variables: { id: cardData._id }
@@ -67,24 +75,33 @@ const PantryShelfTeaCard = ({ cardData, canSelect, canDelete, setItem, item, set
         onClick={canSelect ? handleSelect : null}
         height={height ? height : "125px"}
         width={width ? width : "125px" }
+        pad={"xsmall"}
         background={colors[cardData.type] || "light-1"}
       >
-        <CardBody style={{position: "relative"}}  fill="vertical" justify="center" align="center">
+        <CardHeader direction="row" justify="between">
+          <Spa size="18px" />
           {canSelect && !canDelete && item?._id === cardData._id && 
-          <Box style={{ position: "absolute", top: "5px", right:"5px"}}>
-            <Checkmark />
+          <Box>
+            <Checkmark size="18px" />
           </Box>}
           {canDelete && !canSelect && 
-          <Box onClick={handleDelete} style={{ position: "absolute", top: "5px", right:"5px" }}>
+          <Box onClick={handleDelete}>
             <SubtractCircle size="18px" />
-          </Box>}
-          <Text textAlign="center">{cardData.name}</Text>
-          <CardFooter pad={{ horizontal: "medium" }}>
-            <Text size="small" weight="bold">
-              {cardData.brand}
-            </Text>
-          </CardFooter>
+          </Box>}          
+        </CardHeader>
+        <CardBody  fill="vertical" justify="center" align="center">
+          <Heading textAlign="center" level="3" margin="0" size="small" >
+            {cardData.name}
+          </Heading>
         </CardBody>
+        <CardFooter direction="column" align="center" justify="end" gap={false} >
+          <Text size="small" >
+            {cardData.type}
+          </Text>
+          <Text size="small">
+            By: {cardData.brand}
+          </Text>
+        </CardFooter>
       </Card>
     </Grommet>
   );

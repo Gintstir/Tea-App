@@ -39,8 +39,8 @@ const Profile = () => {
       </Header>
       { 
         show && 
-        <Layer full={true} margin={{vertical: "30px", horizontal: "100px"}}>
-          <Box pad={{vertical: "35px"}} overflow={{vertical: "auto"}}>
+        <Layer full={true} responsive={false} margin={{vertical: "small", horizontal: "small"}}>
+          <Box pad={{top: "25px"}} overflow={{vertical: "auto"}}>
             <Box pad={{right: "large"}}  style={{minHeight: "unset"}} direction="row" justify="end">
               <Button style={{padding: "0"}} icon={<FormClose size="35px" />} onClick={() => setShow(false)} />           
             </Box>
@@ -51,7 +51,7 @@ const Profile = () => {
       <Box margin={{vertical: "30px", horizontal: "80px"}}>
         <Button alignSelf="center" pad="large" style={{fontFamily: "Abhaya Libre"}} color="purple" onClick={toggleNewRecipe} label="Add Recipe" icon={<AddCircle />} />  
       </Box>
-      <Box fill={true} direction="column" align="center">
+      <Box direction="column" align="center" margin={{horizontal: "30px"}}>
         {
           recipes.map(recipe => (
             <RecipeCard setAddNotification={setAddNotification} recipe={recipe} key={recipe._id} />

@@ -35,10 +35,10 @@ const NavBar = ({ isLoggedin }) => {
       <Header pad="small" background="red">
         <Box
           align="center"
-          gap="small"
+          gap="medium"
           justiy="center"
           direction="row"
-          margin={{ left: "20px" }}
+          margin={{ left: "5px" }}
         >
           <Link to="/">
             <Home size="medium" color="orange" />
@@ -55,19 +55,21 @@ const NavBar = ({ isLoggedin }) => {
           justify="center"
           style={{ style: "0 auto" }}
         >
-          <Text
-            size="3xl"
-            color="black"
-            style={{ margin: "0 auto", fontFamily: "Unica One" }}
-          >
-            STEEP
-          </Text>
+          <Link style={{color: 'unset'}} to="/">
+            <Text
+              size="3xl"
+              style={{ margin: "0 auto", fontFamily: "Unica One" }}
+            >
+              STEEP
+            </Text>          
+          </Link>
+
         </Box>
         <Box
           align="center"
           direction="row"
-          gap="small"
-          margin={{ right: "10px" }}
+          gap="medium"
+          margin={{ right: "5px" }}
         >
           <Link to='/faq'><CircleInformation color="darkgrey"/></Link>
           {isLoggedin ? (

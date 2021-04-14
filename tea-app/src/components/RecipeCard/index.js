@@ -11,12 +11,13 @@ import { useMutation } from "@apollo/client";
 import { REMOVE_RECIPE } from "../../utils/mutations";
 import { QUERY_ME } from '../../utils/queries'
 
+import Auth from '../../utils/auth'
+
 export const RecipeCard = ({ recipe, setAddNotification }) => {
 
     const [deleteRecipe] = useMutation(REMOVE_RECIPE, {
         update(cache, { data: {removeRecipe }}) {
             const { me } = cache.readQuery({ query: QUERY_ME })
-            console.log(removeRecipe, me)
             me.recipes = me.recipes.filter(recipe => recipe._id !== removeRecipe._id)
             cache.writeQuery({
                 query: QUERY_ME,
@@ -54,6 +55,13 @@ export const RecipeCard = ({ recipe, setAddNotification }) => {
 
 
     const handleDelete = async () => {
+        const token = Auth.loggedIn() ? Auth.getToken() : null
+
+        if (!token) {
+            Auth.logout()
+            return false
+        }
+        
         try {
           await deleteRecipe({
             variables: { id: recipe._id }
@@ -80,8 +88,8 @@ export const RecipeCard = ({ recipe, setAddNotification }) => {
             }}>
                 <FrontSide style={{ padding: "0" }}>
                     <Card fill={true} elevation="medium" background="white">
-                        <CardBody width="medium">
-                            <Image fit="cover" src={`${process.env.PUBLIC_URL}/images/${recipe.picture}`} />
+                        <CardBody>
+                            <Image style={{maxWidth: "600px", width: "80vw"}} fit="cover" src={`${process.env.PUBLIC_URL}/images/${recipe.picture}`} />
                         </CardBody>
                         <CardFooter direction="row" justify="between" fill="horizontal">
                             <Heading level="5" margin={{left: "small"}}>{recipe.tea.name}</Heading>
@@ -91,7 +99,7 @@ export const RecipeCard = ({ recipe, setAddNotification }) => {
                 </FrontSide>
                 <BackSide style={{padding: "0"}}>
                     <Card fill={true} elevation="medium" background="white">
-                        <CardBody pad="medium" width="medium" direction="column" align="center" overflow={{vertical: "auto"}}>
+                        <CardBody pad="medium" direction="column" align="center" overflow={{vertical: "auto"}}>
                             <Grid fill="horizontal" margin={{bottom: 'medium'}} columns={['auto', 'auto']} rows={['auto', 'auto','auto', 'auto', 'auto']} areas={gridAreas} gap="small">
                                 <Box gridArea="teaLabel" direction="row" margin={{right: "medium"}} align="center">
                                     <Spa />
