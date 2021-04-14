@@ -9,6 +9,7 @@ const customTheme = deepMerge(grommet, {
     global: {
         font: {
             family: `Abhaya Libre`,
+            
           },
     },
     card: {
@@ -49,33 +50,33 @@ function AboutUsCard({item}) {
     
     return (
         <Grommet theme={customTheme}>                   
-            <Card elevation="large" width="medium" key={item.heading}>
-                <CardBody height="small">
+            <Card elevation="large" width="medium" key={item.heading} background={item.color}>
+                <CardBody pad={{vertical: 'small'}}height="small">
                     <Image
                         fit="contain"
                         src={item.image}
                         a11yTitle={item.a11yTitle}
                     />
                 </CardBody>
-                <Box pad={{horizontal: "medium"}} responsive={false}>
-                    <Heading level="3" margin={{ vertical: 'medium'}}>
+                <Box  pad={{horizontal: "medium"}} responsive={true}>
+                    <Heading alignSelf="center" level="3" margin={{ vertical: 'medium'}}>
                         {item.heading}
                     </Heading>
-                    <Paragraph margin={{ top: 'none'}}>
+                    {/* <Paragraph margin={{ top: 'none'}}>
                         {item.paragraph1}
-                    </Paragraph>
+                    </Paragraph> */}
                 </Box>
                 <CardFooter>
                     <Box direction="row" align="center" gap="small">
                         <Button 
                             icon={<Linkedin color="black" />}
-                            hoverIndicator
+                            
                             href={item.href1}
 
                         />
                         <Button
                             icon={<Github color="black" />}
-                            hoverIndicator
+                            
                             href={item.href2}
                         />
                         
@@ -84,7 +85,7 @@ function AboutUsCard({item}) {
                 </CardFooter>
                 <Collapsible open={open}>
                     <Paragraph margin="medium" color="purple">
-                        {item.paragraph2}
+                        {item.paragraph1}
                     </Paragraph>
                 </Collapsible>
             </Card>              
