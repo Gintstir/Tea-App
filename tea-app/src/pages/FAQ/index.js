@@ -26,11 +26,11 @@ const customTheme = deepMerge(grommet, {
 const FAQ = () => {
     return ( 
         <Grommet theme={customTheme}>
-           <Main pad={{horizontal: "80px", top:" 100px", bottom: "100px"}}>
-                <Box background="lightgrey" align="center">
-                    <Box >
+           <Main responsive={true} pad={{horizontal: "30px", top:" 50px", bottom: "50px"}}>
+                <Box responsive={true} background="light-6" align="center" >
+                    <Box responsive={true}>
                         <Text size="xlarge" margin={{top: "20px"}}alignSelf="center">Tea FAQs</Text>
-                        <Text margin="large">
+                        <Text margin="medium">
                             <Text color="purple">Q:</Text><Text size="large"> What is tea?</Text><br></br>
                             <Text color="darkgreen">A:</Text> In the world of hot, steeped beverages you will run into two major categories, herbal infusions and teas. True teas contain leaves of the camellia sinensis plant that are grown, harvested, and processed in distinct ways that yield white, green, black, and yellow (oolong) tea. <br></br><br></br>
                             <Text color="purple">Q:</Text><Text size="large"> What’s the scoop with caffeine?</Text><br></br>

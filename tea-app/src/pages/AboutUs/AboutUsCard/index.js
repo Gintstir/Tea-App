@@ -84,7 +84,7 @@ function AboutUsCard({item}) {
                     <ExpandButton onClick={() => setOpen(!open)} />
                 </CardFooter>
                 <Collapsible open={open}>
-                    <Paragraph margin="medium" color="purple">
+                    <Paragraph margin="medium" color="black">
                         {item.paragraph1}
                     </Paragraph>
                 </Collapsible>
