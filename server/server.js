@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const bodyParser = require('body-parser')
 
 const { ApolloServer } = require("apollo-server-express");
 const {
@@ -13,6 +14,10 @@ const { authMiddleware } = require("./utils/auth");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
+
+app.use(express.json({ limit: '5mb' }));
+app.use(express.urlencoded({ limit: '5mb', extended: true}))
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -22,8 +27,7 @@ const server = new ApolloServer({
 app.use(graphqlUploadExpress());
 server.applyMiddleware({ app });
 
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+
 
 // Serve up static images
 app.use(express.static(path.join(__dirname, "./images")));

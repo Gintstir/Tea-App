@@ -115,13 +115,19 @@ const NewRecipe = ({ setShow, teas, extras, setAddNotification }) => {
 
     const resizeImage = async (image, width = 600, height = Jimp.AUTO, quality = 70) => {
         const brandNewImg = await convertImageToBuffer(image)
+
         return new Promise((res, rej) => {
             Jimp.read(brandNewImg)
-            .then(newImage => {
-                return newImage
+            .then(image => {
+                const rotate = (image.bitmap.width < image.bitmap.height) && (image._exif.imageSize.height < image._exif.imageSize.width)
+
+                console.log(image._exif.imageSize, rotate)
+
+                return image
                     .resize(width, height)
                     .quality(quality)
-                    .getBase64Async(newImage._originalMime)
+                    .rotate(rotate ? 90 : 0)
+                    .getBase64Async(image._originalMime)
             })
             .then(readyImg => res(readyImg))
             .catch(err => rej(err))
