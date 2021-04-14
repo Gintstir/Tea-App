@@ -3,7 +3,8 @@ import TeaButtons from "../../components/TeaButtons";
 import TeaCard from "../../components/MaterializeTeaCard";
 
 // import { grommet } from "grommet/themes";
-import { Grommet, Main, Card } from "grommet";
+import { Grommet, Main, Card, Text } from "grommet";
+import { Drawer, Home, Login, Logout } from "grommet-icons";
 
 import recipeData from "../../utils/default-recipes";
 
@@ -22,9 +23,18 @@ const Landing = () => {
         margin="small"
         style={{ fontFamily: "Abhaya Libre" }}
       >
-        All things in due time,
+        <Text> All things in due time,</Text>
       </Main>
-
+      <Main pad="large" style={{ fontFamily: "Abhaya Libre" }}>
+        <Text>
+          Welcome to <span style={{ fontFamily: "Unica One" }}> STEEP </span>.
+          You can use this application to track your teas, pantry ingredients,
+          and create recipe cards with notes for your brews. Click the <Login />
+          /<Logout /> icon to log in and out, the <Home /> button to access your
+          profile, and the <Drawer /> button to check out your tea shelf and
+          pantry.
+        </Text>
+      </Main>
       <div>
         <TeaButtons
           selectedTea={selectedTea}
