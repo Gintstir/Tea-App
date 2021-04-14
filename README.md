@@ -1,7 +1,7 @@
 # Steep ![badge](https://img.shields.io/badge/License-Apache~2.0-brightgreen.svg)
 
 
-**Tea App is for tea lovers everywhere.  Built with the MERN tech stack, this Single Page Application was designed to go with you no matter where you're enjoying that perfectly brewed cup of Darjeeling thanks to its mobile-first, responsive design.  Create your own recipes, keep tabs on whats in your pantry with our tea-shelf.  Our tea-app will keep you coming back for a second cup!**
+**Steep is an app for tea lovers everywhere.  Built with the MERN tech stack, this Single Page Application was designed to go with you no matter where you're enjoying that perfectly brewed cup of Darjeeling thanks to its mobile-first, responsive design.  Create your own recipes, keep tabs on whats in your pantry with our tea-shelf.  Our tea-app will keep you coming back for a second cup!**
 
 
 Click here to see the live site : **[Steep](https://steep-tea-app.herokuapp.com/)**
@@ -49,7 +49,7 @@ Click here to see the live site : **[Steep](https://steep-tea-app.herokuapp.com/
 
 ## **Description**
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultrices urna quis magna ultrices dapibus. Sed facilisis ex eu viverra ornare. Ut facilisis euismod massa, at maximus ex bibendum sed. Integer sapien nisl, consequat id tempor nec, facilisis consectetur dolor. Nullam in maximus ex, ut tempor libero. Sed ultricies turpis malesuada arcu pellentesque facilisis. Cras blandit urna in enim vestibulum, quis tempus diam elementum. Sed in imperdiet risus, nec cursus ante. Nunc et porta erat, ut posuere tortor. Proin magna dui, blandit at sodales vel, congue sit amet quam. Aliquam blandit volutpat semper. Cras erat mi, vulputate ac blandit non.
+This app has a robust back end for compressing and storing images.  It also leverages features of Mongoose, graphql, and apollo for lightining fast server response times for getting and fetching data.  We use bCrypt for hashing and salting sensitive personal data like passwords while JWT's create a secure link between the user and our back-end.  On the front-end, grommet and materialize work in tandem with React to provide the user with a smooth, visually appealing experience.   
 
 ## **User-Story**
 
