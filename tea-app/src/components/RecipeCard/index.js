@@ -89,7 +89,7 @@ export const RecipeCard = ({ recipe, setAddNotification }) => {
                 <FrontSide style={{ padding: "0" }}>
                     <Card fill={true} elevation="medium" background="white">
                         <CardBody>
-                            <Image style={{maxWidth: "600px", width: "80vw"}} fit="cover" src={`/images/${recipe.picture}`} />
+                            <Image style={{maxWidth: "600px", width: "80vw"}} fit="cover" src={`${process.env.PUBLIC_URL}/images/${recipe.picture}`} />
                         </CardBody>
                         <CardFooter direction="row" justify="between" fill="horizontal">
                             <Heading level="5" margin={{left: "small"}}>{recipe.tea.name}</Heading>
