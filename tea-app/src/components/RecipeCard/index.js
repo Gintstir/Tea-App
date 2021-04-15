@@ -118,7 +118,7 @@ export const RecipeCard = ({ recipe, setAddNotification, canDelete, displayFoote
                     </Card>  
                 </FrontSide>
                 <BackSide style={{padding: "0", overflowY: "auto"}}>
-                    <Card  elevation="medium" background="white">
+                    <Card style={{minHeight: "100%"}} elevation="medium" background="white">
                         <CardBody pad="medium" direction="column" align="center" justify="start" fill={false}>
                             <Grid fill="horizontal" margin={{bottom: 'medium'}} columns={['auto', 'auto']} rows={['auto', 'auto','auto', 'auto']} areas={gridAreas} gap="small">
                                 <Box gridArea="teaLabel" direction="row" margin={{right: "medium"}} align="center">

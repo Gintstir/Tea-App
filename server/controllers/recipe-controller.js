@@ -42,7 +42,7 @@ const recipeController = {
                     { new: true}
                 )
 
-                if (deletedRecipe.picture = 'default.png') {
+                if (deletedRecipe.picture === 'default.png') {
                     return deletedRecipe
                 }
 

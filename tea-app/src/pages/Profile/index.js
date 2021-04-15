@@ -14,6 +14,7 @@ import Notification from '../../components/Notification'
 const Profile = () => {
 
   const [show, setShow] = useState(false)
+  const [loadingRecipe, setLoadingRecipe] = useState(false)
   const [addNotification, setAddNotification] = useState({show: false, type: '', message: ''})
 
   const { data, loading } = useQuery(QUERY_ME)
@@ -49,7 +50,7 @@ const Profile = () => {
             <Box pad={{right: "large"}}  style={{minHeight: "unset"}} direction="row" justify="end">
               <Button style={{padding: "0"}} icon={<FormClose size="35px" />} onClick={() => setShow(false)} />           
             </Box>
-            <NewRecipe setAddNotification={setAddNotification} setShow={setShow} teas={teas} extras={extras} />        
+            <NewRecipe setAddNotification={setAddNotification} setShow={setShow} teas={teas} extras={extras} setLoadingRecipe={setLoadingRecipe} />        
           </Box>
         </Layer>
       }
@@ -60,9 +61,15 @@ const Profile = () => {
         {
           !recipes.length ? 
           <Heading style={{fontFamily: "Abhaya Libre"}} level="2">Nothing to Steep yet...</Heading> :
-          recipes.map(recipe => (
-            <RecipeCard setAddNotification={setAddNotification} recipe={recipe} canDelete={true} teaCardHeight="125px" key={recipe._id} />
-          ))
+          <>
+            {loadingRecipe && (
+              <Box fill="horizontal" height="small" direction="column" align="center" justify="center">
+                <Heading style={{fontFamily: "Abhaya Libre"}} level="2">Your new recipe is steeping...</Heading>
+                <Spinner color="purple" size="large" />
+              </Box>              
+            )}
+            {recipes.map(recipe => <RecipeCard setAddNotification={setAddNotification} recipe={recipe} canDelete={true} teaCardHeight="125px" displayFooter={true} key={recipe._id} />)}
+          </>
         }        
       </Box>
     </Grommet>
