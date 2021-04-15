@@ -25,6 +25,7 @@ import { ADD_RECIPE, UPLOAD_IMAGE } from "../../utils/mutations";
 import { QUERY_ME } from '../../utils/queries'
 
 import Auth from '../../utils/auth'
+import TempButtons from "../TempButtons";
 
 const customTheme = deepMerge(grommet, {
     global: {
@@ -40,7 +41,8 @@ const customTheme = deepMerge(grommet, {
 const NewRecipe = ({ setShow, teas, extras, setAddNotification }) => {
     const [image, setImage] = useState();
     const [selectedExtras, setExtras] = useState([]);
-    const [selectedTea, setTea] = useState();
+    const [selectedTea, setTea] = useState({});
+    const [selectedTemp, setSelectedTemp] = useState({})
     const [formValue, setFormValue] = useState({
         type: "",
         name: "",
@@ -68,6 +70,37 @@ const NewRecipe = ({ setShow, teas, extras, setAddNotification }) => {
     });
     const [uploadImage] = useMutation(UPLOAD_IMAGE);
 
+    const validateEntries = (value) => {
+        if (!selectedTea.name) {
+            setAddNotification({show: true, type: 'warning', message: 'Please select a tea'})
+            setTimeout(() => {
+                setAddNotification({show: false, type: '', message: ''})
+            }, 3000)
+            return false
+        }
+        if (!selectedTemp.temp) {
+            setAddNotification({show: true, type: 'warning', message: 'Please select a temperature'})
+            setTimeout(() => {
+                setAddNotification({show: false, type: '', message: ''})
+            }, 3000)
+            return false
+        }
+        if (!value.steepTime) {
+            setAddNotification({show: true, type: 'warning', message: 'Please select how long your tea steeped for'})
+            setTimeout(() => {
+                setAddNotification({show: false, type: '', message: ''})
+            }, 3000)
+            return false
+        }
+        if (!value.note) {
+            setAddNotification({show: true, type: 'warning', message: 'Please enter a note describing your tea'})
+            setTimeout(() => {
+                setAddNotification({show: false, type: '', message: ''})
+            }, 3000)
+            return false
+        }
+    }
+
     const handleSubmit = async (value) => {
 
         const token = Auth.loggedIn() ? Auth.getToken() : null
@@ -77,26 +110,36 @@ const NewRecipe = ({ setShow, teas, extras, setAddNotification }) => {
             return false
         }
 
+        validateEntries(value)
+
         let imageName
         let uploadImageString
+        let isImageProvided = true
 
         if (image) {
             imageName = generateFileName(image?.name)
             uploadImageString = await resizeImage(image)
             uploadImageString = uploadImageString.split('base64,')[1]
+        } else {
+            isImageProvided = false
+            imageName = 'default.png'
         }
 
         value.type = selectedTea.type
         value.name = selectedTea.name
         value.brand = selectedTea.brand
         value.extra = selectedExtras
+        value.temperature = selectedTemp.temp
         value.steepTime = parseInt(value.steepTime)
 
         Promise.all([
             addRecipe({ variables: { ...value, picture: imageName} }),
-            uploadImage({ variables: { image: uploadImageString, imageName }})
+            isImageProvided && uploadImage({ variables: { image: uploadImageString, imageName }})
         ]).then(values => {
             setImage()
+            setExtras([])
+            setTea({})
+            setSelectedTemp({})
             setFormValue({
                 type: '',
                 name: '',
@@ -134,8 +177,6 @@ const NewRecipe = ({ setShow, teas, extras, setAddNotification }) => {
             Jimp.read(brandNewImg)
             .then(image => {
                 const rotate = (image.bitmap.width < image.bitmap.height) && (image._exif.imageSize.height < image._exif.imageSize.width)
-
-                console.log(image._exif.imageSize, rotate)
 
                 return image
                     .resize(width, height)
@@ -188,7 +229,8 @@ const NewRecipe = ({ setShow, teas, extras, setAddNotification }) => {
                     onReset={() => {
                         setImage()
                         setExtras([])
-                        setTea()
+                        setTea({})
+                        setSelectedTemp({})
                         setFormValue({
                             type: '',
                             name: '',
@@ -206,13 +248,14 @@ const NewRecipe = ({ setShow, teas, extras, setAddNotification }) => {
                     <PantryShelf shelfName={"Tea"} pantryData={teas} canSelect={true} canDelete={false} setItem={setTea} item={selectedTea} />
                     <Paragraph   size="large" color={"#9e9e9e"} margin={{horizontal: "32px", vertical: "6px"}}>Extras</Paragraph>
                     <PantryShelf shelfName={"Extra"} pantryData={extras} canSelect={true} canDelete={false} setItem={setExtras} item={selectedExtras}  />
-                    <FormField  name="temperature" htmlFor="tea-temperature-id" label="Temperature" contentProps={{border: false}} margin={{horizontal: "20px"}} required={true}>
-                        <TextInput  type="text" id="tea-temperature-id" name="temperature" />
+                    <FormField  name="temperature" htmlFor="tea-temperature-id" label="Temperature" contentProps={{border: false}} margin={{horizontal: "20px"}}>
+                        <TempButtons selectedTemp={selectedTemp} setSelectedTemp={setSelectedTemp} cardWidth={75} />
+                        {/* <TextInput  type="text" id="tea-temperature-id" name="temperature" /> */}
                     </FormField>
-                    <FormField  name="steepTime" htmlFor="tea-steepTime-id" label={`Steep Time ${convertToTimer(formValue.steepTime)}`} contentProps={{border: false}} margin={{horizontal: "20px"}}  required={true}>
+                    <FormField  name="steepTime" htmlFor="tea-steepTime-id" label={`Steep Time ${convertToTimer(formValue.steepTime)}`} contentProps={{border: false}} margin={{horizontal: "20px"}} >
                         <RangeInput  name="steepTime" min={0} max={360} step={10}/>
                     </FormField>
-                    <FormField  type="text" name="note" htmlFor="tea-note-id" label="Notes" contentProps={{border: false}} margin={{horizontal: "20px"}}  required={true}>
+                    <FormField  type="text" name="note" htmlFor="tea-note-id" label="Notes" contentProps={{border: false}} margin={{horizontal: "20px"}} >
                         <TextInput type="text" id="tea-note-id" name="note" />
                     </FormField>
                     <FormField  name="image" htmlFor="tea-image-id" label="Picture" contentProps={{border: false}} margin={{horizontal: "20px"}}>

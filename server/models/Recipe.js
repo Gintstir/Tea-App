@@ -28,13 +28,13 @@ const recipeSchema = new Schema(
             }
         ],
         temperature: {
-            type: String,
+            type: Number,
             required: true,
         },
         steepTime: {
             type: Number,
             min: 0,
-            default: 5
+            default: 300
         },
         picture: {
             type: String,

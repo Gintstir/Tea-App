@@ -14,6 +14,8 @@ import { QUERY_ME } from '../../utils/queries'
 
 import Auth from '../../utils/auth'
 
+import tempOptions from '../../utils/temps'
+
 const customTheme = deepMerge(grommet, {
     global: {
       font: {
@@ -21,7 +23,6 @@ const customTheme = deepMerge(grommet, {
       },
     },
 })
-
 
 export const RecipeCard = ({ recipe, setAddNotification }) => {
 
@@ -63,7 +64,6 @@ export const RecipeCard = ({ recipe, setAddNotification }) => {
         { name: 'notesValue', start: [1,4], end: [1,4]}
     ]
 
-
     const handleDelete = async () => {
         const token = Auth.loggedIn() ? Auth.getToken() : null
 
@@ -89,7 +89,8 @@ export const RecipeCard = ({ recipe, setAddNotification }) => {
         }
     }
 
-    console.log(recipe.temperature)
+    const thisTemp = tempOptions.find(temp => temp.temp === recipe.temperature)
+
     return (
         <Grommet theme={customTheme}>
             <Flippy style={{
@@ -100,7 +101,7 @@ export const RecipeCard = ({ recipe, setAddNotification }) => {
                 <FrontSide style={{ padding: "0" }}>
                     <Card fill={true} elevation="medium" background="white">
                         <CardBody>
-                            <Image style={{maxWidth: "600px", width: "80vw"}} fit="cover" src={`${process.env.PUBLIC_URL}/images/${recipe.picture}`} />
+                            <Image style={{maxWidth: "400px", width: "80vw"}} fit="cover" src={`${process.env.PUBLIC_URL}/images/${recipe.picture}`} fallback={`${process.env.PUBLIC_URL}/images/default.png`} />
                         </CardBody>
                         <CardFooter direction="row" justify="between" fill="horizontal">
                             <Heading level="5" margin={{left: "small"}}>{recipe.tea.name}</Heading>
@@ -136,7 +137,7 @@ export const RecipeCard = ({ recipe, setAddNotification }) => {
                                     <Heading level="4" margin="small">Temperature</Heading>
                                 </Box>
                                 <Box gridArea='temperatureValue' direction="row" align="center" justify="center">
-                                    <Text>{recipe.temperature}</Text>
+                                    <Text>{`${thisTemp.name} (${thisTemp.temp}`} &deg;F)</Text>
                                 </Box>
                                 <Box gridArea="steepTimeLabel" direction="row" margin={{right: "medium"}} align="center">
                                     <Clock />

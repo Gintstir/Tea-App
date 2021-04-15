@@ -58,7 +58,7 @@ const Profile = () => {
       </Box>
       <Box direction="column" align="center" margin={{horizontal: "30px"}}>
         {
-          recipes.length ? 
+          !recipes.length ? 
           <Heading style={{fontFamily: "Abhaya Libre"}} level="2">Nothing to Steep yet...</Heading> :
           recipes.map(recipe => (
             <RecipeCard setAddNotification={setAddNotification} recipe={recipe} key={recipe._id} />

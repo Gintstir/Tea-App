@@ -55,10 +55,10 @@ export const ADD_RECIPE = gql`
     $name: String!
     $brand: String!
     $extra: [String!]
-    $temperature: String!
+    $temperature: Int!
     $steepTime: Int!
     $picture: String!
-    $note: String
+    $note: String!
   ) {
     addRecipe(
       type: $type

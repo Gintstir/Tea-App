@@ -16,12 +16,12 @@ const typeDefs = gql`
     }
     type Recipe {
         _id: ID!
-        tea: Tea
+        tea: Tea!
         extra: [String]
-        temperature: String
-        steepTime: Int
-        picture: String
-        note: String
+        temperature: Int!
+        steepTime: Int!
+        picture: String!
+        note: String!
         createdAt: String
     }
     type User {
@@ -52,7 +52,7 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         addTea(type: String!, name: String!, brand: String!): User
         addExtra(type: String): User
-        addRecipe(type: String!, name: String!, brand: String!, extra: [String], temperature: String!, steepTime: Int!, picture: String, note: String): Recipe
+        addRecipe(type: String!, name: String!, brand: String!, extra: [String], temperature: Int!, steepTime: Int!, picture: String!, note: String!): Recipe
 
         removeExtra(type: String!): User
         removeTea(id: ID!): User

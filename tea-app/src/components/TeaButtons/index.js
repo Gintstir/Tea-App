@@ -60,7 +60,6 @@ const TeaButtons = ({ selectedTea, setSelectedTea, cardHeight, cardWidth }) => {
                 <Box style={{ position: "absolute", top: "5px", right:"5px"}}>
                   <Checkmark />
                 </Box>}
-                
                 {value.icon}
               </CardBody>
               <CardFooter justify="center">

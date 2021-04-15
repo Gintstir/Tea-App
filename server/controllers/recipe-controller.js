@@ -42,6 +42,10 @@ const recipeController = {
                     { new: true}
                 )
 
+                if (deletedRecipe.picture = 'default.png') {
+                    return deletedRecipe
+                }
+
                 const path = `./images/images/${deletedRecipe.picture}`
 
                 fs.unlink(path, (err) => {
