@@ -2,7 +2,8 @@ import React from "react";
 import moment from 'moment'
 import Flippy, { FrontSide, BackSide } from 'react-flippy'
 
-import { Grommet, Box, Image, Card, CardBody, CardFooter, Heading, Text, Grid, List, Button } from "grommet";
+import { Grommet, Box, Image, Card, CardBody, CardFooter, Heading, Text, Grid, List, Button, grommet } from "grommet";
+import {deepMerge} from 'grommet/utils';
 
 import PantryShelfTeaCard from '../PantryShelfTeaCard'
 import { AddCircle, Spa, Clock, Note, SubtractCircle } from "grommet-icons";
@@ -12,6 +13,15 @@ import { REMOVE_RECIPE } from "../../utils/mutations";
 import { QUERY_ME } from '../../utils/queries'
 
 import Auth from '../../utils/auth'
+
+const customTheme = deepMerge(grommet, {
+    global: {
+      font: {
+          family: `Abhaya Libre`,
+      },
+    },
+})
+
 
 export const RecipeCard = ({ recipe, setAddNotification }) => {
 
@@ -79,8 +89,9 @@ export const RecipeCard = ({ recipe, setAddNotification }) => {
         }
     }
 
+    console.log(recipe.temperature)
     return (
-        <Grommet>
+        <Grommet theme={customTheme}>
             <Flippy style={{
                 marginTop: "25px",
                 marginBottom: "25px",
@@ -106,15 +117,20 @@ export const RecipeCard = ({ recipe, setAddNotification }) => {
                                     <Heading level="4" margin="small">Tea</Heading>
                                 </Box>
                                 <Box gridArea='teaValue' direction="row" justify="center">
-                                    <PantryShelfTeaCard height="75px" cardData={recipe.tea} />
+                                    <PantryShelfTeaCard height="125px" cardData={recipe.tea} />
                                 </Box>
-                                <Box gridArea="extrasLabel" direction="row" margin={{right: "medium"}} align="center">
-                                    <AddCircle />
-                                    <Heading level="4" margin="small">Extras</Heading>
-                                </Box>
-                                <Box gridArea='extrasValue'>
-                                    <List data={recipe.extra} />
-                                </Box>
+                                { 
+                                    recipe.extra.length > 0 && 
+                                    <>
+                                        <Box gridArea="extrasLabel" direction="row" margin={{right: "medium"}} align="center">
+                                            <AddCircle />
+                                            <Heading level="4" margin="small">Extras</Heading>
+                                        </Box>
+                                        <Box gridArea='extrasValue'>
+                                            <List data={recipe.extra} />
+                                        </Box>
+                                    </>
+                                }
                                 <Box gridArea="temperatureLabel" direction="row" margin={{right: "medium"}} align="center">
                                     <i className="material-icons">thermostat</i>
                                     <Heading level="4" margin="small">Temperature</Heading>
@@ -137,7 +153,7 @@ export const RecipeCard = ({ recipe, setAddNotification }) => {
                                     <Text>{recipe.note}</Text>
                                 </Box>
                             </Grid>
-                            <Button onClick={handleDelete} primary={true} color="status-error" label="Delete Recipe" icon={<SubtractCircle />} />                      
+                            <Button onClick={handleDelete} primary={true} color="status-error" label="Delete Recipe" icon={<SubtractCircle />} margin={{top: "auto"}} />                      
                         </CardBody>
                     </Card>   
                 </BackSide>

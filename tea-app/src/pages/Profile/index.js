@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from '@apollo/react-hooks'
 
 // import { grommet } from "grommet/themes";
-import { Grommet, Spinner, Layer, Box, Button, Header, Text } from "grommet";
+import { Grommet, Spinner, Layer, Box, Button, Header, Text, Heading } from "grommet";
 import { AddCircle, FormClose } from "grommet-icons";
 
 import { QUERY_ME } from '../../utils/queries'
@@ -25,9 +25,14 @@ const Profile = () => {
   const { teas, extras, recipes } = data?.me || {}
   
   if (!recipes || loading) {
-    return <Spinner />
+    return (
+    <Box fill="horizontal" height="medium" direction="column" align="center" justify="center">
+      <Heading style={{fontFamily: "Abhaya Libre"}} level="2">Your teas are brewing...</Heading>
+      <Spinner color="purple" size="large" />
+    </Box>
+    )
   }
-  
+
   return (
     <Grommet>
       {
@@ -53,6 +58,8 @@ const Profile = () => {
       </Box>
       <Box direction="column" align="center" margin={{horizontal: "30px"}}>
         {
+          recipes.length ? 
+          <Heading style={{fontFamily: "Abhaya Libre"}} level="2">Nothing to Steep yet...</Heading> :
           recipes.map(recipe => (
             <RecipeCard setAddNotification={setAddNotification} recipe={recipe} key={recipe._id} />
           ))

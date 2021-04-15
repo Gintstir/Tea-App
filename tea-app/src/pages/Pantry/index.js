@@ -52,7 +52,10 @@ const Pantry = () => {
       </Header>
       <Main margin={{bottom: "35px"}}>
         { loading ? 
-          <Spinner /> :
+          <Box fill="horizontal" height="medium" direction="column" align="center" justify="center">
+            <Heading style={{fontFamily: "Abhaya Libre"}} level="2">Your pantry is opening...</Heading>
+            <Spinner color="purple" size="large" />
+          </Box> :
           <>
           <Box direction="row" pad="xsmall">
             <Heading level={3} margin={{ left: "small", bottom: "none" }}>
