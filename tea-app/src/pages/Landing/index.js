@@ -1,30 +1,31 @@
 import React, { useState } from "react";
 import TeaButtons from "../../components/TeaButtons";
-import TeaCard from "../../components/MaterializeTeaCard";
 
 // import { grommet } from "grommet/themes";
-import { Grommet, Main, Card, Text } from "grommet";
+import { Grommet, Main, Text, Box } from "grommet";
 import { Drawer, Home, Login, Logout } from "grommet-icons";
 
 import recipeData from "../../utils/default-recipes";
+import RecipeCard from "../../components/RecipeCard";
 
 const Landing = () => {
   const [selectedTea, setSelectedTea] = useState({});
 
   const foundRecipe = recipeData.find(
-    (recipe) => recipe.name === selectedTea?.color
+    (recipe) => recipe.tea.name === selectedTea?.name
   );
 
   return (
     <Grommet>
-      <Main
+      <Box
         pad="small"
-        direction="row-reverse"
+        direction="row"
+        justify="center"
         margin="small"
         style={{ fontFamily: "Abhaya Libre" }}
       >
-        <Text> All things in due time,</Text>
-      </Main>
+        <Text style={{fontStyle: 'italic'}}>All things in due time,</Text>
+      </Box>
       <Main pad="large" style={{ fontFamily: "Abhaya Libre" }}>
         <Text>
           Welcome to <span style={{ fontFamily: "Unica One" }}> STEEP </span>.
@@ -43,9 +44,12 @@ const Landing = () => {
           cardWidth={150}
         />
       </div>
-      <Card>
-        <TeaCard selectedTea={foundRecipe} />
-      </Card>
+      <Box direction="column" align="center" margin={{horizontal: "30px"}}>
+        {
+          foundRecipe &&
+          <RecipeCard recipe={foundRecipe} canDelete={false} teaCardHeight="75px" displayFooter={false} landingPage={true} />
+        }        
+      </Box>
     </Grommet>
   );
 };

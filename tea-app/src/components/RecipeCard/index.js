@@ -2,7 +2,7 @@ import React from "react";
 import moment from 'moment'
 import Flippy, { FrontSide, BackSide } from 'react-flippy'
 
-import { Grommet, Box, Image, Card, CardBody, CardFooter, Heading, Text, Grid, List, Button, grommet } from "grommet";
+import { Grommet, Box, Image, Card, CardBody, CardFooter, Heading, Text, Grid, List, Button, grommet, Paragraph } from "grommet";
 import {deepMerge} from 'grommet/utils';
 
 import PantryShelfTeaCard from '../PantryShelfTeaCard'
@@ -24,7 +24,7 @@ const customTheme = deepMerge(grommet, {
     },
 })
 
-export const RecipeCard = ({ recipe, setAddNotification }) => {
+export const RecipeCard = ({ recipe, setAddNotification, canDelete, displayFooter, teaCardHeight, landingPage }) => {
 
     const [deleteRecipe] = useMutation(REMOVE_RECIPE, {
         update(cache, { data: {removeRecipe }}) {
@@ -37,7 +37,10 @@ export const RecipeCard = ({ recipe, setAddNotification }) => {
         }
     })
 
-    const createdDate = moment.unix(recipe.createdAt/1000).format('l')
+    let createdDate = null
+    if (recipe.createdAt) {
+        createdDate = moment.unix(recipe.createdAt/1000).format('l')
+    }
 
     const convertToTimer = (timeSeconds) => {
         if(!timeSeconds) {
@@ -60,8 +63,8 @@ export const RecipeCard = ({ recipe, setAddNotification }) => {
         { name: 'temperatureValue', start: [1,2], end: [1,2]},
         { name: 'steepTimeLabel', start: [0,3], end: [0,3]},
         { name: 'steepTimeValue', start: [1,3], end: [1,3]},
-        { name: 'notesLabel', start: [0,4], end: [0,4]},
-        { name: 'notesValue', start: [1,4], end: [1,4]}
+        // { name: 'notesLabel', start: [0,4], end: [0,4]},
+        // { name: 'notesValue', start: [1,4], end: [1,4]}
     ]
 
     const handleDelete = async () => {
@@ -101,7 +104,12 @@ export const RecipeCard = ({ recipe, setAddNotification }) => {
                 <FrontSide style={{ padding: "0" }}>
                     <Card fill={true} elevation="medium" background="white">
                         <CardBody>
-                            <Image style={{maxWidth: "400px", width: "80vw"}} fit="cover" src={`${process.env.PUBLIC_URL}/images/${recipe.picture}`} fallback={`${process.env.PUBLIC_URL}/images/default.png`} />
+                            {
+                                landingPage ? 
+                                <Image style={{maxWidth: "400px", width: "80vw"}} fit="cover" src={recipe.picture} fallback={`${process.env.PUBLIC_URL}/images/default.png`} /> :
+                                <Image style={{maxWidth: "400px", width: "80vw"}} fit="cover" src={`${process.env.PUBLIC_URL}/images/${recipe.picture}`} fallback={`${process.env.PUBLIC_URL}/images/default.png`} />
+                            }
+                            
                         </CardBody>
                         <CardFooter direction="row" justify="between" fill="horizontal">
                             <Heading level="5" margin={{left: "small"}}>{recipe.tea.name}</Heading>
@@ -109,16 +117,16 @@ export const RecipeCard = ({ recipe, setAddNotification }) => {
                         </CardFooter>
                     </Card>  
                 </FrontSide>
-                <BackSide style={{padding: "0"}}>
-                    <Card fill={true} elevation="medium" background="white">
-                        <CardBody pad="medium" direction="column" align="center" overflow={{vertical: "auto"}}>
-                            <Grid fill="horizontal" margin={{bottom: 'medium'}} columns={['auto', 'auto']} rows={['auto', 'auto','auto', 'auto', 'auto']} areas={gridAreas} gap="small">
+                <BackSide style={{padding: "0", overflowY: "auto"}}>
+                    <Card  elevation="medium" background="white">
+                        <CardBody pad="medium" direction="column" align="center" justify="start" fill={false}>
+                            <Grid fill="horizontal" margin={{bottom: 'medium'}} columns={['auto', 'auto']} rows={['auto', 'auto','auto', 'auto']} areas={gridAreas} gap="small">
                                 <Box gridArea="teaLabel" direction="row" margin={{right: "medium"}} align="center">
                                     <Spa />
                                     <Heading level="4" margin="small">Tea</Heading>
                                 </Box>
                                 <Box gridArea='teaValue' direction="row" justify="center">
-                                    <PantryShelfTeaCard height="125px" cardData={recipe.tea} />
+                                    <PantryShelfTeaCard height={teaCardHeight} cardData={recipe.tea} displayFooter={displayFooter} />
                                 </Box>
                                 { 
                                     recipe.extra.length > 0 && 
@@ -146,15 +154,20 @@ export const RecipeCard = ({ recipe, setAddNotification }) => {
                                 <Box gridArea='steepTimeValue' direction="row" align="center" justify="center">
                                     <Text>{convertToTimer(recipe.steepTime)}</Text>
                                 </Box>
-                                <Box gridArea="notesLabel" direction="row" margin={{right: "medium"}} align="center">
+                            </Grid>
+                            <Box>
+                                <Box direction="row" align="center" justify='center' >
                                     <Note />
                                     <Heading level="4" margin="small">Notes</Heading>
                                 </Box>
-                                <Box gridArea='notesValue' direction="row" align="center" justify="center">
-                                    <Text>{recipe.note}</Text>
-                                </Box>
-                            </Grid>
-                            <Button onClick={handleDelete} primary={true} color="status-error" label="Delete Recipe" icon={<SubtractCircle />} margin={{top: "auto"}} />                      
+                                <Box gridArea='notesValue' direction="row"  justify="center">
+                                    <Paragraph margin={{bottom: 'small'}}>{recipe.note}</Paragraph>
+                                </Box>                            
+                            </Box>
+                            { 
+                                canDelete &&
+                                <Button onClick={handleDelete} primary={true} color="status-error" label="Delete Recipe" icon={<SubtractCircle />} margin={{top: "auto"}} />  
+                            }            
                         </CardBody>
                     </Card>   
                 </BackSide>

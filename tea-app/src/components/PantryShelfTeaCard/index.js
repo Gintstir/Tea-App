@@ -18,7 +18,7 @@ const colors = {
   Herbal: "#A2065A",
 };
 
-const PantryShelfTeaCard = ({ cardData, canSelect, canDelete, setItem, item, setAddNotification, height, width }) => {
+const PantryShelfTeaCard = ({ cardData, canSelect, canDelete, setItem, item, setAddNotification, height, width, displayFooter }) => {
 
   const [deleteTea] = useMutation(REMOVE_TEA, {
     uupdate(cache, { data: {removeTea }}) {
@@ -94,14 +94,17 @@ const PantryShelfTeaCard = ({ cardData, canSelect, canDelete, setItem, item, set
             {cardData.name}
           </Heading>
         </CardBody>
-        <CardFooter direction="column" align="center" justify="end" gap={false} >
-          <Text size="small" >
-            {cardData.type}
-          </Text>
-          <Text size="small">
-            By: {cardData.brand}
-          </Text>
-        </CardFooter>
+        {
+          displayFooter &&
+          <CardFooter direction="column" align="center" justify="end" gap={false} >
+            <Text size="small" >
+              {cardData.type}
+            </Text>
+            <Text size="small">
+              By: {cardData.brand}
+            </Text>
+          </CardFooter>          
+        }
       </Card>
     </Grommet>
   );

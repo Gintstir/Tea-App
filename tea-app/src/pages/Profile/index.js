@@ -61,7 +61,7 @@ const Profile = () => {
           !recipes.length ? 
           <Heading style={{fontFamily: "Abhaya Libre"}} level="2">Nothing to Steep yet...</Heading> :
           recipes.map(recipe => (
-            <RecipeCard setAddNotification={setAddNotification} recipe={recipe} key={recipe._id} />
+            <RecipeCard setAddNotification={setAddNotification} recipe={recipe} canDelete={true} teaCardHeight="125px" key={recipe._id} />
           ))
         }        
       </Box>

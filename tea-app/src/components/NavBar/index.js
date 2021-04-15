@@ -43,11 +43,12 @@ const NavBar = ({ isLoggedin }) => {
           <Link to="/">
             <Home size="medium" color="orange" />
           </Link>
-          {isLoggedin && (
+          {isLoggedin ? 
             <Link to="/pantry">
               <Drawer size="medium" color="darkgreen" />
-            </Link>
-          )}
+            </Link> :
+            <Box width="24px" />
+          }
         </Box>
         <Box
           direction="row"
