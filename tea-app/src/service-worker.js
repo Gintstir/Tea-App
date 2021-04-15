@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-const revisionNumber = "1.0"
+//const revisionNumber = "1.0"
 // This service worker can be customized!
 // See https://developers.google.com/web/tools/workbox/modules
 // for the list of available Workbox modules, or add any other
@@ -12,6 +12,7 @@ import { ExpirationPlugin } from "workbox-expiration";
 import { precacheAndRoute, createHandlerBoundToURL } from "workbox-precaching";
 import { registerRoute } from "workbox-routing";
 import { StaleWhileRevalidate } from "workbox-strategies";
+import { BroadcastUpdatePlugin } from 'workbox-broadcast-update';
 
 clientsClaim();
 
@@ -59,6 +60,7 @@ registerRoute(
       // Ensure that once this runtime cache reaches a maximum size the
       // least-recently used images are removed.
       new ExpirationPlugin({ maxEntries: 50 }),
+      new BroadcastUpdatePlugin()
     ],
   })
 );
