@@ -64,7 +64,7 @@ const Profile = () => {
           <>
             {loadingRecipe && (
               <Box fill="horizontal" height="small" direction="column" align="center" justify="center">
-                <Heading style={{fontFamily: "Abhaya Libre"}} level="2">Your new recipe is steeping...</Heading>
+                <Heading style={{fontFamily: "Abhaya Libre"}} level="2">Your new recipe is Steeping...</Heading>
                 <Spinner color="purple" size="large" />
               </Box>              
             )}
