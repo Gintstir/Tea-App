@@ -32,6 +32,26 @@ export const QUERY_ME = gql`
     }
 `
 
+export const QUERY_RECIPES = gql`
+    query recipes {
+        recipes {
+            _id
+            tea {
+                _id
+                type
+                name
+                brand
+            }
+            extra
+            temperature
+            steepTime
+            picture
+            note
+            createdAt
+        }
+    }
+`
+
 export const QUERY_USER = gql`
     query user($username:String!) {
         user(username:$username) {

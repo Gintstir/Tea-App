@@ -10,7 +10,7 @@ import { AddCircle, Spa, Clock, Note, SubtractCircle } from "grommet-icons";
 
 import { useMutation } from "@apollo/client";
 import { REMOVE_RECIPE } from "../../utils/mutations";
-import { QUERY_ME } from '../../utils/queries'
+import { QUERY_ME, QUERY_RECIPES } from '../../utils/queries'
 
 import Auth from '../../utils/auth'
 
@@ -28,12 +28,27 @@ export const RecipeCard = ({ recipe, setAddNotification, canDelete, displayFoote
 
     const [deleteRecipe] = useMutation(REMOVE_RECIPE, {
         update(cache, { data: {removeRecipe }}) {
-            const { me } = cache.readQuery({ query: QUERY_ME })
-            me.recipes = me.recipes.filter(recipe => recipe._id !== removeRecipe._id)
-            cache.writeQuery({
-                query: QUERY_ME,
-                data: { me }
-            })
+            try {
+                const { me } = cache.readQuery({ query: QUERY_ME })
+                me.recipes = me.recipes.filter(recipe => recipe._id !== removeRecipe._id)
+                cache.writeQuery({
+                    query: QUERY_ME,
+                    data: { me }
+                })
+            } catch (e) {
+                console.warn("The query has not run, therefore no need to update!")
+            }
+            try {
+                let { recipes } = cache.readQuery({ query: QUERY_RECIPES })
+                recipes = recipes.filter(recipe => recipe._id !== removeRecipe._id)
+                cache.writeQuery({
+                    query: QUERY_RECIPES,
+                    data: { recipes }
+                })
+            } catch (e) {
+                console.warn("The query has not run, therefore no need to update!")
+            }
+
         }
     })
 

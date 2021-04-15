@@ -48,7 +48,7 @@ const Pantry = () => {
         </Layer>
       }
       <Header background="light-4" pad="small">
-        <Text size="large">Pantry</Text>
+        <Text size="large">Your Pantry</Text>
       </Header>
       <Main margin={{bottom: "35px"}}>
         { loading ? 

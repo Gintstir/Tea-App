@@ -22,7 +22,7 @@ import { useMutation } from "@apollo/react-hooks";
 import {deepMerge} from 'grommet/utils';
 
 import { ADD_RECIPE, UPLOAD_IMAGE } from "../../utils/mutations";
-import { QUERY_ME } from '../../utils/queries'
+import { QUERY_ME, QUERY_RECIPES } from '../../utils/queries'
 
 import Auth from '../../utils/auth'
 import TempButtons from "../TempButtons";
@@ -62,10 +62,21 @@ const NewRecipe = ({ setShow, teas, extras, setAddNotification, setLoadingRecipe
                     query: QUERY_ME,
                     data: { me }
                 })
+            } catch (e) {
+                console.warn("The query has not run, therefore no need to update!")
+            }
+            try {
+                const { recipes } = cache.readQuery({ query: QUERY_RECIPES })
+                recipes.unshift(addRecipe)
+                cache.writeQuery({
+                    query: QUERY_RECIPES,
+                    data: { recipes }
+                })
       
             } catch (e) {
                 console.warn("The query has not run, therefore no need to update!")
             }
+
         }
     });
     const [uploadImage] = useMutation(UPLOAD_IMAGE);
@@ -99,6 +110,7 @@ const NewRecipe = ({ setShow, teas, extras, setAddNotification, setLoadingRecipe
             }, 3000)
             return false
         }
+        return true
     }
 
     const handleSubmit = async (value) => {
@@ -110,7 +122,9 @@ const NewRecipe = ({ setShow, teas, extras, setAddNotification, setLoadingRecipe
             return false
         }
 
-        validateEntries(value)
+        if (!validateEntries(value)) {
+            return
+        }
 
         setLoadingRecipe(true)
         setShow(false)
@@ -248,12 +262,11 @@ const NewRecipe = ({ setShow, teas, extras, setAddNotification, setLoadingRecipe
                     style={{backgroundColor: "transparent"}}
                 >
                     <Paragraph  size="large" color={"#9e9e9e"} margin={{horizontal: "32px", vertical: "6px"}}>Teas</Paragraph>
-                    <PantryShelf shelfName={"Tea"} pantryData={teas} canSelect={true} canDelete={false} setItem={setTea} item={selectedTea} />
+                    <PantryShelf shelfName={"Tea"} pantryData={teas} canSelect={true} canDelete={false} setItem={setTea} item={selectedTea} displayFooter={true} />
                     <Paragraph   size="large" color={"#9e9e9e"} margin={{horizontal: "32px", vertical: "6px"}}>Extras</Paragraph>
                     <PantryShelf shelfName={"Extra"} pantryData={extras} canSelect={true} canDelete={false} setItem={setExtras} item={selectedExtras}  />
                     <FormField  name="temperature" htmlFor="tea-temperature-id" label="Temperature" contentProps={{border: false}} margin={{horizontal: "20px"}}>
                         <TempButtons selectedTemp={selectedTemp} setSelectedTemp={setSelectedTemp} cardWidth={75} />
-                        {/* <TextInput  type="text" id="tea-temperature-id" name="temperature" /> */}
                     </FormField>
                     <FormField  name="steepTime" htmlFor="tea-steepTime-id" label={`Steep Time ${convertToTimer(formValue.steepTime)}`} contentProps={{border: false}} margin={{horizontal: "20px"}} >
                         <RangeInput  name="steepTime" min={0} max={360} step={10}/>

@@ -4,7 +4,7 @@ const {
 
 const { createTea, removeTea } = require('../controllers/tea-controller');
 const { createExtra, removeExtra } = require('../controllers/extra-controller');
-const { createRecipe, removeRecipe } = require('../controllers/recipe-controller');
+const { getRecipes, createRecipe, removeRecipe } = require('../controllers/recipe-controller');
 
 const { createUser, loginUser, getUser } = require('../controllers/user-controller')
 
@@ -14,7 +14,8 @@ const resolvers = {
     Upload: GraphQLUpload,
     Query: {
         me: getUser,
-        user: getUser
+        user: getUser,
+        recipes: getRecipes
     },
     Mutation: {
         addUser: createUser,

@@ -16,6 +16,7 @@ import Foot from "./components/Footer"
 import Landing from "./pages/Landing";
 import Profile from "./pages/Profile";
 import Pantry from "./pages/Pantry";
+import Global from './pages/Global'
 import AboutUs from './pages/AboutUs';
 import FAQ from './pages/FAQ';
 
@@ -61,6 +62,9 @@ function App() {
             </Route>
             <Route exact path="/signin">
               {isLoggedin ? <Redirect to="/" /> : <SignIn />}
+            </Route>   
+            <Route exact path="/global">
+              {isLoggedin ? <Global /> : <Redirect to="/" />}
             </Route>           
             <Route exact path="/about">
               <AboutUs />

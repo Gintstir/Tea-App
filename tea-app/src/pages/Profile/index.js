@@ -41,7 +41,7 @@ const Profile = () => {
         <Notification setAddNotification={setAddNotification} addNotification={addNotification} />
       }
       <Header background="light-4" pad="small">
-        <Text style={{fontFamily: "Abhaya Libre"}} size="large">Profile</Text>
+        <Text style={{fontFamily: "Abhaya Libre"}} size="large">Your Tea Room</Text>
       </Header>
       { 
         show && 

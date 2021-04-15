@@ -9,7 +9,7 @@ import "./pantry.css";
 import PantryShelfTeaCard from "../PantryShelfTeaCard";
 import PantryShelfExtraCard from "../PantryShelfExtraCard";
 
-const PantryShelf = ({ shelfName, pantryData, canDelete, canSelect, setItem, item ,  setAddNotification }) => {
+const PantryShelf = ({ shelfName, pantryData, canDelete, canSelect, setItem, item ,  setAddNotification, displayFooter }) => {
 
   return (
     <Grommet>
@@ -45,6 +45,7 @@ const PantryShelf = ({ shelfName, pantryData, canDelete, canSelect, setItem, ite
                       setItem={canSelect && setItem}
                       item={canSelect && item}
                       setAddNotification={canDelete && setAddNotification}
+                      displayFooter={true}
                       key={typeof data === "string" ? data : data._id}
                     />
                   );
