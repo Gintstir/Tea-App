@@ -78,8 +78,6 @@ export const RecipeCard = ({ recipe, setAddNotification, canDelete, displayFoote
         { name: 'temperatureValue', start: [1,2], end: [1,2]},
         { name: 'steepTimeLabel', start: [0,3], end: [0,3]},
         { name: 'steepTimeValue', start: [1,3], end: [1,3]},
-        // { name: 'notesLabel', start: [0,4], end: [0,4]},
-        // { name: 'notesValue', start: [1,4], end: [1,4]}
     ]
 
     const handleDelete = async () => {
@@ -119,12 +117,7 @@ export const RecipeCard = ({ recipe, setAddNotification, canDelete, displayFoote
                 <FrontSide style={{ padding: "0" }}>
                     <Card fill={true} elevation="medium" background="white">
                         <CardBody>
-                            {
-                                landingPage ? 
-                                <Image style={{maxWidth: "400px", width: "80vw"}} fit="cover" src={recipe.picture} fallback={`${process.env.PUBLIC_URL}/images/default.png`} /> :
-                                <Image style={{maxWidth: "400px", width: "80vw"}} fit="cover" src={`${process.env.PUBLIC_URL}/images/${recipe.picture}`} fallback={`${process.env.PUBLIC_URL}/images/default.png`} />
-                            }
-                            
+                            <Image style={{maxWidth: "400px", width: "80vw"}} fit="cover" src={recipe.picture} fallback={`${process.env.PUBLIC_URL}/images/default.png`} />
                         </CardBody>
                         <CardFooter direction="row" justify="between" fill="horizontal">
                             <Heading level="5" margin={{left: "small"}}>{recipe.tea.name}</Heading>

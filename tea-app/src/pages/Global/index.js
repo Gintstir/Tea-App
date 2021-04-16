@@ -16,7 +16,7 @@ const Global = () => {
   useEffect(() => {
     refetch()
   }, [])
-  
+
   if (loading) {
     return (
     <Box fill="horizontal" height="medium" direction="column" align="center" justify="center">

@@ -1,22 +1,51 @@
-const path = require('path')
-const fs = require('fs')
+const s3 = require('../../config/aws-connection')
+require('dotenv').config();
 
-const loadImageToServer = async (buffer, filename) => {
-    fs.writeFileSync(path.join(__dirname, '../images', filename), buffer)
+const loadImageToServer = async (params) => {
+    return new Promise((res, rej) => {
+        s3.upload(params, function(err, data) {
+            if (err) {
+                rej({ result: false, message: err })
+            }
+            res({ result: true, message: `File uploaded successfully. ${data.Location}` })
+        })
+    })
 }
 
 const imageController = {
-    async loadImage (__, { image, imageName } ) {
+    async loadImage (__, { image, imageName, mimeType } ) {
         try {
             image = Buffer.from(image, 'base64')
-            let isSuccess = loadImageToServer(image, imageName)
-            if (!isSuccess) {
+            const params = {
+                Bucket: 'steep-tea-app',
+                Key: imageName,
+                Body: image,
+                ContentType: mimeType
+            }
+            let isSuccess = await loadImageToServer(params)
+            if (!isSuccess.result) {
+                console.error(isSuccess.message)
                 return false
             }
+            console.log(isSuccess.message)
             return true
         } catch (e) {
             console.error(e)
         }
+    },
+    async removeImage (filename) {
+        return new Promise ((res, rej) => {
+            filename = filename.replace('https://steep-tea-app.s3.amazonaws.com/', '')
+            s3.deleteObject({
+                Bucket: 'steep-tea-app',
+                Key: filename
+            }, function (err, data) {
+                if (err) {
+                    rej({ result: false, message: err })
+                }
+                res({ result: true, message: `File deleted successfully. ${data.Location}` })
+            })
+        })
     }
 }
 

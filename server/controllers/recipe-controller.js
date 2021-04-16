@@ -4,6 +4,8 @@ const { User, Recipe } = require('../models')
 
 const { AuthenticationError } = require('apollo-server-express')
 
+const { removeImage } = require('../images/controller/image-controller')
+
 const recipeController = {
     async getRecipes(parent, params, context) {
         if (context.user) {
@@ -26,6 +28,9 @@ const recipeController = {
                     name,
                     brand
                 }
+
+                recipe.picture = `https://steep-tea-app.s3.amazonaws.com/${recipe.picture}`
+
                 const newRecipe = await Recipe.create(recipe)
 
                 const updatedUser = await User.findByIdAndUpdate(
@@ -65,14 +70,13 @@ const recipeController = {
                     return deletedRecipe
                 }
 
-                const path = `./images/images/${deletedRecipe.picture}`
-
-                fs.unlink(path, (err) => {
-                    if (err) {
-                      console.error(err)
-                      return
+                removeImage(deletedRecipe.picture)
+                .then(data => {
+                    if (data.result) {
+                        console.log(data.message)
                     }
                 })
+                .catch(e => console.log(e))
 
                 return deletedRecipe
 

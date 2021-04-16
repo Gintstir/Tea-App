@@ -131,9 +131,11 @@ const NewRecipe = ({ setShow, teas, extras, setAddNotification, setLoadingRecipe
 
         let imageName
         let uploadImageString
+        let mimeType
         let isImageProvided = true
 
         if (image) {
+            mimeType = image.type
             imageName = generateFileName(image?.name)
             uploadImageString = await resizeImage(image)
             uploadImageString = uploadImageString.split('base64,')[1]
@@ -151,7 +153,7 @@ const NewRecipe = ({ setShow, teas, extras, setAddNotification, setLoadingRecipe
 
         Promise.all([
             addRecipe({ variables: { ...value, picture: imageName} }),
-            isImageProvided && uploadImage({ variables: { image: uploadImageString, imageName }})
+            isImageProvided && uploadImage({ variables: { image: uploadImageString, imageName, mimeType }})
         ]).then(values => {
             setImage()
             setExtras([])
